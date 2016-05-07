@@ -607,6 +607,9 @@ a.article-title:hover {
   display: block;
   margin: auto;
 }
+.article-entry li img {
+  display: inline;
+}
 .article-entry iframe {
   border: none;
 }
