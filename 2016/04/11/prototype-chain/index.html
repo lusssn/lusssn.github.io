@@ -3,17 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Lusssn&#39;s blog</title>
+  <title>对原型链的理解 | Lusssn&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lusssn's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对原型链的理解">
+<meta property="og:url" content="http://yoursite.com/2016/04/11/prototype-chain/index.html">
 <meta property="og:site_name" content="Lusssn's blog">
-<meta property="og:description">
+<meta property="og:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
+<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-1.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-2.png">
+<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/explain.png">
+<meta property="og:updated_time" content="2016-05-08T02:51:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lusssn's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="对原型链的理解">
+<meta name="twitter:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
+<meta name="twitter:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-1.png">
   
     <link rel="alternate" href="/atom.xml" title="Lusssn&#39;s blog" type="application/atom+xml">
   
@@ -62,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-prototype-chain" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-prototype-chain" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/04/11/prototype-chain/" class="article-date">
   <time datetime="2016-04-10T16:00:00.000Z" itemprop="datePublished">2016-04-11</time>
@@ -77,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/11/prototype-chain/">对原型链的理解</a>
+    <h1 class="article-title" itemprop="name">
+      对原型链的理解
     </h1>
   
 
@@ -108,59 +111,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-about-new-Date" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/24/about-new-Date/" class="article-date">
-  <time datetime="2016-01-23T16:00:00.000Z" itemprop="datePublished">2016-01-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/24/about-new-Date/">JS中new Date()的坑</a>
-    </h1>
+    <a href="/2016/01/24/about-new-Date/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS中new Date()的坑</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>new Date</code> &#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x65E5;&#x671F;&#x5B57;&#x7B26;&#x4E32;&#x6765;&#x751F;&#x6210;&#x5BF9;&#x8C61;&#x7684;&#xFF0C;&#x5B98;&#x65B9;&#x89C4;&#x5B9A; <strong>&#x65E5;&#x671F;&#x5B57;&#x7B26;&#x4E32;&#x9700;&#x8981;&#x7B26;&#x5408; RFC2822 &#x6216;&#x8005; ISO8601 &#x7684;&#x683C;&#x5F0F;</strong>&#x3002;</p>
-<ul>
-<li><em>RFC2822</em> &#x683C;&#x5F0F;&#x5982;&#x679C;&#x4E0D;&#x5E26;&#x65F6;&#x533A;&#xFF0C;<code>new Date</code> &#x4F1A;&#x5F53;&#x505A;&#x672C;&#x5730;&#x65F6;&#x533A;&#x5904;&#x7406;&#x3002;</li>
-<li><em>ISO8601</em> &#x683C;&#x5F0F;&#x5219;&#x4F1A;&#x5F53;&#x505A; UTC &#x65F6;&#x533A;&#x5904;&#x7406;&#x3002;</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;Jan 02 2016&quot;</span>) </span><br><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;01/02/2016&quot;</span>) </span><br><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;2016/01/02&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;01-02-2016&quot;</span>) </span><br><span class="line"><span class="comment">// Sat Jan 02 2016 08:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)     ISO8601</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;2016-01-02&quot;</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;2016/01-02&quot;</span>) </span><br><span class="line"><span class="comment">// Sat Jan 02 2016 00:00:00 GMT+0800 (&#x4E2D;&#x56FD;&#x6807;&#x51C6;&#x65F6;&#x95F4;)</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">&quot;2016-01/02&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</h3><ul>
-<li>&#x6BCF;&#x6B21;&#x683C;&#x5F0F;&#x5316;&#x65E5;&#x671F;&#x90FD;&#x4E25;&#x683C;&#x6307;&#x5B9A;&#x65F6;&#x533A;</li>
-<li>&#x6216;&#x8005;&#x4F7F;&#x7528;&#x5DE5;&#x5177; moment.js</li>
-</ul>
-<p>&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5728; <code>Date.parse</code> &#x4E2D;&#x4E5F;&#x540C;&#x6837;&#x5B58;&#x5728;&#x3002;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/01/24/about-new-Date/" data-id="cinxzx5650000dkkpabdoomuw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScipt/">JavaScipt</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
