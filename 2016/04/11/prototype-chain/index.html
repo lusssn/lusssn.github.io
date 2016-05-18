@@ -1,95 +1,79 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>对原型链的理解 | Lusssn&#39;s blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
-<meta property="og:type" content="article">
-<meta property="og:title" content="对原型链的理解">
-<meta property="og:url" content="http://yoursite.com/2016/04/11/prototype-chain/index.html">
-<meta property="og:site_name" content="Lusssn's blog">
-<meta property="og:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
-<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-1.png">
-<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-2.png">
-<meta property="og:image" content="http://yoursite.com/2016/04/11/prototype-chain/explain.png">
-<meta property="og:updated_time" content="2016-05-08T02:51:38.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对原型链的理解">
-<meta name="twitter:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x5B9E;&amp;#x4F8B;&amp;#xFF1A;12345678910111213var animal = function() {};var dog = function() {};animal.prototype.price = 20;animal.price = 1000;dog.prototype = animal;var cat = new animal(">
-<meta name="twitter:image" content="http://yoursite.com/2016/04/11/prototype-chain/case-1.png">
+  <title>对原型链的理解 | lusssn</title>
+  <meta name="author" content="Shengnan Lu">
   
-    <link rel="alternate" href="/atom.xml" title="Lusssn&#39;s blog" type="application/atom+xml">
+  <meta name="description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x82B1;&amp;#x4E86;&amp;#x51E0;&amp;#x4E2A;&amp;#x5C0F;&amp;#x65F6;&amp;#x5F7B;&amp;#x5F7B;&amp;#x5E95;&amp;#x5E95;&amp;#x7684;&amp;#x7814;&amp;#x7A76;&amp;#x660E;&amp;#x767D;&amp;#x300E;&amp;#x539F;&amp;#x578B;&amp;#x300F;&amp;#x548C;&amp;#x300E;&amp;#x539F;&amp;#x578B;&amp;#x94FE;&amp;#x300F;&amp;#x8FD9;&amp;#x73A9;&amp;#x610F;&amp;#x300E;&amp;#x513F;&amp;#x300F;&amp;#x642D;&amp;#x4E86;&amp;#x4E2A;&amp;#x4EBA;blog&amp;#x627E;&amp;#x4E2A;&amp;#x4E1C;&amp;#x897F;&amp;#x653E;&amp;#x53C8;&amp;#x6574;&amp;#x7406;&amp;#x4E86;&amp;#x4E00;&amp;#x904D;&amp;#xFF0C;&amp;#x4F8B;&amp;#x5B50;&amp;#x662F;&amp;#x7F51;&amp;#x4E0A;&amp;#x7684;&amp;#xFF0C;&amp;#x56FE;&amp;#x662F;&amp;#x6309;&amp;#x7167;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x7406;&amp;#x89E3;&amp;#x753B;&amp;#x7684;&amp;#xFF0C;&amp;#x770B;&amp;#x5B8C;&amp;#x8FD9;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;&amp;#x6574;&amp;#x4E2A;&amp;#x4EBA;&amp;#x90FD;&amp;#x901A;&amp;#x900F;&amp;#x4E86;&amp;#x54C8;&amp;#x54C8;&amp;#x54C8;&amp;#x3002;">
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="对原型链的理解"/>
+  <meta property="og:site_name" content="lusssn"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="lusssn" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 </head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Lusssn&#39;s blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-prototype-chain" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/04/11/prototype-chain/" class="article-date">
-  <time datetime="2016-04-10T16:00:00.000Z" itemprop="datePublished">2016-04-11</time>
-</a>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">lusssn</a>
+  </h1>
+  <p class="site-description"></p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
     
-  </div>
-  <div class="article-inner">
+      <li><a href="/">主页</a></li>
     
+      <li><a href="/archives">归档</a></li>
     
-      <header class="article-header">
-        
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
   
-    <h1 class="article-title" itemprop="name">
-      对原型链的理解
-    </h1>
+  
+    <h3 class="article-title"><span>对原型链的理解</span></h3>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/04/11/prototype-chain/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-04-10T16:00:00.000Z">
+          2016-04-11
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
       
-        <p>&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{};</span><br><span class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{};</span><br><span class="line"></span><br><span class="line">animal.prototype.price = <span class="number">20</span>;</span><br><span class="line">animal.price = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">dog.prototype = animal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> animal();</span><br><span class="line"><span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat.price);</span><br><span class="line"><span class="built_in">console</span>.log(tidy.price);</span><br></pre></td></tr></table></figure></p>
+        <p>&#x4E4B;&#x524D;&#x82B1;&#x4E86;&#x51E0;&#x4E2A;&#x5C0F;&#x65F6;&#x5F7B;&#x5F7B;&#x5E95;&#x5E95;&#x7684;&#x7814;&#x7A76;&#x660E;&#x767D;&#x300E;&#x539F;&#x578B;&#x300F;&#x548C;&#x300E;&#x539F;&#x578B;&#x94FE;&#x300F;&#x8FD9;&#x73A9;&#x610F;&#x300E;&#x513F;&#x300F;<br>&#x642D;&#x4E86;&#x4E2A;&#x4EBA;blog&#x627E;&#x4E2A;&#x4E1C;&#x897F;&#x653E;&#x53C8;&#x6574;&#x7406;&#x4E86;&#x4E00;&#x904D;&#xFF0C;&#x4F8B;&#x5B50;&#x662F;&#x7F51;&#x4E0A;&#x7684;&#xFF0C;&#x56FE;&#x662F;&#x6309;&#x7167;&#x81EA;&#x5DF1;&#x7684;&#x7406;&#x89E3;&#x753B;&#x7684;&#xFF0C;&#x770B;&#x5B8C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x6574;&#x4E2A;&#x4EBA;&#x90FD;&#x901A;&#x900F;&#x4E86;&#x54C8;&#x54C8;&#x54C8;&#x3002;<br><a id="more"></a><br>&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;&#xFF1A;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{};</span><br><span class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{};</span><br><span class="line"></span><br><span class="line">animal.prototype.price = <span class="number">20</span>;</span><br><span class="line">animal.price = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">dog.prototype = animal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> animal();</span><br><span class="line"><span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(cat.price);</span><br><span class="line"><span class="built_in">console</span>.log(tidy.price);</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><img src="/2016/04/11/prototype-chain/case-1.png" alt=""> &#x8868;&#x793A;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#xFF0C;&#x51FD;&#x6570;&#x5BF9;&#x8C61;&#x62E5;&#x6709;prototype&#xFF08;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#xFF0C;&#x672C;&#x8D28;&#x662F;&#x666E;&#x901A;&#x5BF9;&#x8C61;&#xFF0C;Function prototype&#x9664;&#x5916;&#xFF09;&#x3002;<br><img src="/2016/04/11/prototype-chain/case-2.png" alt=""> &#x8868;&#x793A;&#x666E;&#x901A;&#x5BF9;&#x8C61;&#xFF0C;&#x6CA1;&#x6709;prototype&#x5C5E;&#x6027;&#x3002;new&#x64CD;&#x4F5C;&#x5F97;&#x5230;&#x7684;&#x5BF9;&#x8C61;&#x4E3A;&#x666E;&#x901A;&#x5BF9;&#x8C61;&#x3002;</li>
 </ul>
@@ -103,114 +87,41 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/11/prototype-chain/" data-id="cinxzx56d0003dkkpnqdkf5r5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScipt/">JavaScipt</a></li></ul>
+        <div class="article-meta pull-left">
+          
+          
+  
 
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/JavaScipt/">JavaScipt</a>
+  </span>
+
+
+        </div>
+        
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2016/01/24/about-new-Date/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JS中new Date()的坑</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
-</section>
-        
-          <aside id="sidebar">
   
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScipt/">JavaScipt</a></li></ul>
-    </div>
-  </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/JavaScipt/" style="font-size: 10px;">JavaScipt</a>
-    </div>
-  </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a></li></ul>
-    </div>
-  </div>
+      </main>
+    </article>
 
-
+    <footer id="colophon" class="site-footer" role="contentinfo"><p class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+  Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+  </br>
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/04/11/prototype-chain/">对原型链的理解</a>
-          </li>
-        
-          <li>
-            <a href="/2016/01/24/about-new-Date/">JS中new Date()的坑</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
+  &copy; 2016 Shengnan Lu
   
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Shengnan Lu<br>
-      Contact: lusssn@126.com
-    </div>
-  </div>
+</p>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
   </div>
+</div>
 </body>
 </html>
