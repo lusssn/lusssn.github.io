@@ -10,6 +10,6 @@
 # Dependency directory
 node_modules
 
-# hexo-cli starting item
-hexo
-hexo.cmd
+# hexo deploy
+.deploy_git
+public
