@@ -1,5 +1,5 @@
 ---
-title: 用github管理Hexo的博客项目
+title: 用 github 管理 Hexo 的博客项目
 date: 2016-08-16 13:22:50
 tags: [tools]
 ---

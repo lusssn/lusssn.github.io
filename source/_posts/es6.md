@@ -1,11 +1,31 @@
 ---
-title: ES6新特性
+title: ES6 新特性
 date: 2016-08-15 10:06:39
 tags: [ECMAScript 6]
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。
 ES6语法能使代码变得更加简洁，很人性化。
 <!-- more -->
+
+## 目录
+1. [数组遍历](#1-数组遍历)
+2. [Generators](#2-Generators)
+3. [Template](#3-Template)
+4. [Parameters](#4-Parameters)
+5. [Destructuring](#5-Destructuring)
+6. [Arrow Functions](#6-Arrow-Functions)
+7. [Symbol](#7-Symbol)
+8. [集合](#8-集合)
+9. [Proxy](#9-Proxy)
+10. [Class](#10-Class)
+11. [Subclassing](#11-Subclassing)
+12. [let和const](#12-let和const)
+13. [模块系统](#13-模块系统)
+14. [需要Babel或Traceur协助](#14-需要Babel或Traceur协助)
+15. [其他](#15-其他)
+16. [ES7](#16-ES7)
+
+* * *
 
 ### 1. 数组遍历
 
@@ -28,6 +48,8 @@ for (var key of Object.keys(someObject)) {
     console.log(key + ": " + someObject[key]);
 }
 ```
+
+* * *
 
 ### 2. Generators
 
@@ -66,6 +88,8 @@ Generator实质是迭代器，拥有内建.next() 和 \[Symbol.iterator\]()方�
 
 [深入讲解Generator](http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators)
 
+* * *
+
 ### 3. Template
 
 #### 3.1 Template Strings
@@ -100,6 +124,8 @@ var message =
     var message = SaferHTML(templateData, bonk.sender);
 ```
 
+* * *
+
 ### 4. Parameters
 
 #### 4.1 不定参数
@@ -130,6 +156,8 @@ function animalSentenceFancy(animals2="tigers",
 
 默认参数表达式自左向右求值。   
 传递undefined等同于不传值。  
+
+* * *
 
 ### 5. Destructuring
 
@@ -178,6 +206,8 @@ console.log(second);　// "Brannigan"
 > * 与ES6迭代器协议协同使用 
 > * 多重返回值 
 > * 使用解构导入部分CommonJS模块 
+
+* * *
 
 ### 6. Arrow Functions
 
@@ -255,6 +285,8 @@ var chewToys = puppies.map(puppy => ({})); //
     }
 ```
 
+* * *
+
 ### 7. Symbol
 
 > JavaScript的第七种原始类型。
@@ -264,6 +296,8 @@ var chewToys = puppies.map(puppy => ({})); //
   * **Symbol()。** 每次调用都会返回一个新的唯一symbol。
   * **Symbol.for(string)。** 这种方式会访问Symbol注册表，注册表可以供多个页面共享使用。
   * **使用标准定义的symbol。** 例如：Symbol.iterator，标准根据一些特殊用途定义了少许的几个symbol。
+
+* * *
 
 ### 8. 集合
 #### 8.1 Set
@@ -316,6 +350,8 @@ WeakMap和WeakSet被设计来完成与Map、Set几乎一样的行为，除了以
 
 两种弱集合都不可迭代，除非专门查询或给出你感兴趣的键，否则不能获得一个弱集合中的项。
 
+* * *
+
 ### 9. Proxy
 
 `Proxy`可以接受两个参数：`target`、`handler`。
@@ -360,6 +396,8 @@ var handler = {
 ** ES6定义了一个新的 [Reflect对象](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect)，用于实现只执行委托给目标的默认行为这一需求*
 
 ** 如果你想在Node.js或io.js环境中使用代理，首先你需要添加名为harmony-reflect的polyfill，然后在执行时启用一个非默认的选项（--harmony_proxies），这样就可以暂时使用V8中实现的老版本代理规范。*
+
+* * *
 
 ### 10. Class
 
@@ -451,6 +489,8 @@ class Circle {
 
 *注意：重定义Class会抛出重定义错误。*
 
+* * *
+
 ### 11. Subclassing
 
 > 同其他语言一样，JavaScript拥有了`Class`这样的句法结构，但是还需要一个更简单方便的继承机制。
@@ -464,6 +504,8 @@ class Circle {
 
 使用new创建的实例，可以在其基类的构造函数中使用 `new.target` 来确定子类的类型。
 new.target在任何函数中都是合法的，如果函数不是通过new调用，new.target将被赋值为undefined。
+
+* * *
 
 ### 12. let和const
 
@@ -483,6 +525,8 @@ new.target在任何函数中都是合法的，如果函数不是通过new调用�
 
 * const声明的变量**只可以在声明时赋值**，不可随意修改，否则会导致语法错误（SyntaxError）。
 * **用const声明变量后必须要赋值**，否则也抛出语法错误。
+
+* * *
 
 ### 13. 模块系统
 
@@ -570,6 +614,8 @@ export * from "singapore";
 * import模块产生的错误没有错误恢复机制。一个app可能囊括了上百个模块，一旦有一个模块无法加载或连接，所有的模块都不会运行，而且你不能在try/catch代码块中捕捉import的错误信息。
 * 不支持在模块加载依赖前运行其它代码的钩子，这也意味着无法控制模块的依赖加载过程。
 
+* * *
+
 ### 14. 需要Babel或Traceur协助
 
 > 通过 [Babel](https://babeljs.io/) 或Google的 [Traceur](https://github.com/google/traceur-compiler) 可以将ES6代码转译为Web友好的ES5代码。
@@ -577,6 +623,8 @@ export * from "singapore";
 [使用Broccoli + Babel 构建的小demo](http://www.infoq.com/cn/articles/es6-in-depth-babel-and-broccoli)
 
 ** 注意第二个示例中，Brocfile.js 中 babelPath 的处理，原文中有bug。*
+
+* * *
 
 ### 15. 其他
 
@@ -625,6 +673,8 @@ export * from "singapore";
   \- Math.fround(x)：用于支持32位浮点数操作
   \- Math.imul(x, y)：用以计算x的y次幂
   \- 其它的一些函数。
+
+* * *
 
 ### 16. ES7
 
