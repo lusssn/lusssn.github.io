@@ -1,7 +1,8 @@
 ---
 title: 用 github 管理 Hexo 的博客项目
 date: 2016-08-16 13:22:50
-tags: [tools]
+tags: [Tools]
+header-img: images/comm-header/h3.jpg
 ---
 用hexo搭了这个静态博客，但是换台电脑就不可以写文章了。
 尝试了[用两个分支管理博客代码](http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog)之后，记录一下这个艰辛的过程。

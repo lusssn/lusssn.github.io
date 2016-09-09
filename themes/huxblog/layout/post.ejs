@@ -2,14 +2,10 @@
 layout: layout
 ---
 
-<!-- Image to hack wechat <%= config['url'] %>-->
-<!-- <img src="<%= config['root'] %>images/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
-
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('<%= page["header-img"] || config.root + config["header-img"] %>')
+        background-image: url('<%= config.root + page["header-img"] || config.root + config["header-img"] %>')
     }
 </style>
 <header class="intro-header" >
