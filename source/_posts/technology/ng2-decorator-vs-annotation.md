@@ -6,9 +6,9 @@ header-img: images/comm-header/h2.jpg
 ---
 Java的Annotation用起来很是顺手，AtScript和TypeScript都是JavaScript的扩展语言，AtScript支持Annotation，而TypeScript支持Decorator。
 <!-- more -->
-5月份的ng-conf大会Angular团队宣布抛弃AtScript项目，转用TypeScript开发，而TypeScript团队也表示TypeScript正在吸收AtScript的优点，为即将到来的TypeScript 1.5版本引入注解的功能。
+2015年3月的ng-conf大会Angular团队宣布抛弃AtScript项目，转用TypeScript开发，而TypeScript团队也表示TypeScript正在吸收AtScript的优点，为即将到来的TypeScript 1.5版本引入注解的功能。
 
-在[TypeScript 1.5的变更记录](http://tslang.cn/docs/release-notes/typescript-1.5.html)中我们找到了Decorator。
+在[TypeScript 1.5的变更记录] [typescript-1.5]中我们找到了Decorator。
 
 那么Annotation和Decorator有什么关系，又有什么区别呢？？
 
@@ -113,17 +113,17 @@ export class Tabs { }
 
 ```javascript
 var __decorate = function (decorators, target, key, desc) {
-	// ...
+  // ...
 };
 var core_1 = require('@angular/core');
 
 __decorate( [
-		        core_1.Component({
-		            selector: 'tabs',
-		            template: "..."
-		        }), 
-		        __metadata('design:paramtypes', [])
-		    ], Tabs);
+              core_1.Component({
+                selector: 'tabs',
+                template: "..."
+              }), 
+              __metadata('design:paramtypes', [])
+            ], Tabs);
 ```
 
 Decorator就是一个函数，让我们可以使用需要进行装饰的目标。
@@ -133,4 +133,22 @@ Decorator就是一个函数，让我们可以使用需要进行装饰的目标�
 
 所以，这也允许我们实现一个Decorator，让它能跟AtScript中的Annotation转译方式一样。
 
-[未完待续...]
+### TypeScript支持Annotation和Decorator？
+
+2015年的ng-conf大会上，Turner宣布[TypeScript将会整合AtScript中引入的标注（annotation）特性] [angular-2-built-on-typescript]，该特性将在TypeScript 1.5+版本中发布。
+实际上，最后TypeScript支持Decorator，却不知道Angular 2内部的特殊Annotation实现。在使用装饰器之前我们需要引入metadata注释的实现（不是引入一个装饰器），用来组成一个装饰器。
+
+### 总结
+
+从消费者的角度来看，Annotation和Decorator的作用和语法是一样的，它们的区别在于：
+
+**Annotation** 消费者不可以控制metadata如何被添加到代码中。
+**Decorator** 相当于是一个接口，用来构建某些最终作为注释的东西。
+
+长远来看，我们只需要关注Decorator，因为以后它将会成为一个标准。
+
+[>> 参考阅读 <<] [reference-read]
+
+[typescript-1.5]: http://tslang.cn/docs/release-notes/typescript-1.5.html
+[angular-2-built-on-typescript]: https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/
+[reference-read]: http://blog.thoughtram.io/angular/2015/05/03/the-difference-between-annotations-and-decorators.html
