@@ -1,7 +1,9 @@
 ---
 title: 对原型链的理解
 date: 2016-04-11
-tags: [Technology, JavaScipt]
+tags: 
+  - Technology
+  - JavaScript
 header-img: images/comm-header/h2.jpg
 ---
 之前花了几个小时彻彻底底的研究明白『原型』和『原型链』这玩意『儿』

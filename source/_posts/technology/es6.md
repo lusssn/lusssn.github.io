@@ -1,7 +1,9 @@
 ---
 title: ES6 新特性
 date: 2016-08-15 10:06:39
-tags: [Technology, ECMAScript 6]
+tags: 
+  - Technology
+  - ECMAScript 6
 header-img: images/comm-header/h2.jpg
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。
