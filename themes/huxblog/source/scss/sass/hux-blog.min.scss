@@ -415,11 +415,8 @@ pre code {
 	.site-heading,
 	.post-heading,
 	.page-heading {
-		padding: 85px 0 55px;
+		padding: 60px 0 50px;
 		color: white;
-		@media only screen and (min-width: 768px) {
-			padding: 150px 0;
-		}
 	}
 	// masterialize
 	.site-heading {
@@ -496,12 +493,12 @@ pre code {
 // In Home Page
 .home-container {
 	display: flex;
+	justify-content: center;
 	padding: 0;
 
 	flex-flow: row wrap;
 	li {
 		display: flex;
-		margin: 0 auto;
 		padding: 6px;
 		list-style-type: none;
 	}

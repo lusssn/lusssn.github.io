@@ -4,9 +4,9 @@ date: 2016-04-11
 tags: 
   - Technology
   - JavaScript
-header-img: images/comm-header/h2.jpg
+header-img: images/comm-header/technology.jpg
 ---
-之前花了几个小时彻彻底底的研究明白『原型』和『原型链』这玩意『儿』
+之前花了几个小时彻彻底底的研究明白『原型』和『原型链』。
 搭了个人blog找个东西放又整理了一遍，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了哈哈哈。
 <!-- more -->
 代码实例：

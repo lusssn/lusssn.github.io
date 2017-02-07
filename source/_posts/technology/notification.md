@@ -4,7 +4,7 @@ date: 2016-10-08 14:54:10
 tags:
   - Technology
   - JavaScript
-header-img: images/comm-header/h2.jpg
+header-img: images/comm-header/technology.jpg
 ---
 微博、网易邮箱、网页微信都有桌面推送的功能，通过Web Notifications就可以轻松实现。
 <!-- more -->

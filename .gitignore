@@ -5,5 +5,8 @@ node_modules
 .deploy_git
 public
 
-# scss direectory
+# scss directory
 .sass-cache
+
+# phpstorm directory
+.idea

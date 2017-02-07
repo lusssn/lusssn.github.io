@@ -4,7 +4,7 @@ date: 2016-01-24
 tags: 
   - Technology
   - JavaScript
-header-img: images/comm-header/h2.jpg
+header-img: images/comm-header/technology.jpg
 ---
 实习的时候做个需求，要判断几个时间区间是否包含、重叠，做时间的计算踩了 ``new Date()`` 的坑。new完时间竟然不对了(o´·д·)」
 <!-- more -->
