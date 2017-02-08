@@ -1,7 +1,7 @@
 ---
 title: 无缝轮播的实现
 tags:
-  - Technology
+  - 实用Demo
 header-img: images/comm-header/technology.jpg
 date: 2016-09-27 17:48:19
 ---

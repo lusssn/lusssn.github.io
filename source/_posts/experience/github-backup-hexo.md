@@ -1,7 +1,8 @@
 ---
 title: 用 Github 管理 Hexo 的博客项目
 date: 2016-08-16 13:22:50
-tags: [Tools]
+tags: 
+  - Tools
 header-img: images/comm-header/experience.jpg
 ---
 用hexo搭了这个静态博客，但是换台电脑就不可以写文章了。

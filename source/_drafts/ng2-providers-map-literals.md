@@ -1,6 +1,7 @@
 ---
 title: Providers 的 Map Literals
-tags: [Technology, Angular2]
+tags: 
+  - Angular2
 header-img: images/comm-header/h2.jpg
 ---
 

@@ -2,7 +2,7 @@
 title: ES6 新特性
 date: 2016-08-15 10:06:39
 tags: 
-  - Technology
+  - JavaScript
   - ECMAScript 6
 header-img: images/comm-header/technology.jpg
 ---

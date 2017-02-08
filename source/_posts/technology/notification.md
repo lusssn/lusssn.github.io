@@ -2,7 +2,6 @@
 title: Web桌面消息推送
 date: 2016-10-08 14:54:10
 tags:
-  - Technology
   - JavaScript
 header-img: images/comm-header/technology.jpg
 ---

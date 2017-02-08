@@ -2,7 +2,6 @@
 title: Decorators 和 Annotations 的不同
 date: 2016-09-12 14:29:59
 tags: 
-  - Technology
   - Angular2
 header-img: images/comm-header/technology.jpg
 ---

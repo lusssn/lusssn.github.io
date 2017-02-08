@@ -2,7 +2,6 @@
 title: JS 中 new Date 的坑
 date: 2016-01-24
 tags: 
-  - Technology
   - JavaScript
 header-img: images/comm-header/technology.jpg
 ---
