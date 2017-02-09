@@ -62,7 +62,7 @@ if (window.Notification) {
 #### 说明：
 
 1. Notification.requestPermission() 向用户申请权限函数，可以使用promise语法，也可以使用传统回调方式。
-![](notification/notification_request.png)
+![](notification_request.png)
 
 2. Notification.permission属性有三个值：**default**、**granted**和**denied**。当且仅当值为**default**时可以调用申请权限函数向用户申请权限。
 

@@ -8,7 +8,7 @@ header-img: images/comm-header/experience.jpg
 用hexo搭了这个静态博客，但是换台电脑就不可以写文章了。
 尝试了[用两个分支管理博客代码](http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog)之后，记录一下这个艰辛的过程。
 <!-- more -->
-### 一、使用Hexo搭建静态博客流程
+**使用Hexo搭建静态博客流程**
 
 1. 创建仓库，lusssn.github.io
 2. 创建两个分支：master 与 hexo；
@@ -30,12 +30,12 @@ header-img: images/comm-header/experience.jpg
 
 无论多少遍都是这样。想来想去应该是hexo配置的问题。
 
-于是决定重头来一遍。
+**于是决定重头来一遍**
 
 * 新建文件夹 hexo init、npm install、copy原有的配置和文章之后成功deploy。`（直到这一步都没有执行git init，所以有怀疑是不是.git文件的原因）`
 * 对比失败的文件目录，去掉.deploy_git文件夹、.gitmodules、.git，deploy成功。
 * 执行git init，添加了.git之后deploy仍然成功。
 
-![](github-backup-hexo/mengb.jpg)     
+![](mengb.jpg)     
 
 失败的原因具体的没有找出来。可能是.deploy_git文件夹的问题。

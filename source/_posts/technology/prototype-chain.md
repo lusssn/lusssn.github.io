@@ -25,11 +25,11 @@ header-img: images/comm-header/technology.jpg
     console.log(tidy.price);
 ```
 
-* ![](prototype-chain/case-1.png) 表示函数对象，函数对象拥有prototype（原型对象，本质是普通对象，Function prototype除外）。
-  ![](prototype-chain/case-2.png) 表示普通对象，没有prototype属性。new操作得到的对象为普通对象。
+* ![](case-1.png) 表示函数对象，函数对象拥有prototype（原型对象，本质是普通对象，Function prototype除外）。
+  ![](case-2.png) 表示普通对象，没有prototype属性。new操作得到的对象为普通对象。
 
 关系图：
-![](prototype-chain/explain.png)
+![](explain.png)
 
 ### 1、 *cat* 调用 *price属性* 时，同样沿着原型链寻找该属性。
 
