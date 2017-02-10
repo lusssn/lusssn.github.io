@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
-@import "variables";
-@import "mixins";
-@import "sidebar";
-@import "side-catalog";
-
+@import "./_common/_variables";
+@import "./_common/_mixins";
+@import "./_partial/_code";
+@import "./_partial/_sidebar";
+@import "./_partial/_side-catalog";
 // Global Components
 
 body {
