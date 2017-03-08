@@ -2,5 +2,5 @@
 layout:
 title: {{ title }}
 date: {{ date }}
-header-img:
+header-img: images/comm-header/???.jpg
 ---

@@ -1,5 +1,5 @@
 ---
 title: {{ title }}
 tags:
-header-img:
+header-img: images/comm-header/???.jpg
 ---

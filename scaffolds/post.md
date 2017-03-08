@@ -2,5 +2,5 @@
 title: {{ title }}
 date: {{ date }}
 tags:
-header-img:
+header-img: images/comm-header/???.jpg
 ---
