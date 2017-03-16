@@ -1,8 +1,7 @@
 ---
 title: 多肉浇水
 date: 2016-05-19 15:35:51
-tags: 
-  - 多肉植物
+tags: 多肉植物
 header-img: images/comm-header/planting.jpg
 ---
 
