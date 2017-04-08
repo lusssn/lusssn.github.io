@@ -1,5 +1,5 @@
 ---
-title: 物体绕自己的中心旋转
+title: 旋转篇
 header-img: images/comm-header/technology.jpg
 date: 2017-03-14 17:19:42
 tags: 
