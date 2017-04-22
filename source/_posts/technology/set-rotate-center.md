@@ -1,5 +1,5 @@
 ---
-title: 旋转篇
+title: 旋转
 header-img: images/comm-header/technology.jpg
 date: 2017-03-14 17:19:42
 tags: 

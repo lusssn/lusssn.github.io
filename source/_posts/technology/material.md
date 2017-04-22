@@ -1,5 +1,5 @@
 ---
-title: 材质篇
+title: 材质
 header-img: images/comm-header/technology.jpg
 date: 2017-04-08 16:18:13
 tags: 
