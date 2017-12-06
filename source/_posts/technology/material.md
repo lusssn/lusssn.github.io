@@ -64,9 +64,9 @@ WebGL将大自然中的材质抽象出来，ThreeJs做了划分，下面就来�
 	表面均匀，粗糙，比如一张纸。
 	其特点是能产生漫反射，有光泽，表面凹凸呈现出不同的阴暗效果。
 - *MeshPhongMaterial*
-	表面光亮圆滑的材质，比如塑料、金属。
-	比Lambert更光滑，有高光，明暗更为明显。
+	有光泽的材质，比如塑料、金属，可以从某个方向上看到很强的反射光。
 	![](material_1.png)
+	镜面反射的光强与反射光线和视角的夹角相关。
 - *MeshToonMaterial*
 	使用了Toon Shader的MeshPhongMaterial的扩展，或叫做物体拥有高光。
 	Toon Shader又被叫做Cel Shader，这种效果能让物体看上去有卡通的感觉，很神奇吧！
