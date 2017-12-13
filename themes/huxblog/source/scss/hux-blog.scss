@@ -887,13 +887,12 @@ img::-moz-selection {
 /* Tags support End*/
 
 /* Hux make all img responsible in post-container */
-.post-container img {
+.post-container p img {
 	display: block;
 	max-width: 100%;
 	height: auto;
 	margin: 1.5em auto 1.6em auto;
 }
-
 
 /* Hux Optimize UserExperience */
 .navbar-default .navbar-toggle {
