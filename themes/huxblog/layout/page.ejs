@@ -182,16 +182,6 @@ layout: layout
 
                         <!-- SNS Link -->
                         <ul class="list-inline">
-                            <% if (config.RSS) { %>
-                                <li>
-                                    <a href="<%= config.root + 'feed.xml' %>">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            <% } %>
                             <% if (config.twitter_username) { %>
                                 <li>
                                     <a target="_blank" href="https://twitter.com/<%= config.twitter_username %>">
@@ -245,8 +235,7 @@ layout: layout
                                     </a>
                                 </li>
                             <% } %>
-                            
-                            
+
                             <% if (config.linkedin_username) { %>
                                 <li>
                                     <a target="_blank"  href="https://www.linkedin.com/in/<%= config.linkedin_username %>">
@@ -256,6 +245,17 @@ layout: layout
                                         </span>
                                     </a>
                                 </li>
+                            <% } %>
+
+                            <% if (config.email) { %>
+                            <li>
+                                <a href="<%= 'mailto:' + config.email %>">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                </a>
+                            </li>
                             <% } %>
                         </ul>
                     </div>

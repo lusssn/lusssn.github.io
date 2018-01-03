@@ -14,11 +14,10 @@ timezone:
 # Site settings
 SEOTitle: Lusssn
 header-img: images/home-bg.jpg
-email: lusssn@126.com
 keyword: ""
 
 # SNS settings
-# RSS: false
+email: lusssn@126.com
 weibo_username:     lusssn
 zhihu_username:     lusssn
 github_username:    lusssn
