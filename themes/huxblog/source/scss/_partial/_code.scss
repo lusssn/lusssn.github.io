@@ -98,62 +98,62 @@ $code-border-radius             : 4px;
 
   .comment { color: $highlight-comment; }
 
-  .variable
-  .attribute
-  .tag
-  .regexp
-  .ruby .constant
-  .xml .tag .title
-  .xml .pi
-  .xml .doctype
-  .html .doctype
-  .css .id
-  .css .class
+  .variable,
+  .attribute,
+  .tag,
+  .regexp,
+  .ruby .constant,
+  .xml .tag .title,
+  .xml .pi,
+  .xml .doctype,
+  .html .doctype,
+  .css .id,
+  .css .class,
   .css .pseudo {
     color: $highlight-red;
   }
 
-  .number
-  .preprocessor
-  .built_in
-  .literal
-  .params
-  .constant
+  .number,
+  .preprocessor,
+  .built_in,
+  .literal,
+  .params,
+  .constant,
   .command {
     color: $highlight-orange;
   }
 
-  .ruby .class .title
-  .css .rules .attribute
-  .string
-  .value
-  .inheritance
-  .header
-  .ruby .symbol
-  .xml .cdata
-  .special
-  .number
+  .ruby .class .title,
+  .css .rules .attribute,
+  .string,
+  .value,
+  .inheritance,
+  .header,
+  .ruby .symbol,
+  .xml .cdata,
+  .special,
+  .number,
   .formula {
     color: $highlight-green;
   }
 
-  .title
+  .title,
   .css .hexcolor {
     color: $highlight-aqua;
   }
 
-  .function
-  .python .decorator
-  .python .title
-  .ruby .function .title
-  .ruby .title .keyword
-  .perl .sub
-  .javascript .title
+  .function,
+  .python .decorator,
+  .python .title,
+  .ruby .function .title,
+  .ruby .title .keyword,
+  .perl .sub,
+  .javascript .title,
   .coffeescript .title {
     color: $highlight-blue;
   }
 
-  .keyword
+  .keyword,
   .javascript .function {
     color: $highlight-purple;
   }

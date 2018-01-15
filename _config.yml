@@ -29,7 +29,7 @@ github_username:    lusssn
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
 # Disqus settings
-# disqus_username: hexo-theme-huxblog
+disqus_username: lusssn
 
 # Duoshuo settings
 # duoshuo_username: kaijun
