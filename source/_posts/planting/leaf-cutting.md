@@ -4,10 +4,9 @@ header-img: images/comm-header/planting.jpg
 date: 2017-03-16 10:17:20
 tags: 多肉植物
 ---
-<style>.post-container li img {display: inline-block;width: 200px}</style>
 春天是各种植物甩开膀子生长的季节，养个多肉当然要抓住这个机会扩充军队啊。
 <!-- more -->
-
+<style>.post-container li img {display: inline-block;width: 200px}</style>
 多肉的繁殖就是两类：*有性繁殖* 和 *无性繁殖*。
 关于有性繁殖因为很耗时间，介于本人居无定所，不敢折腾。就总结下无性繁殖的经验吧。
 无性繁殖又分为三种：**叶插**、**扦插**（俗称**砍头**）、**组织培养**（狭义）。

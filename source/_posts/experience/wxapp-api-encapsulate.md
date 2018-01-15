@@ -6,15 +6,16 @@ tags:
   - 微信小程序
 ---
 微信小程序官方提供的API很多用起来都有点鸡肋，针对不同项目的业务需求做二次封装是有必要的，这篇文章记一些有通用性的封装，若读者觉得有不好的地方，欢迎指出。
-更新时间：2018-01-10
+更新时间：2018-01-15
 <!-- more -->
 * * *
 ## 目录
-1. [路由跳转](#1. 路由跳转)
-1. [刷新当前页](#2. 刷新当前页)
-1. [消息提示](#3. 消息提示)
-1. [发起网络请求](#4. 发起网络请求)
-1. [图片预览](#5. 图片预览)
+1. [路由跳转](#1-路由跳转)
+1. [刷新当前页](#2-刷新当前页)
+1. [消息提示](#3-消息提示)
+1. [发起网络请求](#4-发起网络请求)
+1. [图片预览](#5-图片预览)
+1. [页面信息传递](#6-页面信息传递)
 
 ### 1. 路由跳转
 > 官方提供了四种页面跳转的方式，接受参数类型是一个Json，使用起来复杂又麻烦。
@@ -215,6 +216,7 @@ wxUtil.ajax({
 
 ### 5. 图片预览
 > 官方提供的图片预览API，接受的参数同样是Json类型，回调方法一般使用不到。可以二次封装做一些简化。
+
 ```javascript
 /**
  * 预览图片重载
@@ -242,6 +244,86 @@ Page({
     const self = this
     const index = e.currentTarget.dataset.index
     wxUtil.previewImage(index, self.data.imgList)
+  }
+})
+```
+
+#### 6. 页面信息传递
+> 很多业务场景都需要在页面间传递状态，传递方式要满足使用简单，状态值易于管理的要求。
+
+- setNotification (key, value)
+  + 设置全局的消息变量
+  + 若value值缺省，则会**删除**对应键值
+- getNotification (key)
+  + 根据键值获取对应消息值
+- checkNotification (key, value, callback)
+  + 检查键值对应消息值，符合条件则callback并**删除**对应键值
+  + value若为function，只要消息值非空非零，则callback并**删除**对应键值
+  + value不为function，只有消息值等于value，才会callback并**删除**对应键值
+
+#### 6.1 使用举例
+```javascript
+// in edit.js
+const APP = getApp()
+Page({
+  submit () {
+    APP.setNotification('edit', true)
+  }
+})
+```
+```javascript
+// in detail.js
+const APP = getApp()
+Page({
+  onShow () {
+    APP.checkNotification('edit', () => {
+      console.log('Page edit has been changed')
+    })
+  }
+})
+```
+
+#### 6.2 实现细节
+- 3个方法为了全局内可调用，**写在app.js里**。
+- **key应该放在Macro中**统一管理，为了不用在调用方法的文件中都引用Macro，统一在app.js中调用。
+
+```javascript
+APP({
+  setNotification (key, value) {
+    const self = this
+    const notification = Macro.CHANGE[key]
+    if (!notification) {
+      return
+    }
+    if (value === undefined) {
+      delete self.config[notification]
+      return
+    }
+    self.config[notification] = value
+  },
+  getNotification (key) {
+    const notification = Macro.CHANGE[key]
+    if (!notification) {
+      return ''
+    }
+    return this.config[notification]
+  },
+  checkNotification (key, value, callback) {
+    const self = this
+    if (typeof value === 'function') {
+      if (self.getNotification(key)) {
+        self.setNotification(key)
+        value()
+        return
+      }
+      return
+    }
+    if (typeof callback === 'function') {
+      if (self.getNotification(key) === value) {
+        self.setNotification(key)
+        callback()
+      }
+    }
   }
 })
 ```
