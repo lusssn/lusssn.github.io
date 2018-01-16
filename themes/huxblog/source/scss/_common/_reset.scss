@@ -1,0 +1,71 @@
+@import "_variables";
+
+body {
+	@include sans-serif();
+
+	overflow-x: hidden;
+	font-size: 16px;
+	color: $gray-dark;
+}
+p {
+	margin: 20px 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	@include sans-serif();
+
+	font-weight: bold;
+	line-height: 1.1;
+}
+a {
+	color: $gray-dark;
+	&:hover,
+	&:focus {
+		color: $brand-primary;
+	}
+}
+a img {
+	&:hover,
+	&:focus {
+		cursor: zoom-in;
+	}
+}
+article {
+	overflow: hidden;
+}
+blockquote {
+	margin: 20px 0 20px;
+	font-size: .95em;
+	color: $gray;
+	p {
+		margin: 0;
+	}
+}
+@media screen and (max-width: 768px) {
+	select {
+		margin-top: 15px;
+		padding: 0 .4em;
+		color: $blue-link;
+		border-color: $blue-link;
+		background: white;
+		-webkit-appearance: none;
+	}
+}
+// -- Highlight Color Customization
+::-moz-selection {
+	color: white;
+	background: $brand-primary;
+	text-shadow: none;
+}
+::selection {
+	color: white;
+	background: $brand-primary;
+	text-shadow: none;
+}
+img::selection {
+	color: white;
+	background: transparent;
+}
+img::-moz-selection {
+	color: white;
+	background: transparent;
+}

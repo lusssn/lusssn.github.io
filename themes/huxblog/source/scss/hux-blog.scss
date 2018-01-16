@@ -2,70 +2,12 @@
 
 @import "./_common/_variables";
 @import "./_common/_mixins";
+@import "./_common/_reset";
 @import "./_partial/_code";
+@import "./_partial/_navbar";
 @import "./_partial/_sidebar";
 @import "./_partial/_side-catalog";
-// Global Components
-
-body {
-	@include sans-serif();
-	font-size: 16px;
-	// Hux mpdify to 16px (Mobile First), and increase to 20px while 768+ width
-	color: $gray-dark;
-	//-webkit-user-select:text; //对于 Blog 还是先不开启这句。
-	overflow-x : hidden;
-}
-
-// -- Typography
-
-p {
-	margin: 20px 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	@include sans-serif();
-	line-height: 1.1;
-	font-weight: bold;
-}
-h1{
-	// drop V1.1.1
-	//font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-/*h4{
-    font-size: 22px;
-}*/
-a {
-	color: $gray-dark;
-	&:hover,
-	&:focus {
-		color: $brand-primary;
-	}
-}
-
-a img {
-	&:hover,
-	&:focus {
-		cursor: zoom-in;
-	}
-}
-
-article {
-	overflow: hidden;
-}
-blockquote {
-	margin: 20px 0 20px;
-	font-size: .95em;
-	color: $gray;
-	p {
-		margin: 0;
-	}
-}
-
+@import "./_partial/_tags";
 // Utils Style Class can be used in Markdown.
 small.img-hint {
 	display: block;
@@ -80,22 +22,10 @@ img.shadow {
 }
 // Utils Style End
 
-@media screen and (max-width: 768px) {
-	select {
-		margin-top: 15px;
-		padding: 0 .4em;
-		color: #337AB7;
-		border-color: #337AB7;
-		background: white;
-
-		-webkit-appearance: none;
-	}
-}
 // override table style in bootstrap
 .table th, .table td {
 	border: 1px solid #EEEEEE !important;
 }
-
 hr.small {
 	max-width: 100px;
 	margin: 15px auto;
@@ -122,22 +52,17 @@ pre code {
 // In the post.
 .post-container {
 	a {
-		color: #337AB7;
+		color: $blue-link;
 		// different to $brand-primary
 		&:hover,
 		&:focus {
 			color: $brand-primary;
 		}
 	}
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
+	h1, h2, h3, h4, h5, h6 {
 		margin: 30px 0 10px;
 	}
-	h5 {
+	h5, h6 {
 		font-size: 16px;
 		font-weight: 600;
 		color: dimgray;
@@ -145,15 +70,7 @@ pre code {
 			margin-top: 5px;
 		}
 	}
-	h6 {
-		font-size: 16px;
-		font-weight: 600;
-		color: darkgray;
-		& + p {
-			margin-top: 5px;
-		}
-	}
-	ul,ol {
+	ul, ol {
 		margin-bottom: 40px;
 		@media screen and (max-width: 768px) {
 			& {
@@ -166,7 +83,10 @@ pre code {
 			}
 		}
 	}
-	ol ol, ol ul, ul ol, ul ul {
+	ol ol,
+	ol ul,
+	ul ol,
+	ul ul {
 		margin-bottom: 5px;
 	}
 	li {
@@ -174,7 +94,7 @@ pre code {
 			margin: 0;
 			margin-bottom: 5px;
 		}
-		h1,h2,h3,h4,h5,h6 {
+		h1, h2, h3, h4, h5, h6 {
 			margin-top: 20px;
 			line-height: 2;
 		}
@@ -197,217 +117,24 @@ pre code {
 			}
 		}
 	}
-}
-
-
-
-// Navigation
-
-// materialize, mobile only
-@media only screen and (max-width: 767px) {
-	/**
-	 * Layout
-	 * Since V1.6 we use absolute positioning to prevent to expand container-fluid
-	 * which would cover tags. A absolute positioning make a new layer.
-	 */
-	.navbar-default .navbar-collapse {
-		position: absolute;
-		right: 0;
-		width: 170px;
-		border: none;
-		border-radius: 2px;
-		background: white;
-		box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .2);
-		box-shadow: rgba(0, 0, 0, .117647) 0 1px 6px, rgba(0, 0, 0, .239216) 0 1px 4px;
-	}
-	/**
-	 * Animation
-	 * HuxBlog-Navbar using genuine Material Design Animation
-	 */
-	#huxblog_navbar {
-		-webkit-transition: all 200ms cubic-bezier(.47, 0, .4, .99) 0ms;
-		        transition: all 200ms cubic-bezier(.47, 0, .4, .99) 0ms;
-		-webkit-transform: scaleX(0);
-		        transform: scaleX(0);
-		-webkit-transform-origin: top right;
-		        transform-origin: top right;
-		/**
-		 * Sharable code and 'out' function
-		 */
-		// the container do width-transition
-		opacity: 0;
-		a {
-			font-size: 13px;
-			line-height: 28px;
-		}
-		.navbar-collapse {
-			// the navbar do height-transition
-			height: 0; 	// to solve container-mask-tags issue (default state).
-			-webkit-transition: -webkit-transform 400ms cubic-bezier(.32, 1, .23, 1) 0ms;
-			        transition:         transform 400ms cubic-bezier(.32, 1, .23, 1) 0ms;
-			-webkit-transform: scaleY(0);
-			        transform: scaleY(0);
-			-webkit-transform-origin: top right;
-			        transform-origin: top right;
-		}
-		li {
-			-webkit-transition: opacity 100ms cubic-bezier(.23, 1, .32, 1) 0ms;
-			        transition: opacity 100ms cubic-bezier(.23, 1, .32, 1) 0ms;
-			opacity: 0;
-		}
-		/**
-		 *'In' Animation
-		 */
-		&.in {
-			-webkit-transition: all 250ms cubic-bezier(.23,1,.32,1) 0ms;
-			        transition: all 250ms cubic-bezier(.23,1,.32,1) 0ms;
-			-webkit-transform: scaleX(1);
-			        transform: scaleX(1);
-			opacity: 1;
-			.navbar-collapse {
-				-webkit-transition: -webkit-transform 500ms cubic-bezier(.23, 1, .32, 1);
-				        transition:         transform 500ms cubic-bezier(.23, 1, .32, 1);
-				-webkit-transform: scaleY(1);
-				        transform: scaleY(1);
-			}
-			li {
-				-webkit-transition: opacity 450ms cubic-bezier(.23, 1, .32, 1) 205ms;
-				        transition: opacity 450ms cubic-bezier(.23, 1, .32, 1) 205ms;
-				opacity: 1;
-			}
-		}
-	}
-}
-
-.navbar-custom {
-	position: absolute;
-	z-index: 3;
-	top: 0;
-	left: 0;
-	width: 100%;
-	border: none;
-	// materialize
-	background: none;
-
-	@include sans-serif();
-	.navbar-brand {
-		height: 56px;
-		font-weight: 800;
-		line-height: 25px;
-		// materialize
-		color: white;
-		&:hover {
-			color: rgba(255, 255, 255, .8);
-		}
-	}
-	.nav {
-		li {
-			a {
-				font-size: 12px;
-				font-weight: 800;
-				line-height: 20px;
-				letter-spacing: 1px;
-				text-transform: uppercase;
-				// only highlight in mobile
-				&:active {
-					background: rgba(0,0,0,.12);
-				}
-			}
-		}
-	}
-	@media only screen and (min-width: 768px) {
-		border-bottom: 1px solid transparent;
-		background: transparent;
-		body {
-			font-size: 20px;
-		}
-		.navbar-brand {
-			padding: 20px;
-			line-height: 20px;
-			color: white;
-			&:hover,
-			&:focus {
-				color: $white-faded;
-			}
-		}
-		.nav {
-			li {
-				a {
-					padding: 20px;
-					color: white;
-					&:hover,
-					&:focus {
-						color: $white-faded;
-					}
-					&:active {
-						background: none;
-					}
-				}
-			}
-		}
-	}
-	@media only screen and (min-width: 1170px) {
-		-webkit-transition: background-color .3s;
-		   -moz-transition: background-color .3s;
-		        transition: background-color .3s;
-		/* Force Hardware Acceleration in WebKit */
-		-webkit-transform: translate3d(0, 0, 0);
-		   -moz-transform: translate3d(0, 0, 0);
-		    -ms-transform: translate3d(0, 0, 0);
-		     -o-transform: translate3d(0, 0, 0);
-		        transform: translate3d(0, 0, 0);
-
-		-webkit-backface-visibility: hidden;
-		        backface-visibility: hidden;
-		&.is-fixed {
-			/* when the user scrolls down, we hide the header right above the viewport */
-			position: fixed;
-			top: -61px;
-			-webkit-transition: -webkit-transform .3s;
-			   -moz-transition:    -moz-transform .3s;
-			        transition:         transform .3s;
-			border-bottom: 1px solid darken(white, 5%);
-			background-color: opacify(white, .9);
-			.navbar-brand {
-				color: $gray-dark;
-				&:hover,
-				&:focus {
-					color: $brand-primary;
-				}
-			}
-			.nav {
-				li {
-					a {
-						color: $gray-dark;
-						&:hover,
-						&:focus {
-							color: $brand-primary;
-						}
-					}
-				}
-			}
-		}
-		&.is-visible {
-			/* if the user changes the scrolling direction, we show the header */
-			-webkit-transform: translate3d(0, 100%, 0);
-			   -moz-transform: translate3d(0, 100%, 0);
-			    -ms-transform: translate3d(0, 100%, 0);
-			     -o-transform: translate3d(0, 100%, 0);
-			        transform: translate3d(0, 100%, 0);
-		}
+	/* Hux make all img responsible in post-container */
+	p img {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		margin: 1.5em auto 1.6em auto;
 	}
 }
 
 // Header
-
 .intro-header {
+	@include background-cover();
 	// NOTE: Background images are set within the HTML using inline CSS!
+
 	margin-bottom: 0;  /* 0 on mobile, modify by Hux */
 	background: no-repeat center center;
 	background-color: $gray;
 	background-attachment: scroll;
-
-	@include background-cover();
 	@media only screen and (min-width: 768px) {
 		margin-bottom: 20px;  /* response on desktop */
 	}
@@ -432,13 +159,13 @@ pre code {
 			font-size: 50px;
 		}
 		.subheading {
+			@include sans-serif();
+
 			display: block;
 			margin: 10px 0 0;
 			font-size: 18px;
 			font-weight: 300;
 			line-height: 1.1;
-
-			@include sans-serif();
 		}
 		@media only screen and (min-width: 768px) {
 			h1 {
@@ -457,20 +184,20 @@ pre code {
 			line-height: 1.1;
 		}
 		.subheading {
+			@include sans-serif();
+
 			margin: 10px 0 30px;
 			margin-top: -5px;
 			font-size: 17px;
 			font-weight: normal;
 			line-height: 1.4;
-
-			@include sans-serif();
 		}
 		.meta {
+			@include serif();
+
 			font-size: 18px;
 			font-weight: 300;
 			font-style: italic;
-
-			@include serif();
 			a {
 				color: white;
 			}
@@ -491,15 +218,24 @@ pre code {
 
 // In Home Page
 .home-container {
-	display: flex;
-	justify-content: center;
 	padding: 0;
-
-	flex-flow: row wrap;
-	li {
+	.bg-music {
+		padding-left: 6px;
+	}
+	.post-list {
 		display: flex;
-		padding: 6px;
-		list-style-type: none;
+		justify-content: center;
+		padding: 0;
+
+		flex-flow: row wrap;
+		li {
+			display: flex;
+			padding: 6px;
+			list-style-type: none;
+		}
+		@media only screen and (min-width: 590px) {
+			justify-content: flex-start;
+		}
 	}
 	// Post Preview Pages (Home Page)
 	.post-preview {
@@ -510,8 +246,8 @@ pre code {
 			display: inline-block;
 			margin: 10px 0;
 			padding: 7px 14px;
-			font-weight: bold;
 			font-size: 14px;
+			font-weight: bold;
 			color: $gray-dark;
 			border: 2px solid $gray-dark;
 			&:hover,
@@ -548,7 +284,7 @@ pre code {
 		}
 	}
 }
-	
+
 // Hux add home-page post-content-preview
 .post-content-preview {
 	font-size: 14px;
@@ -586,7 +322,7 @@ footer {
 		font-size: 14px;
 		text-align: center;
 		a {
-			color: #337AB7;
+			color: $blue-link;
 			// different to $brand-primary
 			&:hover,
 			&:focus {
@@ -597,7 +333,6 @@ footer {
 }
 
 // Contact Form Styles
-
 .floating-label-form-group {
 	position: relative;
 	margin-bottom: 0;
@@ -626,9 +361,9 @@ footer {
 		font-size: .85em;
 		line-height: 1.764705882em;
 		-webkit-transition: top .3s ease,opacity .3s ease;
-		   -moz-transition: top .3s ease,opacity .3s ease;
-		    -ms-transition: top .3s ease,opacity .3s ease;
-		        transition: top .3s ease,opacity .3s ease;
+		-moz-transition: top .3s ease,opacity .3s ease;
+		-ms-transition: top .3s ease,opacity .3s ease;
+		transition: top .3s ease,opacity .3s ease;
 		vertical-align: middle;
 		vertical-align: baseline;
 		opacity: 0;
@@ -657,16 +392,15 @@ form .row:first-child .floating-label-form-group {
 }
 
 // Button Styles
-
 .btn {
+	@include sans-serif();
+
 	padding: 15px 25px;
 	font-size: 14px;
 	font-weight: 800;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	border-radius: 0;
-
-	@include sans-serif();
 }
 
 .btn-lg {
@@ -684,12 +418,13 @@ form .row:first-child .floating-label-form-group {
 }
 
 // Pager Styling
-
 .pager {
-	margin: 20px 0 0 !important;
-	padding: 0 !important;
+	margin: 20px 0 0;
+	padding: 0 6px;
 	li {
 		> a, > span {
+			@include sans-serif();
+
 			padding: 10px;
 			font-size: 13px;
 			font-weight: 800;
@@ -697,8 +432,6 @@ form .row:first-child .floating-label-form-group {
 			text-transform: uppercase;
 			border-radius: 0;
 			background-color: white;
-
-			@include sans-serif();
 			@media only screen and (min-width: 768px) {
 				padding: 15px 25px;
 				font-size: 14px;
@@ -725,204 +458,6 @@ form .row:first-child .floating-label-form-group {
 		}
 	}
 }
-
-// -- Highlight Color Customization
-
-::-moz-selection {
-	color: white;
-	background: $brand-primary;
-	text-shadow: none;
-}
-
-::selection {
-	color: white;
-	background: $brand-primary;
-	text-shadow: none;
-}
-
-img::selection {
-	color: white;
-	background: transparent;
-}
-
-img::-moz-selection {
-	color: white;
-	background: transparent;
-}
-
-
-/* Hux add tags support */
-.tags {
-	margin-bottom: -5px;
-	a,.tag {
-		display: inline-block;
-		margin: 0 1px;
-		margin-bottom: 6px;
-		padding: 0 10px;
-		font-size: 12px;
-		line-height: 24px;
-		text-decoration: none;
-		color: rgba(255,255,255,1);
-		border: 1px solid rgba(255,255,255,.8);
-		border-radius: 999em;
-		&:hover, &:active {
-			text-decoration: none;
-			color: white;
-			border-color: white;
-			background-color: rgba(255,255,255,.4);
-		}
-		@media only screen and (min-width: 768px) {
-			margin-right: 5px;
-		}
-	}
-}
-
-#tag-heading {
-	padding: 70px 0 60px;
-	@media only screen and (min-width: 768px) {
-		padding: 55px 0;
-	}
-}
-// tag_cloud
-#tag_cloud {
-	margin: 20px 0 15px 0;
-	a,.tag {
-		margin: 0 2px;
-		margin-bottom: 8px;
-		font-size: 14px;
-		line-height: 28px;
-		border: none;
-		background: #D6D6D6;
-		&:hover, &:active {
-			background-color: #0085A1 !important;
-		}
-	}
-	@media only screen and (min-width: 768px) {
-		margin-bottom: 25px;
-	}
-}
-
-.tag-comments {
-	font-size: 12px;
-	@media only screen and (min-width: 768px) {
-		font-size: 14px;
-	}
-}
-
-.t {
-	//margin-top: 50px;
-	&:first-child {
-		margin-top: 0;
-	}
-	hr:last-of-type {
-		//display: none;
-	}
-}
-.listing-seperator {
-	font-size: 21px !important;
-	color: #0085A1;
-	&::before {
-		margin-right: 5px;
-	}
-	@media only screen and (min-width: 768px) {
-		font-size: 20px !important;
-		line-height: 2 !important;
-	}
-}
-
-// Customize Style for Posts in One-Tag-List
-.one-tag-list {
-	.tag-text {
-		font-weight: 200;
-
-		@include sans-serif();
-	}
-	.post-preview {
-		position: relative;
-		> a {
-			&:hover,
-			&:focus {
-				text-decoration: none;
-				color: $brand-primary;
-			}
-			.post-title {
-				margin-top: 20px;
-				font-size: 16px;
-				font-weight: 500;
-			}
-			.post-subtitle {
-				margin: 0;
-				margin-bottom: 10px;
-				font-weight: 300;
-				line-height: 1.3;
-			}
-		}
-		> .post-meta {
-			position: absolute;
-			right: 5px;
-			bottom: 0;
-			margin: 0;
-			font-size: 12px;
-			line-height: 12px;
-		}
-		@media only screen and (min-width: 768px) {
-			margin-left: 20px;
-			> a {
-				> .post-title {
-					font-size: 18px;
-					line-height: 1.3;
-				}
-				> .post-subtitle {
-					font-size: 14px;
-				}
-			}
-			.post-meta {
-				font-size: 18px;
-			}
-		}
-	}
-}
-
-/* Tags support End*/
-
-/* Hux make all img responsible in post-container */
-.post-container p img {
-	display: block;
-	max-width: 100%;
-	height: auto;
-	margin: 1.5em auto 1.6em auto;
-}
-
-/* Hux Optimize UserExperience */
-.navbar-default .navbar-toggle {
-	&:focus, &:hover {
-		background-color: inherit;
-	}
-	&:active {
-		background-color: rgba(255, 255, 255, .25);
-	}
-}
-
-/* Hux customize Style for navBar button */
-
-.navbar-default .navbar-toggle {
-	margin-top: 2px;
-	margin-right: 2px;
-	margin-bottom: 2px;
-	padding: 19px 16px;
-	border-color: transparent;
-	border-radius: 50%;
-	.icon-bar {
-		width: 18px;
-		border-radius: 0;
-		// materialize
-		background-color: white;
-	}
-	.icon-bar + .icon-bar {
-		margin-top: 3px;
-	}
-}
-
 
 /* Hux customize Style for Duoshuo */
 .comment {
@@ -971,9 +506,7 @@ img::-moz-selection {
 	background: white !important;
 }
 
-
 // Hux fullscreen mode in 404.html
-
 .page-fullscreen .intro-header {
 	position: fixed;
 	top: 0;
@@ -987,20 +520,19 @@ img::-moz-selection {
 	left: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
-	display:         flex;
-	        flex-direction: column;
+	display: flex;
+	-webkit-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
 	width: 100%;
 	height: 100%;
 	padding-bottom: 150px;
-
-	-webkit-align-items: center;
-	        align-items: center;
-	-webkit-box-align: center;
-	-webkit-box-orient: vertical;
-	-webkit-box-pack: center;
-	-webkit-flex-direction: column;
-	-webkit-justify-content: center;
-	        justify-content: center;
 }
 .page-fullscreen footer {
 	position: absolute;

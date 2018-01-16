@@ -1,0 +1,222 @@
+// Navigation
+// materialize, mobile only
+@media only screen and (max-width: 767px) {
+	/**
+	 * Layout
+	 * Since V1.6 we use absolute positioning to prevent to expand container-fluid
+	 * which would cover tags. A absolute positioning make a new layer.
+	 */
+	.navbar-default .navbar-collapse {
+		position: absolute;
+		right: 0;
+		width: 170px;
+		border: none;
+		border-radius: 2px;
+		background: white;
+		box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .2);
+		box-shadow: rgba(0, 0, 0, .117647) 0 1px 6px, rgba(0, 0, 0, .239216) 0 1px 4px;
+	}
+	/**
+	 * Animation
+	 * HuxBlog-Navbar using genuine Material Design Animation
+	 */
+	#huxblog_navbar {
+		-webkit-transition: all 200ms cubic-bezier(.47, 0, .4, .99) 0ms;
+		transition: all 200ms cubic-bezier(.47, 0, .4, .99) 0ms;
+		-webkit-transform: scaleX(0);
+		transform: scaleX(0);
+		-webkit-transform-origin: top right;
+		transform-origin: top right;
+		/**
+		 * Sharable code and 'out' function
+		 */
+		// the container do width-transition
+		opacity: 0;
+		a {
+			font-size: 13px;
+			line-height: 28px;
+		}
+		.navbar-collapse {
+			// the navbar do height-transition
+			height: 0; 	// to solve container-mask-tags issue (default state).
+			-webkit-transition: -webkit-transform 400ms cubic-bezier(.32, 1, .23, 1) 0ms;
+			transition: transform 400ms cubic-bezier(.32, 1, .23, 1) 0ms;
+			-webkit-transform: scaleY(0);
+			transform: scaleY(0);
+			-webkit-transform-origin: top right;
+			transform-origin: top right;
+		}
+		li {
+			-webkit-transition: opacity 100ms cubic-bezier(.23, 1, .32, 1) 0ms;
+			transition: opacity 100ms cubic-bezier(.23, 1, .32, 1) 0ms;
+			opacity: 0;
+		}
+		/**
+		 *'In' Animation
+		 */
+		&.in {
+			-webkit-transition: all 250ms cubic-bezier(.23,1,.32,1) 0ms;
+			transition: all 250ms cubic-bezier(.23,1,.32,1) 0ms;
+			-webkit-transform: scaleX(1);
+			transform: scaleX(1);
+			opacity: 1;
+			.navbar-collapse {
+				-webkit-transition: -webkit-transform 500ms cubic-bezier(.23, 1, .32, 1);
+				transition: transform 500ms cubic-bezier(.23, 1, .32, 1);
+				-webkit-transform: scaleY(1);
+				transform: scaleY(1);
+			}
+			li {
+				-webkit-transition: opacity 450ms cubic-bezier(.23, 1, .32, 1) 205ms;
+				transition: opacity 450ms cubic-bezier(.23, 1, .32, 1) 205ms;
+				opacity: 1;
+			}
+		}
+	}
+}
+.navbar-custom {
+	@include sans-serif();
+
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border: none;
+	// materialize
+	background: none;
+	.navbar-brand {
+		height: 56px;
+		font-weight: 800;
+		line-height: 25px;
+		// materialize
+		color: white;
+		&:hover {
+			color: rgba(255, 255, 255, .8);
+		}
+	}
+	.nav {
+		li {
+			a {
+				font-size: 12px;
+				font-weight: 800;
+				line-height: 20px;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				// only highlight in mobile
+				&:active {
+					background: rgba(0,0,0,.12);
+				}
+			}
+		}
+	}
+	@media only screen and (min-width: 768px) {
+		border-bottom: 1px solid transparent;
+		background: transparent;
+		body {
+			font-size: 20px;
+		}
+		.navbar-brand {
+			padding: 20px;
+			line-height: 20px;
+			color: white;
+			&:hover,
+			&:focus {
+				color: $white-faded;
+			}
+		}
+		.nav {
+			li {
+				a {
+					padding: 20px;
+					color: white;
+					&:hover,
+					&:focus {
+						color: $white-faded;
+					}
+					&:active {
+						background: none;
+					}
+				}
+			}
+		}
+	}
+	@media only screen and (min-width: 1170px) {
+		-webkit-transition: background-color .3s;
+		-moz-transition: background-color .3s;
+		transition: background-color .3s;
+		/* Force Hardware Acceleration in WebKit */
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		&.is-fixed {
+			/* when the user scrolls down, we hide the header right above the viewport */
+			position: fixed;
+			top: -61px;
+			-webkit-transition: -webkit-transform .3s;
+			-moz-transition: -moz-transform .3s;
+			transition: transform .3s;
+			border-bottom: 1px solid darken(white, 5%);
+			background-color: opacify(white, .9);
+			.navbar-brand {
+				color: $gray-dark;
+				&:hover,
+				&:focus {
+					color: $brand-primary;
+				}
+			}
+			.nav {
+				li {
+					a {
+						color: $gray-dark;
+						&:hover,
+						&:focus {
+							color: $brand-primary;
+						}
+					}
+				}
+			}
+		}
+		&.is-visible {
+			/* if the user changes the scrolling direction, we show the header */
+			-webkit-transform: translate3d(0, 100%, 0);
+			-moz-transform: translate3d(0, 100%, 0);
+			-ms-transform: translate3d(0, 100%, 0);
+			-o-transform: translate3d(0, 100%, 0);
+			transform: translate3d(0, 100%, 0);
+		}
+	}
+}
+/* Hux Optimize UserExperience */
+.navbar-default .navbar-toggle {
+	&:focus, &:hover {
+		background-color: inherit;
+	}
+	&:active {
+		background-color: rgba(255, 255, 255, .25);
+	}
+}
+
+/* Hux customize Style for navBar button */
+.navbar-default .navbar-toggle {
+	margin-top: 2px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	padding: 19px 16px;
+	border-color: transparent;
+	border-radius: 50%;
+	.icon-bar {
+		width: 18px;
+		border-radius: 0;
+		// materialize
+		background-color: white;
+	}
+	.icon-bar + .icon-bar {
+		margin-top: 3px;
+	}
+}

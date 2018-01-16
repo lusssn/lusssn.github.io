@@ -2,31 +2,30 @@
 layout: page
 ---
 <!-- Main Content -->
+<audio class="bg-music" src="http://oyd1mgz9y.bkt.clouddn.com/%E6%8A%BC%E5%B0%BE%E3%82%B3%E3%83%BC%E3%82%BF%E3%83%AD%E3%83%BC%20-%20%E8%A7%81%E4%B8%8A%E3%81%92%E3%81%A6%E3%81%94%E3%82%89%E3%82%93%E5%A4%9C%E3%81%AE%E6%98%9F%E3%82%92.mp3" autoplay controls loop></audio>
+<ul class="post-list">
+    <% page.posts.each(function(post){ %>
+    <li>
+        <div class="post-preview">
 
-<% page.posts.each(function(post){ %>
-<li>
-    <div class="post-preview">
+            <h2 class="post-title">
+                <%- post.title || "Untitled" %>
+            </h2>
+            <div class="post-subtitle">
+                <%- post.subtitle || "" %>
+            </div>
+            <% if (post.excerpt){ %>
+            <div class="post-content-preview">
+                <%- post.excerpt %>
+            </div>
+            <% } %>
+            <a href="<%- config.root %><%- post.path %>" target="_blank">READ MORE</a>
 
-        <h2 class="post-title">
-            <%- post.title || "Untitled" %>
-        </h2>
-        <div class="post-subtitle">
-            <%- post.subtitle || "" %>
         </div>
-        <% if (post.excerpt){ %>
-        <div class="post-content-preview"> 
-            <%- post.excerpt %>
-        </div>
-        <% } %>
-        <a href="<%- config.root %><%- post.path %>">READ MORE</a>
-
-    </div>
-</li>
-<% }); %>
-
-
+    </li>
+    <% }); %>
+</ul>
 <!-- Pager -->
-
 <ul class="pager">
     <% if (page.prev){ %>
         <li class="previous">
