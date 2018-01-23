@@ -131,8 +131,8 @@ pre code {
 	@include background-cover();
 	// NOTE: Background images are set within the HTML using inline CSS!
 
+	position: relative;
 	margin-bottom: 0;  /* 0 on mobile, modify by Hux */
-	background: no-repeat center center;
 	background-color: $gray;
 	background-attachment: scroll;
 	@media only screen and (min-width: 768px) {
@@ -213,6 +213,12 @@ pre code {
 				font-size: 20px;
 			}
 		}
+	}
+	.canvas-heading {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
 	}
 }
 

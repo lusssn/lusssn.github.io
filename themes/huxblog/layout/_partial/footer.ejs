@@ -81,7 +81,7 @@
                 <% } %>
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; <%= config.title %> <%= new Date().getFullYear() %> 
+                    Copyright &copy; <%= config.title %> <%= new Date().getFullYear() %>
                 </p>
             </div>
         </div>
@@ -99,7 +99,7 @@
 
 
 <!-- async load function -->
-<script>
+<script type="text/javascript">
     function async(u, c) {
       var d = document, t = 'script',
           o = d.createElement(t),
@@ -128,12 +128,28 @@
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
 
+<!-- canvas-fog.js -->
+<script type="text/javascript">
+  // only load tagcloud.js in tag.html
+  if($('#fogCanvas').length){
+    async("<%= config.url%><%= config.root%>js/canvas-fog.js", function(){
+      // IE9+烟雾效果走起
+      if ([].map) {
+        FogCanvas(document.querySelector('#fogCanvas'), {
+          count: 30,
+          velocity: 1,
+          url: 'http://oyd1mgz9y.bkt.clouddn.com/lusssn-fog.png'
+        });
+      }
+    })
+  }
+</script>
 
 <!-- jquery.tagcloud.js -->
-<script>
+<script type="text/javascript">
     // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("<%= config.url%><%= config.root%>js/jquery.tagcloud.js",function(){
+    if($('#tag_cloud').length){
+        async("<%= config.url%><%= config.root%>js/jquery.tagcloud.js", function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
@@ -143,19 +159,17 @@
     }
 </script>
 
-<!--fastClick.js -->
-<script>
+<!-- fastClick.js -->
+<script type="text/javascript">
     async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
         var $nav = document.querySelector("nav");
         if($nav) FastClick.attach($nav);
     })
 </script>
 
-
 <!-- Google Analytics -->
-
 <% if (config.ga_track_id) { %>
-<script>
+<script type="text/javascript">
     // dynamic User by Hux
     var _gaId = '<%= config.ga_track_id %>';
     var _gaDomain = '<%= config.ga_domain %>';
@@ -169,13 +183,11 @@
     ga('create', _gaId, _gaDomain);
     ga('send', 'pageview');
 </script>
-
 <% } %>
-
 
 <!-- Baidu Tongji -->
 <% if (config.ba_track_id) { %>
-<script>
+<script type="text/javascript">
     // dynamic User by Hux
     var _baId = '<%= config.ba_track_id %>';
 
@@ -204,7 +216,7 @@
             l = $('<li class="'+n+'_nav"></li>').append(c);
             $(selector).append(l);
         });
-        return true;    
+        return true;
     }
 
     generateCatalog(".catalog-body");
