@@ -254,11 +254,10 @@ pre code {
 			padding: 7px 14px;
 			font-size: 14px;
 			font-weight: bold;
+			text-decoration: none;
 			color: $gray-dark;
 			border: 2px solid $gray-dark;
-			&:hover,
-			&:focus {
-				text-decoration: none;
+			&:hover {
 				color: #FFFFFF;
 				background-color: $gray-dark;
 			}

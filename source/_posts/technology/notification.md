@@ -1,9 +1,11 @@
 ---
+layout: technology
 title: Web桌面消息推送
-date: 2016-10-08 14:54:10
 tags:
   - JavaScript
-header-img: images/comm-header/technology.jpg
+headerimg: images/comm-header/technology.jpg
+abbrlink: bb6366b8
+date: 2016-10-08 14:54:10
 ---
 微博、网易邮箱、网页微信都有桌面推送的功能，通过Web Notifications就可以轻松实现。
 <!-- more -->

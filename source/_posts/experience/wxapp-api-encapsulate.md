@@ -1,9 +1,11 @@
 ---
-title: 二次封装微信小程序API
-header-img: images/comm-header/experience.jpg
-date: 2018-01-10 18:30:13
-tags: 
+layout: experience
+title: 封装微信小程序API
+headerimg: images/comm-header/experience.jpg
+tags:
   - 微信小程序
+abbrlink: ea8cef36
+date: 2018-01-10 18:30:13
 ---
 微信小程序官方提供的API很多用起来都有点鸡肋，针对不同项目的业务需求做二次封装是有必要的，这篇文章记一些有通用性的封装，若读者觉得有不好的地方，欢迎指出。
 更新时间：2018-01-15
@@ -39,11 +41,11 @@ function navigateTo (pageName, urlParams, close) {
       continue
     }
     // 对参数做编码，所以如果参数值包含中文，取用时要解码
-    strParams += key + '=' + encodeURIComponent(urlParams[key]) + '&'
+    strParams += `${key}=${encodeURIComponent(urlParams[key])}&`
   }
   strParams = strParams.replace(/&$/, '')
 
-  objParams.url = '/pages/' + pageName + '/' + pageName + (strParams ? '?' + strParams : '')
+  objParams.url = `/pages/${pageName}/${pageName}${strParams ? `?${strParams}` : ''}`
 
   // tabbar页面只能通过reLaunch实现关闭当前页
   if (close === 'all' || (isTabbarPage && close)) {

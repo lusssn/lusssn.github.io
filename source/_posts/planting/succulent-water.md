@@ -1,8 +1,10 @@
 ---
+layout: planting
 title: 多肉浇水
-date: 2016-05-19 15:35:51
 tags: 多肉植物
-header-img: images/comm-header/planting.jpg
+headerimg: images/comm-header/planting.jpg
+abbrlink: 5ca2e94e
+date: 2016-05-19 15:35:51
 ---
 刚入肉坑最晕的问题就是什么时候要浇水。经常听说太热不要浇水，太冷不要浇水，阴天不要浇水，下雨不要浇水，刚种不要浇水...
 又听说要浇水啊，不浇水要干死的啊，不能浇到叶子上啊，要浇透啊...

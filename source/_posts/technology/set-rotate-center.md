@@ -1,9 +1,11 @@
 ---
+layout: technology
 title: 旋转
-header-img: images/comm-header/technology.jpg
-date: 2017-03-14 17:19:42
-tags: 
+headerimg: images/comm-header/technology.jpg
+tags:
   - ThreeJs
+abbrlink: 15b2d28
+date: 2017-03-14 17:19:42
 ---
 在ThreeJs中，物体的旋转运动是绕世界中心旋转的，实际却有很多场景要求物体绕其他点旋转。
 <!-- more -->

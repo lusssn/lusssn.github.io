@@ -13,7 +13,7 @@ timezone:
 # ================== huxblog setting start ==================
 # Site settings
 SEOTitle: Lusssn
-header-img: images/home-bg-180123.jpg
+headerimg: images/home-bg-180123.jpg
 keyword: ""
 
 # SNS settings
@@ -59,8 +59,11 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://lusssn.github.io # http://localhost:4000
 root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
+permalink: :layout/:abbrlink.html
+# abbrlink config
+abbrlink:
+  alg: crc32  #support crc16(default) and crc32
+  rep: hex    #support dec(default) and hex
 
 # Directory
 source_dir: source
@@ -90,7 +93,7 @@ highlight:
 fancybox: true
 
 # Category & Tag
-default_category: uncategorized
+default_category: :layout
 category_map:
 tag_map:
 

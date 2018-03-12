@@ -1,5 +1,7 @@
 ---
+layout: {{ layout }}
 title: {{ title }}
+headerimg: images/comm-header/{{ layout }}.jpg
 tags:
-header-img: images/comm-header/???.jpg
 ---
+<!-- more -->

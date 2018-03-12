@@ -2,5 +2,6 @@
 layout: archives
 title: Archives
 description: Never forget where you come from
-header-img: images/archive-bg.jpg
+headerimg: images/archive-bg.jpg
+abbrlink: 1b148e6f
 ---

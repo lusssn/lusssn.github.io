@@ -3,7 +3,7 @@
 # ================== huxblog setting start ==================
 # Site settings
 SEOTitle: Lusssn的博客 | Lusssn's Blog
-header-img: images/home-bg.jpg
+headerimg: images/home-bg.jpg
 email: lusssn@126.com
 keyword: ""
 

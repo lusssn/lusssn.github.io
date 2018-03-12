@@ -1,8 +1,10 @@
 ---
+layout: planting
 title: 多肉的无性繁殖
-header-img: images/comm-header/planting.jpg
-date: 2017-03-16 10:17:20
+headerimg: images/comm-header/planting.jpg
 tags: 多肉植物
+abbrlink: 8672332a
+date: 2017-03-16 10:17:20
 ---
 春天是各种植物甩开膀子生长的季节，养个多肉当然要抓住这个机会扩充军队啊。
 <!-- more -->

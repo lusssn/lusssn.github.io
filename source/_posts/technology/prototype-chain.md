@@ -1,9 +1,11 @@
 ---
+layout: technology
 title: 对原型链的理解
-date: 2016-04-11
-tags: 
+tags:
   - JavaScript
-header-img: images/comm-header/technology.jpg
+headerimg: images/comm-header/technology.jpg
+abbrlink: 571b2335
+date: 2016-04-11 00:00:00
 ---
 之前花了几个小时彻彻底底的研究明白『原型』和『原型链』。
 搭了个人blog找个东西放又整理了一遍，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了哈哈哈。

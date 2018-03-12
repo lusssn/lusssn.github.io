@@ -1,9 +1,11 @@
 ---
+layout: technology
 title: 法向贴图
-header-img: images/comm-header/technology.jpg
-date: 2017-04-22 14:34:13
+headerimg: images/comm-header/technology.jpg
 tags:
   - ThreeJs
+abbrlink: b70d0772
+date: 2017-04-22 14:34:13
 ---
 皮肤的皱纹，砖墙表面的凹凸，衣服的褶皱，树皮的纹路...
 这些丰富的细节在计算机的3D世界中，最常用的展现方式就是法相贴图了。

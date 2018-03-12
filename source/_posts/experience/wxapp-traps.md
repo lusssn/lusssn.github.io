@@ -1,12 +1,14 @@
 ---
-title: 微信小程序已知陷阱集锦
-header-img: images/comm-header/experience.jpg
-date: 2017-12-06 14:25:13
-tags: 
+layout: experience
+title: 微信小程序陷阱集锦
+headerimg: images/comm-header/experience.jpg
+tags:
   - 微信小程序
+abbrlink: ae2193e3
+date: 2017-12-06 14:25:13
 ---
 开发微信小程序主要依赖官方的开发文档，但是有很多陷阱得靠经验积累。到目前已经做了三个小程序了，本文记录开发中遇到的一些问题，持续更新。
-更新时间：2018-01-12
+更新时间：2018-03-12
 <!-- more -->
 * * *
 ## 目录
@@ -21,13 +23,15 @@ tags:
 1. **textarea组件**
   - 文字会浮到顶层；
   - 不能设置tap；
-  - IOS中placeholder不能超过两行；
+  - ~~IOS中placeholder不能超过两行；~~ 2018-03-12
   - IOS中文字会下一截
   - **textarea组件**上方不可以有高度会变化的区域，否则会导致textarea不能跟随页面一起滚动。
 
 1. 获取 **input组件** 中的内容时，请同时绑定input事件和blur事件。
   - 若只绑定input事件，某些机型的中文输入法选中中文字的时候不会触发input事件，导致数据采集错误。
   - 若只绑定blur事件，则会因为***3.5***的问题导致数据采集错误。
+
+1. **input组件**文字设置为靠右时，光标会聚焦在文字的左侧。
 
 ### 二、API
 2. 请小心使用**showNavigationBarLoading**，因为**hideNavigationBarLoading**有可能会无效（猜测是因为接口响应太快，hide的时候还没有show完毕）。
@@ -61,6 +65,7 @@ tags:
 5. 经过测试发现，**reLaunch**接口支持路由传参数，慎重使用。
 5. 做页面刷新时，若是刷新普通页面使用**redirectTo**，若刷新tabbar页面需要使用**reLaunch**。
 5. 分享出去的页面**onLoad中做reLaunch跳转**，安卓环境第一次有效，第二次则会报错：*reLaunch:fail can not invoke reLaunch in background*。 正确做法应该是将跳转逻辑放到**onReady**中。
+5. **wx.openSetting**方法会调起授权设置页面，此时小程序在后台运行，如果在**wx.openSetting**的成功回调中调用**reLaunch**，安卓环境下回报错：*reLaunch:fail can not invoke reLaunch in background*。
 5. 模板传参方式不局限于文档中的方式，可以有；
 ```html
 <!-- 若item是obj的一个属性，total是一个基本数据类型 -->

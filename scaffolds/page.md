@@ -1,6 +1,7 @@
 ---
-layout:
+layout: 
 title: {{ title }}
+description: 
 date: {{ date }}
-header-img: images/comm-header/???.jpg
+headerimg: images/
 ---

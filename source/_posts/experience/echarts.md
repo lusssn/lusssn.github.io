@@ -1,8 +1,10 @@
 ---
+layout: experience
 title: Echarts折线图绘制
 tags:
   - JS插件
-header-img: images/comm-header/experience.jpg
+headerimg: images/comm-header/experience.jpg
+abbrlink: c5a92fe6
 date: 2017-03-08 17:14:44
 ---
 Echarts算是国内JS图表插件一顶一的优秀了，通过JSON配置项就可以轻松实现丰富多样的图表效果。

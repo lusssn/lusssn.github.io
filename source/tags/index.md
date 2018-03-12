@@ -1,6 +1,7 @@
 ---
 layout: tags
 title: Tags
-description: No pains, no gains
-header-img: images/tag-bg.jpg
+description: 'No pains, no gains'
+headerimg: images/tag-bg.jpg
+abbrlink: cf8e3b18
 ---
