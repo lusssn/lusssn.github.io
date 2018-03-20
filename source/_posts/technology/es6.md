@@ -10,6 +10,7 @@ date: 2016-08-15 10:06:39
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。
 ES6语法能使代码变得更加简洁，很人性化。
+2018-03-20 更新Arrow Functions、Symbol
 <!-- more -->
 
 ## 目录
@@ -223,6 +224,7 @@ console.log(second);　// "Brannigan"
 | <=          | 小于等于        |
 | =>          | Arrow Functions |
 
+只包含一个表达式，{ ... } 和 return都省略掉
 ```javascript
 // ES5
 var selected = allJobs.filter(function (job) {
@@ -230,64 +232,63 @@ var selected = allJobs.filter(function (job) {
 });
 // ES6
 var selected = allJobs.filter(job => job.isSelected());
-
+```
+没有参数用括号()，至少2个参数用括号()括起来
+```javascript
 // ES5
 var total = values.reduce(function (a, b) {
     return a + b;
 }, 0);
 // ES6
 var total = values.reduce((a, b) => a + b, 0);
-
+```
+可以包含多条语句，不能省略{ ... } 和 return
+```javascript
 // ES5
 $("#confetti-btn").click(function (event) {
     playTrumpet();
     fireConfettiCannon();
 });
-// ES6
+// ES6 
 $("#confetti-btn").click(event => {
     playTrumpet();
     fireConfettiCannon();
 });
 
-// 为与你玩耍的每一个小狗创建一个新的空对象
-var chewToys = puppies.map(puppy => {});   // 这样写会报Bug！
-var chewToys = puppies.map(puppy => ({})); //
 ```
 
-> { 是唯一一个有歧义的字符，所以用小括号包裹对象字面量是唯一一个你需要牢记的小窍门。 
-
-**箭头函数没有它自己的this值**，箭头函数内的this值继承自外围作用域。 
-通过object.method()语法调用的方法使用非箭头函数定义，这些函数需要从调用者的作用域中获取一个有意义的this值。 
-其它情况全都使用箭头函数。 
-箭头函数不会获取它们自己的arguments对象。 
+`{` 是唯一一个有歧义的字符，所以用小括号包裹对象字面量是唯一一个你需要牢记的小窍门。
 ```javascript
-{
-    // ...
-    addAll: function addAll(pieces) {
-        var self = this;
-        _.each(pieces, function (piece) {
-            self.add(piece);
-        });
-    },
-    // ...
+// 为与你玩耍的每一个小狗创建一个新的空对象
+var chewToys = puppies.map(puppy => {}); // 如果是单表达式要返回一个对象，这样写会报Bug！   
+var chewToys = puppies.map(puppy => ({})); 
+```
+
+**箭头函数没有它自己的this值**，箭头函数内的this值继承自外围作用域，也就是说this对象是定义时所在的对象，而不是运行时所在的对象。
+内部函数不可直接访问外部函数的this，箭头函数可以解决这个问题，由于绑定了作用域，call或者apply调用箭头函数时，第一个参数会被忽略。
+```javascript
+// ES5
+var objOld = {
+  addAll: function (pieces) {
+    var self = this;
+    [].forEach.call(pieces, function (piece) {
+      this.add(piece);
+    });
+  },
+  add: function (piece) {
+    console.log(piece)
+  }
 }
 
 // ES6
-{
-    // ...
-    addAll: function addAll(pieces) {
-        _.each(pieces, piece => this.add(piece));
-    },
-    // ...
+var objNew = {
+  addAll (pieces) {
+    [].forEach.call(pieces, piece => this.add(piece));
+  },
+  add (piece) {
+    console.log(piece)
+  }
 }
-// ES6的方法语法
-    {
-        // ...
-        addAll(pieces) {
-            _.each(pieces, piece => this.add(piece));
-        },
-        // ...
-    }
 ```
 
 * * *
@@ -296,11 +297,34 @@ var chewToys = puppies.map(puppy => ({})); //
 
 > JavaScript的第七种原始类型。
 
-获取Symbol的方法：
+一般Symbol值用来做为对象的key，防止属性被重写。
+`Object.getOwnPropertySymbols()`只会返回Symbol类型的属性名的数组；
+`Object.getOwnPropertyNames()`只会返回String类型的属性名的数组。
 
-  * **Symbol()。** 每次调用都会返回一个新的唯一symbol。
-  * **Symbol.for(string)。** 这种方式会访问Symbol注册表，注册表可以供多个页面共享使用。
-  * **使用标准定义的symbol。** 例如：Symbol.iterator，标准根据一些特殊用途定义了少许的几个symbol。
+获取Symbol的方法有：
+- **Symbol()** 
+  每次调用都会返回一个新的唯一symbol。
+  ```javascript
+  const a = Symbol('hello')
+  const b = Symbol('hello')
+  console.log(a == b) // false
+  ```
+- **Symbol.for(string)** 
+  这种方式会访问**全局的**Symbol注册表，如果有以参数为名称的Symbol，则返回该值，否则新建一个全局的Symbol并返回值。
+  ```javascript
+    const a = Symbol.for('hello')
+    const b = Symbol.for('hello')
+    console.log(a === b) // true
+    ```
+    通过Symbol.keyFor(symbol)可以检查symbol的key在全局是否已注册过，若注册过则返回key，否则返回undefined。
+- **使用标准定义的symbol** 
+  例如：Symbol.iterator，标准根据一些特殊用途定义了少许的几个symbol。
+
+需要注意的是：
+- Symbol不是构造函数，不可new Symbol；
+- Symbol值不是对象，所以不可添加属性；
+- 不可与其他类型的值进行运算；
+- 可以显示转换为string/boolean，但不可转为number。
 
 * * *
 
