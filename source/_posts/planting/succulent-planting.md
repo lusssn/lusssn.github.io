@@ -1,9 +1,7 @@
 ---
-layout: planting
 title: 多肉养护
 tags: 多肉植物
 headerimg: images/comm-header/planting.jpg
-abbrlink: f9f4aa62
 date: 2016-05-18 23:08:19
 ---
 肉龄已经一岁多了，对多肉的热情有增无减。

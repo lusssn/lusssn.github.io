@@ -1,10 +1,8 @@
 ---
-layout: technology
 title: 材质
 headerimg: images/comm-header/technology.jpg
 tags:
   - ThreeJs
-abbrlink: 1a5c9a47
 date: 2017-04-08 16:18:13
 ---
 材质=材料+质感。光照射到物体上折射出不同的颜色、光强等，人眼才能感知物体的材质。构建材质的过程可以看作是操作改造反射光的过程。

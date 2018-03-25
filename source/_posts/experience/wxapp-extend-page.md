@@ -1,10 +1,8 @@
 ---
-layout: experience
 title: 微信小程序Page扩展
 headerimg: images/comm-header/experience.jpg
 tags:
   - 微信小程序
-abbrlink: 29094032
 date: 2018-03-12 15:29:54
 ---
 实际的项目开发中，页面的初始化几乎是统一的，在某些场景下还需要扩展小程序页面的生命周期钩子。

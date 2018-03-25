@@ -1,10 +1,8 @@
 ---
-layout: experience
 title: 微信小程序陷阱集锦
 headerimg: images/comm-header/experience.jpg
 tags:
   - 微信小程序
-abbrlink: ae2193e3
 date: 2017-12-06 14:25:13
 ---
 开发微信小程序主要依赖官方的开发文档，但是有很多陷阱得靠经验积累。到目前已经做了三个小程序了，本文记录开发中遇到的一些问题，持续更新。

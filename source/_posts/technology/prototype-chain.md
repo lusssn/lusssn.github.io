@@ -1,14 +1,12 @@
 ---
-layout: technology
 title: 对原型链的理解
 tags:
   - JavaScript
 headerimg: images/comm-header/technology.jpg
-abbrlink: 571b2335
 date: 2016-04-11 00:00:00
 ---
-之前花了几个小时彻彻底底的研究明白『原型』和『原型链』。
-搭了个人blog找个东西放又整理了一遍，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了哈哈哈。
+又整理了一遍『原型』和『原型链』，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了。
+2018-03-25 增加“拓展”、“继承”
 <!-- more -->
 ### 看一个实例
 ```javascript
@@ -46,20 +44,77 @@ console.log(tidy.price);
 ![](explain.png)
 
 ### 说话
-#### 1、 `cat`调用`price`时，沿着原型链寻找该属性。
+- `cat`调用`price`
 
-① 查看本身，没有`price`，根据 **\_\_proto\_\_** 找到 **animal prototype对象**。
+  ① 查看本身，没有`price`，根据 **\_\_proto\_\_** 找到 **animal prototype对象**。
+  
+  ② 在**animal prototype对象**中找到了`price`，所以 **`cat.price 结果为20`**。
+  
+  ③ 如果`无 animal.prototype=20 `，则会根据**animal prototype对象**的 **\_\_proto\_\_** 找到**Object prototype**，**Object prototype**中的 **\_\_proto\_\_** 指向null，若仍没有找到`price`，**`结果则为undefined`**。
 
-② 在**animal prototype对象**中找到了`price`，所以 **`cat.price 结果为20`**。
+- `tidy`调用`price`
+  
+  ① 查看本身，没有`price`，根据 **\_\_proto\_\_** 找到**dog prototype**。
+  
+  ② `dog prototype = animal`，这里可以这样理解： **prototype**本质也是一个对象，因此可以重新赋一个对象，无论是函数对象还是普通对象。事实上，每个 **prototype** 会有一个预定义的constructor属性用来引用它的函数对象。
+  
+  ③ 在**animal**中找到了`price`， 所以 **`tidy.price 结果为1000`**。
+  
+  ④ 如果``无 animal.price = 1000 ``，则会根据**animal**的 **\_\_proto\_\_** 找到下一个对象，最终都没有找到 `price`，**`结果就为undefined`**。
 
-③ 如果`无 animal.prototype=20 `，则会根据**animal prototype对象**的 **\_\_proto\_\_** 找到**Object prototype**，**Object prototype**中的 **\_\_proto\_\_** 指向null，若仍没有找到`price`，**`结果则为undefined`**。
+### 深入
+1. 创建一个对象的方式
 
-#### 2、 `tidy`调用`price`时，沿着原型链寻找该属性。
+  * {}、new Object()
+  * 构造函数
+  * Object.create()  
+    此方法将新对象的__proto__更改并指向create的入参对象。
 
-① 查看本身，没有`price`，根据 **\_\_proto\_\_** 找到**dog prototype**。
+2. instance of  VS  constructor
+**instance of 原理：**检查左边对象与右边对象是否在同一条原型链上。
+**constructor原理：**取对象的__proto__属性指向的prototype对象上的constructor字段。
+```javascript
+cat instanceof animal === true
+cat.__proto__ === animal.prototype
 
-② `dog prototype = animal`，这里可以这样理解： **prototype**本质也是一个对象，因此可以重新赋一个对象，无论是函数对象还是普通对象。事实上，每个 **prototype** 会有一个预定义的constructor属性用来引用它的函数对象。
+animal.prototype instanceof Object === true
+animal.prototype.__proto__ === Object.prototype
 
-③ 在**animal**中找到了`price`， 所以 **`tidy.price 结果为1000`**。
+cat instanceof Object === true
+// but，
+cat.constructor === animal // true
+cat.constructor === Object // false
+```
 
-④ 如果``无 animal.price = 1000 ``，则会根据**animal**的 **\_\_proto\_\_** 找到下一个对象，最终都没有找到 `price`，**`结果就为undefined`**。
+3. new运算符的原理
+
+  * 创建一个空对象，它的__proto__等于构造函数的原型对象（可以用Object.create()完成）
+  * 构造函数以第1步创建的对象做为上下文，是否会返回一个对象
+  * 若第2步返回了对象，则使用该对象作为新实例，否则用第1步创建的对象作为新实例
+  ```javascript
+  var myNew = function (func) {
+    var o = Object.create(func.prototype)
+    var i = func.call(o)
+    return typeof i === 'object' ? i : o
+  }
+  ```
+
+### 继承
+**类的声明：**
+* function
+* class
+
+**生成实例：**new
+
+**继承的几种方式：**
+* 借助构造函数，父类的作用域指向子类
+  * Parent.call(this)   // this是Child类的上下文
+  * 缺点：不能继承原型链属性
+* 借助原型链
+  * Child.prototype = new Parent()
+  * 缺点：子类所有实例共享原型对象；子类实例的constructor为Parent
+* 组合方式
+  * Parent.call(this)   // this是Child类的上下文
+  * Child.prototype = Object.create(Parent.prototype)
+  * Child.prototype.constructor = Child
+

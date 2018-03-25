@@ -1,11 +1,9 @@
 ---
-layout: technology
 title: ES6 新特性
 tags:
   - JavaScript
   - ECMAScript 6
 headerimg: images/comm-header/technology.jpg
-abbrlink: e2949e25
 date: 2016-08-15 10:06:39
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。
@@ -19,8 +17,8 @@ ES6语法能使代码变得更加简洁，很人性化。
 3. [Template](#3-Template)
 4. [Parameters](#4-Parameters)
 5. [Destructuring](#5-Destructuring)
-6. [Arrow Functions](#6-Arrow-Functions)
-7. [Symbol](#7-Symbol)
+6. [Arrow Functions 2018-03-20](#6-Arrow-Functions)
+7. [Symbol 2018-03-20](#7-Symbol)
 8. [集合](#8-集合)
 9. [Proxy](#9-Proxy)
 10. [Class](#10-Class)

@@ -1,10 +1,8 @@
 ---
-layout: technology
 title: JS 中 new Date 的坑
 tags:
   - JavaScript
 headerimg: images/comm-header/technology.jpg
-abbrlink: acdd5f62
 date: 2016-01-24 00:00:00
 ---
 实习的时候做个需求，要判断几个时间区间是否包含、重叠，做时间的计算踩了 ``new Date()`` 的坑。new完时间竟然不对了(o´·д·)」

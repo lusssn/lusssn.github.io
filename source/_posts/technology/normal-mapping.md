@@ -1,10 +1,8 @@
 ---
-layout: technology
 title: 法向贴图
 headerimg: images/comm-header/technology.jpg
 tags:
   - ThreeJs
-abbrlink: b70d0772
 date: 2017-04-22 14:34:13
 ---
 皮肤的皱纹，砖墙表面的凹凸，衣服的褶皱，树皮的纹路...
