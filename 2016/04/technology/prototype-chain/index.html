@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+          对原型链的理解 - Lusssn
+        
+    </title>
+
+    <link rel="canonical" href="https://lusssn.github.io/2016/04/technology/prototype-chain/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/scss/hux-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">lusssn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                        
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/archives">Archives</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/tags">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/images/comm-header/technology.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                    <h1>对原型链的理解</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Chris Lu on
+                        2016-04-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>又整理了一遍『原型』和『原型链』，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了。<br>2018-03-25 增加“拓展”、“继承”<br><a id="more"></a></p>
+<h3 id="看一个实例"><a href="#看一个实例" class="headerlink" title="看一个实例"></a>看一个实例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">animal.prototype.price = <span class="number">20</span>;</span><br><span class="line">animal.price = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line">dog.prototype = animal;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat = <span class="keyword">new</span> animal();</span><br><span class="line"><span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</span><br><span class="line"><span class="comment">// 下面两行分别输出什么？</span></span><br><span class="line"><span class="built_in">console</span>.log(cat.price);</span><br><span class="line"><span class="built_in">console</span>.log(tidy.price);</span><br></pre></td></tr></table></figure>
+<h3 id="需要知道"><a href="#需要知道" class="headerlink" title="需要知道"></a>需要知道</h3><p>要理解原型和原型链首先要知道几个概念：</p>
+<ol>
+<li>在js里，继承机制是原型继承。继承的起点是 <strong>对象的原型（Object prototype）</strong>。</li>
+<li>一切皆为对象，只要是对象，就会有 <strong>__proto__</strong> 属性，该属性存储了指向其构造的指针。<ul>
+<li><strong>Object prototype</strong>也是对象，其 <strong>__proto__</strong> 指向null。</li>
+</ul>
+</li>
+<li>对象分为两种：<strong>函数对象</strong>和<strong>普通对象</strong>，只有函数对象拥有『原型』对象（prototype）。<ul>
+<li><strong>prototype</strong>的本质是普通对象。</li>
+<li><strong>Function prototype</strong>比较特殊，是没有prototype的函数对象。</li>
+<li>new操作得到的对象是普通对象。</li>
+</ul>
+</li>
+<li>当调取一个对象的属性时，会先在本身查找，若无，就根据 <strong>__proto__</strong> 找到构造原型，若无，继续往上找。最后会到达顶层<strong>Object prototype</strong>，它的 <strong>__proto__</strong> 指向null，均无结果则返回undefined，结束。</li>
+<li>由 <strong>__proto__</strong> 串起的路径就是『原型链』。 </li>
+</ol>
+<h3 id="看图"><a href="#看图" class="headerlink" title="看图"></a>看图</h3><p>将开篇的一段代码对象关系做了个关系图如下：</p>
+<ul>
+<li><img src="/2016/04/technology/prototype-chain/case-1.png" alt=""> 表示函数对象</li>
+<li><img src="/2016/04/technology/prototype-chain/case-2.png" alt=""> 表示普通对象</li>
+</ul>
+<p><img src="/2016/04/technology/prototype-chain/explain.png" alt=""></p>
+<h3 id="说话"><a href="#说话" class="headerlink" title="说话"></a>说话</h3><ul>
+<li><p><code>cat</code>调用<code>price</code></p>
+<p>① 查看本身，没有<code>price</code>，根据 <strong>__proto__</strong> 找到 <strong>animal prototype对象</strong>。</p>
+<p>② 在<strong>animal prototype对象</strong>中找到了<code>price</code>，所以 <strong><code>cat.price 结果为20</code></strong>。</p>
+<p>③ 如果<code>无 animal.prototype=20</code>，则会根据<strong>animal prototype对象</strong>的 <strong>__proto__</strong> 找到<strong>Object prototype</strong>，<strong>Object prototype</strong>中的 <strong>__proto__</strong> 指向null，若仍没有找到<code>price</code>，<strong><code>结果则为undefined</code></strong>。</p>
+</li>
+<li><p><code>tidy</code>调用<code>price</code></p>
+<p>① 查看本身，没有<code>price</code>，根据 <strong>__proto__</strong> 找到<strong>dog prototype</strong>。</p>
+<p>② <code>dog prototype = animal</code>，这里可以这样理解： <strong>prototype</strong>本质也是一个对象，因此可以重新赋一个对象，无论是函数对象还是普通对象。事实上，每个 <strong>prototype</strong> 会有一个预定义的constructor属性用来引用它的函数对象。</p>
+<p>③ 在<strong>animal</strong>中找到了<code>price</code>， 所以 <strong><code>tidy.price 结果为1000</code></strong>。</p>
+<p>④ 如果<code>无 animal.price = 1000</code>，则会根据<strong>animal</strong>的 <strong>__proto__</strong> 找到下一个对象，最终都没有找到 <code>price</code>，<strong><code>结果就为undefined</code></strong>。</p>
+</li>
+</ul>
+<h3 id="深入"><a href="#深入" class="headerlink" title="深入"></a>深入</h3><ol>
+<li><p>创建一个对象的方式</p>
+<ul>
+<li>{}、new Object()</li>
+<li>构造函数</li>
+<li>Object.create()<br>此方法将新对象的<strong>proto</strong>更改并指向create的入参对象。</li>
+</ul>
+</li>
+<li><p>instance of  VS  constructor<br><strong>instance of 原理：</strong>检查左边对象与右边对象是否在同一条原型链上。<br><strong>constructor原理：</strong>取对象的<strong>proto</strong>属性指向的prototype对象上的constructor字段。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="keyword">instanceof</span> animal === <span class="literal">true</span></span><br><span class="line">cat.__proto__ === animal.prototype</span><br><span class="line"></span><br><span class="line">animal.prototype <span class="keyword">instanceof</span> <span class="built_in">Object</span> === <span class="literal">true</span></span><br><span class="line">animal.prototype.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"></span><br><span class="line">cat <span class="keyword">instanceof</span> <span class="built_in">Object</span> === <span class="literal">true</span></span><br><span class="line"><span class="comment">// but，</span></span><br><span class="line">cat.constructor === animal <span class="comment">// true</span></span><br><span class="line">cat.constructor === <span class="built_in">Object</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>new运算符的原理</p>
+<ul>
+<li>创建一个空对象，它的<strong>proto</strong>等于构造函数的原型对象（可以用Object.create()完成）</li>
+<li>构造函数以第1步创建的对象做为上下文，是否会返回一个对象</li>
+<li>若第2步返回了对象，则使用该对象作为新实例，否则用第1步创建的对象作为新实例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNew = <span class="function"><span class="keyword">function</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="built_in">Object</span>.create(func.prototype)</span><br><span class="line">  <span class="keyword">var</span> i = func.call(o)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> i === <span class="string">'object'</span> ? i : o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p><strong>类的声明：</strong></p>
+<ul>
+<li>function</li>
+<li>class</li>
+</ul>
+<p><strong>生成实例：</strong>new</p>
+<p><strong>继承的几种方式：</strong></p>
+<ul>
+<li>借助构造函数，父类的作用域指向子类<ul>
+<li>Parent.call(this)   // this是Child类的上下文</li>
+<li>缺点：不能继承原型链属性</li>
+</ul>
+</li>
+<li>借助原型链<ul>
+<li>Child.prototype = new Parent()</li>
+<li>缺点：子类所有实例共享原型对象；子类实例的constructor为Parent</li>
+</ul>
+</li>
+<li>组合方式<ul>
+<li>Parent.call(this)   // this是Child类的上下文</li>
+<li>Child.prototype = Object.create(Parent.prototype)</li>
+<li>Child.prototype.constructor = Child</li>
+</ul>
+</li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/05/planting/succulent-planting/" data-toggle="tooltip" data-placement="top" title="多肉养护">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/01/technology/about-new-Date/" data-toggle="tooltip" data-placement="top" title="JS 中 new Date 的坑">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "lusssn";
+    var disqus_identifier = "https://lusssn.github.io/2016/04/technology/prototype-chain/";
+    var disqus_url = "https://lusssn.github.io/2016/04/technology/prototype-chain/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://weibo.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                <li>
+                    <a href="mailto:lusssn@126.com">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; lusssn 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script type="text/javascript">
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("https://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- canvas-fog.js -->
+<script type="text/javascript">
+  // only load tagcloud.js in tag.html
+  if($('#fogCanvas').length){
+    async("https://lusssn.github.io/js/canvas-fog.js", function(){
+      // IE9+烟雾效果走起
+      if ([].map) {
+        FogCanvas(document.querySelector('#fogCanvas'), {
+          count: 30,
+          velocity: 1,
+          url: 'http://oyd1mgz9y.bkt.clouddn.com/lusssn-fog.png'
+        });
+      }
+    })
+  }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script type="text/javascript">
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length){
+        async("https://lusssn.github.io/js/jquery.tagcloud.js", function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!-- fastClick.js -->
+<script type="text/javascript">
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+          ES6 新特性 - Lusssn
+        
+    </title>
+
+    <link rel="canonical" href="https://lusssn.github.io/2016/08/technology/es6/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/scss/hux-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">lusssn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                        
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/archives">Archives</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/tags">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/images/comm-header/technology.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ECMAScript 6" title="ECMAScript 6">ECMAScript 6</a>
+                        
+                    </div>
+                    <h1>ES6 新特性</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Chris Lu on
+                        2016-08-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。<br>ES6语法能使代码变得更加简洁，很人性化。<br>2018-03-20 更新Arrow Functions、Symbol<br><a id="more"></a></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><a href="#1-数组遍历">数组遍历</a></li>
+<li><a href="#2-Generators">Generators</a></li>
+<li><a href="#3-Template">Template</a></li>
+<li><a href="#4-Parameters">Parameters</a></li>
+<li><a href="#5-Destructuring">Destructuring</a></li>
+<li><a href="#6-Arrow-Functions">Arrow Functions 2018-03-20</a></li>
+<li><a href="#7-Symbol">Symbol 2018-03-20</a></li>
+<li><a href="#8-集合">集合</a></li>
+<li><a href="#9-Proxy">Proxy</a></li>
+<li><a href="#10-Class">Class</a></li>
+<li><a href="#11-Subclassing">Subclassing</a></li>
+<li><a href="#12-let和const">let和const</a></li>
+<li><a href="#13-模块系统">模块系统</a></li>
+<li><a href="#14-需要Babel或Traceur协助">需要Babel或Traceur协助</a></li>
+<li><a href="#15-其他">其他</a></li>
+<li><a href="#16-ES7">ES7</a></li>
+</ol>
+<hr>
+<h3 id="1-数组遍历"><a href="#1-数组遍历" class="headerlink" title="1. 数组遍历"></a>1. 数组遍历</h3><blockquote>
+<p>原始的for循环，麻烦。<br>ES5中foreach不可跳出循环，也不可返回上层！<br>可以使用for (var index in myArray){}，但是index是字符串型的数字，误操作会带来大麻烦。<br>for-in是为普通对象设计的，还会遍历自定义属性（原型链上的属性）。<br>某些情况下还会对数组进行随机遍历！</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">of</span> myArray) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);&#125;</span><br></pre></td></tr></table></figure>
+<p><code>for-of</code> 可以遍历数组和大多数数组对象，不能用于普通对象，支持break、continue和return语句。<br>可以使用Object.keys()转换普通对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向控制台输出对象的可枚举属性</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">of</span> <span class="built_in">Object</span>.keys(someObject)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key + <span class="string">": "</span> + someObject[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="2-Generators"><a href="#2-Generators" class="headerlink" title="2. Generators"></a>2. Generators</h3><p>Generator类似函数，可以称为生成器函数。<br>使用 <code>function*</code> 进行声明。<br>内部使用 <code>yeild</code> 替代普通函数中的return，可以使用多个 <code>yeild</code>，Generator执行过程遇到 <code>yeild</code> 就会暂停，后续再次触发Generator可恢复执行状态。<br>与调用者处于同一个线程，有确定的连续执行顺序，永不并发。<br>Generator实质是迭代器，拥有内建.next() 和 [Symbol.iterator]()方法的实现，你只需实现循环的部分。</p>
+<h4 id="2-1-可选的-return"><a href="#2-1-可选的-return" class="headerlink" title="2.1 可选的.return()"></a>2.1 可选的.return()</h4><p>.return()方法是迭代器接口支持的可选方法，Generator作为一种迭代器也支持这个方法。<br>迭代器 <code>返回{done:true}之前退出</code> 会自动调用该方法，然后触发生成器执行 <code>任一finally代码块</code>之后退出。</p>
+<h4 id="2-2-可选的-next-的参数"><a href="#2-2-可选的-next-的参数" class="headerlink" title="2.2 可选的.next()的参数"></a>2.2 可选的.next()的参数</h4><p>.next()方法接受一个可选参数，参数稍后会作为yield表达式的返回值出现在生成器中。</p>
+<h4 id="2-3-throw-error"><a href="#2-3-throw-error" class="headerlink" title="2.3 .throw(error)"></a>2.3 .throw(error)</h4><p>当生成器执行到一个yield表达式并暂停后可以实现以下功能：</p>
+<ul>
+<li>调用generator.next(value)，生成器从离开的地方恢复执行。</li>
+<li>调用generator.return()，传递一个可选值，生成器只执行finally代码块并不再恢复执行。</li>
+<li>调用generator.throw(error)，生成器表现得像是yield表达式调用一个函数并抛出错误。</li>
+<li>什么也不做，生成器永远保持冻结状态。（是的，对于一个生成器来说，很可能执行到一个try代码块，永不执行finally代码块。这种状态下的生成器可以被垃圾收集器回收。）</li>
+</ul>
+<p>*<em> 请记住，生成器内部抛出的异常总是会传播到调用者。所以无论生成器是否捕获错误，generator.throw(error)都会抛出error并立即返回给你。</em></p>
+<h4 id="2-4-yield"><a href="#2-4-yield" class="headerlink" title="2.4 yield*"></a>2.4 yield*</h4><blockquote>
+<p>普通 <code>yield</code> 表达式只生成一个值，而 <code>yield*</code> 表达式可以通过迭代器进行迭代生成所有的值。<br>通过 <code>yield*</code> 可以实现生成器中调用生成器，从而实现<strong>生成器的重构</strong>。</p>
+</blockquote>
+<p><a href="http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators" target="_blank" rel="noopener">深入讲解Generator</a></p>
+<hr>
+<h3 id="3-Template"><a href="#3-Template" class="headerlink" title="3. Template"></a>3. Template</h3><h4 id="3-1-Template-Strings"><a href="#3-1-Template-Strings" class="headerlink" title="3.1 Template Strings"></a>3.1 Template Strings</h4><p>使用<code></code> <code>将模板字符串包起来，</code>${}` 类似jQuery中的模板占位符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">authorize</span>(<span class="params">user, action</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!user.hasPrivilege(action)) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(</span><br><span class="line">            <span class="string">`用户 <span class="subst">$&#123;user.name&#125;</span> 未被授权执行 <span class="subst">$&#123;action&#125;</span> 操作。`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>模板占位符中的代码可以是任意JavaScript表达式。<br>不同于普通字符串，模板字符串可以多行书写。模板字符串中所有的空格、新行、缩进，都会原样输出在生成的字符串中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#warning"</span>).html(<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;小心！&gt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;p&gt;未经授权打冰球可能受罚将近<span class="subst">$&#123;maxPenalty&#125;</span>分钟。&lt;/p&gt;`</span>);</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-2-Tagged-Template"><a href="#3-2-Tagged-Template" class="headerlink" title="3.2 Tagged Template"></a>3.2 Tagged Template</h4><p>标签模板使用在模板字符串<code></code> `之前，作用是对字符串内容进行处理，简化了函数调用。<br>任何ES6的成员表达式（MemberExpression）或调用表达式（CallExpression）都可作为标签使用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message =</span><br><span class="line">    SaferHTML<span class="string">`&lt;p&gt;<span class="subst">$&#123;bonk.sender&#125;</span> 向你示好。&lt;/p&gt;`</span>;</span><br><span class="line">    <span class="comment">// SaferHTML是一个用于转换模板字符串中特殊字符的函数</span></span><br><span class="line">    <span class="comment">// 等效于：</span></span><br><span class="line">    <span class="keyword">var</span> message = SaferHTML(templateData, bonk.sender);</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4-Parameters"><a href="#4-Parameters" class="headerlink" title="4. Parameters"></a>4. Parameters</h3><h4 id="4-1-不定参数"><a href="#4-1-不定参数" class="headerlink" title="4.1 不定参数"></a>4.1 不定参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">containsAll</span>(<span class="params">haystack, ...needles</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> needle <span class="keyword">of</span> needles) &#123;</span><br><span class="line">        <span class="keyword">if</span> (haystack.indexOf(needle) === <span class="number">-1</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>needles</code> 就是ES6中存储不定参数的数组，相比 <code>arguments</code> 类数组，它可遍历。<br>需要注意的是，只有最后一个参数可以标记 <code>...</code> 为不定参数。<br>没有额外参数时，<code>needles</code> 就是一个空数组，永远不会是undefined。</p>
+<h4 id="4-2-默认参数"><a href="#4-2-默认参数" class="headerlink" title="4.2 默认参数"></a>4.2 默认参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animalSentenceFancy</span>(<span class="params">animals2=<span class="string">"tigers"</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">    animals3=(animals2 == <span class="string">"bears"</span></span>) ? "<span class="title">sealions</span>" : "<span class="title">bears</span>") </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`Lions and <span class="subst">$&#123;animals2&#125;</span> and <span class="subst">$&#123;animals3&#125;</span>! Oh my!`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认参数表达式自左向右求值。<br>传递undefined等同于不传值。  </p>
+<hr>
+<h3 id="5-Destructuring"><a href="#5-Destructuring" class="headerlink" title="5. Destructuring"></a>5. Destructuring</h3><p>解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量。<br>被解构的值需要被强制转换为对象，解构不能转换成对象的值，会抛出异常。<br>解构能转换为对象的值时，被解构的值必须要包含一个迭代器，否则将得到结果是undefined。<br>进行解构时，可以指定一个默认值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：对任意深度的嵌套数组进行解构</span></span><br><span class="line"><span class="keyword">var</span> [foo, [[bar], baz]] = [<span class="number">1</span>, [[<span class="number">2</span>], <span class="number">3</span>]];</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log(baz); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：在对应位留空来跳过被解构数组中的某些元素</span></span><br><span class="line"><span class="keyword">var</span> [,,third] = [<span class="string">"foo"</span>, <span class="string">"bar"</span>, <span class="string">"baz"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(third); <span class="comment">// "baz"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：解构对象时，属性名与变量名一致可简写</span></span><br><span class="line"><span class="keyword">var</span> &#123; foo, bar &#125; = &#123; <span class="attr">foo</span>: <span class="string">"lorem"</span>, <span class="attr">bar</span>: <span class="string">"ipsum"</span> &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(foo); <span class="comment">// "lorem"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：解构对象并赋值给未声明变量时</span></span><br><span class="line">&#123; blowUp &#125; = &#123; <span class="attr">blowUp</span>: <span class="number">10</span> &#125;; <span class="comment">// Syntax error 语法错误</span></span><br><span class="line">(&#123; safe &#125; = &#123;&#125;); <span class="comment">// No errors 没有语法错误</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：指定一个默认值</span></span><br><span class="line"><span class="keyword">var</span> [missing = <span class="literal">true</span>] = [];</span><br><span class="line"><span class="built_in">console</span>.log(missing); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：嵌套解构对象</span></span><br><span class="line"><span class="keyword">var</span> complicatedObj = &#123;</span><br><span class="line">    arrayProp: [</span><br><span class="line">        <span class="string">"Zapp"</span>,</span><br><span class="line">        &#123; <span class="attr">second</span>: <span class="string">"Brannigan"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> &#123; <span class="attr">arrayProp</span>: [first, &#123; second &#125;] &#125; = complicatedObj;</span><br><span class="line"><span class="built_in">console</span>.log(first);　<span class="comment">// "Zapp"</span></span><br><span class="line"><span class="built_in">console</span>.log(second);　<span class="comment">// "Brannigan"</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>解构的实际应用： </p>
+<ul>
+<li>函数参数定义 </li>
+<li>配置对象参数 </li>
+<li>与ES6迭代器协议协同使用 </li>
+<li>多重返回值 </li>
+<li>使用解构导入部分CommonJS模块 </li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="6-Arrow-Functions"><a href="#6-Arrow-Functions" class="headerlink" title="6. Arrow Functions"></a>6. Arrow Functions</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">&lt;!--</td>
+<td style="text-align:left">单行注释</td>
+</tr>
+<tr>
+<td style="text-align:left">–&gt;</td>
+<td style="text-align:left">“趋向于”操作符</td>
+</tr>
+<tr>
+<td style="text-align:left">&lt;=</td>
+<td style="text-align:left">小于等于</td>
+</tr>
+<tr>
+<td style="text-align:left">=&gt;</td>
+<td style="text-align:left">Arrow Functions</td>
+</tr>
+</tbody>
+</table>
+<p>只包含一个表达式，{ … } 和 return都省略掉<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> selected = allJobs.filter(<span class="function"><span class="keyword">function</span> (<span class="params">job</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> job.isSelected();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">var</span> selected = allJobs.filter(<span class="function"><span class="params">job</span> =&gt;</span> job.isSelected());</span><br></pre></td></tr></table></figure></p>
+<p>没有参数用括号()，至少2个参数用括号()括起来<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> total = values.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">var</span> total = values.reduce(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b, <span class="number">0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>可以包含多条语句，不能省略{ … } 和 return<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line">$(<span class="string">"#confetti-btn"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    playTrumpet();</span><br><span class="line">    fireConfettiCannon();</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ES6 </span></span><br><span class="line">$(<span class="string">"#confetti-btn"</span>).click(<span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    playTrumpet();</span><br><span class="line">    fireConfettiCannon();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>{</code> 是唯一一个有歧义的字符，所以用小括号包裹对象字面量是唯一一个你需要牢记的小窍门。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 为与你玩耍的每一个小狗创建一个新的空对象</span></span><br><span class="line"><span class="keyword">var</span> chewToys = puppies.map(<span class="function"><span class="params">puppy</span> =&gt;</span> &#123;&#125;); <span class="comment">// 如果是单表达式要返回一个对象，这样写会报Bug！   </span></span><br><span class="line"><span class="keyword">var</span> chewToys = puppies.map(<span class="function"><span class="params">puppy</span> =&gt;</span> (&#123;&#125;));</span><br></pre></td></tr></table></figure></p>
+<p><strong>箭头函数没有它自己的this值</strong>，箭头函数内的this值继承自外围作用域，也就是说this对象是定义时所在的对象，而不是运行时所在的对象。<br>内部函数不可直接访问外部函数的this，箭头函数可以解决这个问题，由于绑定了作用域，call或者apply调用箭头函数时，第一个参数会被忽略。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="keyword">var</span> objOld = &#123;</span><br><span class="line">  addAll: <span class="function"><span class="keyword">function</span> (<span class="params">pieces</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">    [].forEach.call(pieces, <span class="function"><span class="keyword">function</span> (<span class="params">piece</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.add(piece);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  add: <span class="function"><span class="keyword">function</span> (<span class="params">piece</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(piece)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="keyword">var</span> objNew = &#123;</span><br><span class="line">  addAll (pieces) &#123;</span><br><span class="line">    [].forEach.call(pieces, piece =&gt; <span class="keyword">this</span>.add(piece));</span><br><span class="line">  &#125;,</span><br><span class="line">  add (piece) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(piece)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="7-Symbol"><a href="#7-Symbol" class="headerlink" title="7. Symbol"></a>7. Symbol</h3><blockquote>
+<p>JavaScript的第七种原始类型。</p>
+</blockquote>
+<p>一般Symbol值用来做为对象的key，防止属性被重写。<br><code>Object.getOwnPropertySymbols()</code>只会返回Symbol类型的属性名的数组；<br><code>Object.getOwnPropertyNames()</code>只会返回String类型的属性名的数组。</p>
+<p>获取Symbol的方法有：</p>
+<ul>
+<li><p><strong>Symbol()</strong><br>每次调用都会返回一个新的唯一symbol。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Symbol</span>(<span class="string">'hello'</span>)</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">Symbol</span>(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a == b) <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Symbol.for(string)</strong><br>这种方式会访问<strong>全局的</strong>Symbol注册表，如果有以参数为名称的Symbol，则返回该值，否则新建一个全局的Symbol并返回值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="built_in">Symbol</span>.for(<span class="string">'hello'</span>)</span><br><span class="line"><span class="keyword">const</span> b = <span class="built_in">Symbol</span>.for(<span class="string">'hello'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(a === b) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>  通过Symbol.keyFor(symbol)可以检查symbol的key在全局是否已注册过，若注册过则返回key，否则返回undefined。</p>
+</li>
+<li><strong>使用标准定义的symbol</strong><br>例如：Symbol.iterator，标准根据一些特殊用途定义了少许的几个symbol。</li>
+</ul>
+<p>需要注意的是：</p>
+<ul>
+<li>Symbol不是构造函数，不可new Symbol；</li>
+<li>Symbol值不是对象，所以不可添加属性；</li>
+<li>不可与其他类型的值进行运算；</li>
+<li>可以显示转换为string/boolean，但不可转为number。</li>
+</ul>
+<hr>
+<h3 id="8-集合"><a href="#8-集合" class="headerlink" title="8. 集合"></a>8. 集合</h3><h4 id="8-1-Set"><a href="#8-1-Set" class="headerlink" title="8.1 Set"></a>8.1 Set</h4><blockquote>
+<p>与其他语言的Set集合相似，一个Set集合中不会包含相同的元素。</p>
+</blockquote>
+<p>ES6中Set集合支持的操作有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">new Set</td>
+<td style="text-align:left">创建一个新的、空的Set</td>
+</tr>
+<tr>
+<td style="text-align:left">new Set(iterable)</td>
+<td style="text-align:left">从任何可遍历数据中提取元素，构造出一个新的集合</td>
+</tr>
+<tr>
+<td style="text-align:left">set.size</td>
+<td style="text-align:left">获取集合元素个数</td>
+</tr>
+<tr>
+<td style="text-align:left">set.has(value)</td>
+<td style="text-align:left">包含性检测</td>
+</tr>
+<tr>
+<td style="text-align:left">set.add(value)</td>
+<td style="text-align:left">添加一个新元素，会返回集合自身</td>
+</tr>
+<tr>
+<td style="text-align:left">set.delete(value)</td>
+<td style="text-align:left">删除一个元素，会返回集合自身</td>
+</tr>
+<tr>
+<td style="text-align:left">set[Symbol.iterator]()</td>
+<td style="text-align:left">返回一个新的遍历整个集合的迭代器</td>
+</tr>
+<tr>
+<td style="text-align:left">set.forEach(f)</td>
+<td style="text-align:left">类似于数组的.forEach()方法</td>
+</tr>
+<tr>
+<td style="text-align:left">set.clear()</td>
+<td style="text-align:left">清空集合</td>
+</tr>
+<tr>
+<td style="text-align:left">set.keys()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">set.values()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">set.entries()</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="8-2-Map"><a href="#8-2-Map" class="headerlink" title="8.2 Map"></a>8.2 Map</h4><p>ES6中Set集合支持的操作有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">new Map</td>
+<td style="text-align:left">创建一个新的、空的Map</td>
+</tr>
+<tr>
+<td style="text-align:left">new Map(iterable)</td>
+<td style="text-align:left">从任何可遍历数据中提取元素，构造出一个新的集合</td>
+</tr>
+<tr>
+<td style="text-align:left">map.size</td>
+<td style="text-align:left">获取集合元素个数</td>
+</tr>
+<tr>
+<td style="text-align:left">map.has(value)</td>
+<td style="text-align:left">包含性检测</td>
+</tr>
+<tr>
+<td style="text-align:left">map.get(key)</td>
+<td style="text-align:left">添加一个新元素，会返回集合自身</td>
+</tr>
+<tr>
+<td style="text-align:left">map.set(key, value)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">map.delete(key)</td>
+<td style="text-align:left">按键名删除一项</td>
+</tr>
+<tr>
+<td style="text-align:left">map[Symbol.iterator]()</td>
+<td style="text-align:left">返回一个新的遍历整个集合的迭代器</td>
+</tr>
+<tr>
+<td style="text-align:left">map.forEach(f)</td>
+<td style="text-align:left">类似于数组的.forEach()方法</td>
+</tr>
+<tr>
+<td style="text-align:left">map.clear()</td>
+<td style="text-align:left">清空集合</td>
+</tr>
+<tr>
+<td style="text-align:left">map.keys()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">map.values()</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">map.entries()</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>遍历Map或Set的顺序就是其中元素的插入顺序。</p>
+<p>WeakMap和WeakSet被设计来完成与Map、Set几乎一样的行为，除了以下一些限制：</p>
+<ul>
+<li>WeakMap只支持new、has、get、set 和delete。</li>
+<li>WeakSet只支持new、has、add和delete。</li>
+<li>WeakSet的值和WeakMap的键必须是对象。</li>
+</ul>
+<p>两种弱集合都不可迭代，除非专门查询或给出你感兴趣的键，否则不能获得一个弱集合中的项。</p>
+<hr>
+<h3 id="9-Proxy"><a href="#9-Proxy" class="headerlink" title="9. Proxy"></a>9. Proxy</h3><p><code>Proxy</code>可以接受两个参数：<code>target</code>、<code>handler</code>。<br><code>Proxy.revocable(target, handler)函数</code>可以像new Proxy(target, handler)一样创建代理，但是创建好的代理后续可被解除。</p>
+<h4 id="9-1-target"><a href="#9-1-target" class="headerlink" title="9.1 target"></a>9.1 target</h4><p>代理的行为很简单：将代理的所有内部方法转发至目标。<br>简单来说，如果调用proxy.[[Enumerate]]()，就会返回target.[[Enumerate]]()。<br>然而proxy并不是target的拷贝，<code>proxy !== target</code>。</p>
+<h4 id="9-2-handler"><a href="#9-2-handler" class="headerlink" title="9.2 handler"></a>9.2 handler</h4><p>handler对象可以设置内部方法拦截方法，所有的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler" target="_blank" rel="noopener">handler方法</a>均是可选的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; var tree = Tree();</span><br><span class="line">&gt; tree</span><br><span class="line">	&#123; &#125;</span><br><span class="line">&gt; tree.branch1.branch2.twig = &quot;green&quot;;</span><br><span class="line">&gt; tree</span><br><span class="line">	&#123; branch1: &#123; branch2: &#123; twig: &quot;green&quot; &#125; &#125; &#125;</span><br><span class="line">&gt; tree.branch1.branch3.twig = &quot;yellow&quot;;</span><br><span class="line">	&#123; branch1: &#123; branch2: &#123; twig: &quot;green&quot; &#125;,</span><br><span class="line">			   branch3: &#123; twig: &quot;yellow&quot; &#125; &#125; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用Proxy实现上面的效果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tree</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, handler);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> handler = &#123;</span><br><span class="line">	get: <span class="function"><span class="keyword">function</span> (<span class="params">target, key, receiver</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!(key <span class="keyword">in</span> target)) &#123;</span><br><span class="line">			target[key] = Tree();  <span class="comment">// 自动创建一个子树</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Reflect</span>.get(target, key, receiver);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>*<em> ES6定义了一个新的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">Reflect对象</a>，用于实现只执行委托给目标的默认行为这一需求</em></p>
+<p>*<em> 如果你想在Node.js或io.js环境中使用代理，首先你需要添加名为harmony-reflect的polyfill，然后在执行时启用一个非默认的选项（–harmony_proxies），这样就可以暂时使用V8中实现的老版本代理规范。</em></p>
+<hr>
+<h3 id="10-Class"><a href="#10-Class" class="headerlink" title="10. Class"></a>10. Class</h3><p>JavaScript也在不断地朝面向对象编程靠拢。像其他语言一样，JS中终于有一个<code>句法结构</code>可以用来处理面向对象设计的问题了，其被命名为<code>Class</code>。</p>
+<p>要实现一个Circle类，传统方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Circle</span>(<span class="params">radius</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.radius = radius;</span><br><span class="line">		Circle.circlesMade++;</span><br><span class="line">	&#125;</span><br><span class="line">	Circle.draw = <span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params">circle, canvas</span>) </span>&#123; <span class="comment">/* Canvas绘制代码 */</span> &#125;</span><br><span class="line">		<span class="built_in">Object</span>.defineProperty(Circle, <span class="string">"circlesMade"</span>, &#123;</span><br><span class="line">	get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> !<span class="keyword">this</span>._count ? <span class="number">0</span> : <span class="keyword">this</span>._count;</span><br><span class="line">	&#125;,</span><br><span class="line">	set: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>._count = val;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	Circle.prototype = &#123;</span><br><span class="line">		area() &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="built_in">Math</span>.pow(<span class="keyword">this</span>.radius, <span class="number">2</span>) * <span class="built_in">Math</span>.PI;</span><br><span class="line">		&#125;,</span><br><span class="line">	get radius() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._radius;</span><br><span class="line">	&#125;,</span><br><span class="line">	set radius(radius) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">Number</span>.isInteger(radius))</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"圆的半径必须为整数。"</span>);</span><br><span class="line">		<span class="keyword">this</span>._radius = radius;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>然而实际我们更希望像这样来定义一个类：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="comment">// 现在不再使用function关键字给对象添加方法</span></span><br><span class="line">	<span class="comment">// 而是直接使用属性名作为函数名称。</span></span><br><span class="line">	method(args) &#123; ... &#125;,</span><br><span class="line">	<span class="comment">// 只需在标准函数的基础上添加一个“*”，就可以声明一个生成器函数。</span></span><br><span class="line">	*genMethod(args) &#123; ... &#125;,</span><br><span class="line">	<span class="comment">// 借助|get|和|set|可以在行内定义访问器。</span></span><br><span class="line">	<span class="comment">// 只是定义内联函数，即使没有生成器。</span></span><br><span class="line">	<span class="comment">// 注意通过这种方式装载的getter不能接受参数</span></span><br><span class="line">	get propName() &#123; ... &#125;,</span><br><span class="line">	<span class="comment">// 注意通过这种方式装载的setter至少接受一个参数</span></span><br><span class="line">	set propName(arg) &#123; ... &#125;,</span><br><span class="line">	<span class="comment">// []语法可以用于任意支持预计算属性名的地方，来满足上面的第4中情况。</span></span><br><span class="line">	<span class="comment">// 这意味着你可以使用symbol，调用函数，联结字符串</span></span><br><span class="line">	<span class="comment">// 或其它可以给property.id求值的表达式。</span></span><br><span class="line">	<span class="comment">// 这个语法对访问器或生成器同样有效，我在这里只是举个例子。</span></span><br><span class="line">	[functionThatReturnsPropertyName()] (args) &#123; ... &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>Class定义语法实现了这样的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 方法构造函数（method constructor）指定出唯一的构造函数</span></span><br><span class="line">	<span class="keyword">constructor</span>(radius) &#123;</span><br><span class="line">		<span class="keyword">this</span>.radius = radius;</span><br><span class="line">		Circle.circlesMade++;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="comment">// 可选的static和const关键字</span></span><br><span class="line">	<span class="keyword">static</span> draw(circle, canvas) &#123;</span><br><span class="line">		<span class="comment">// Canvas绘制代码</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">static</span> get circlesMade() &#123;</span><br><span class="line">		<span class="keyword">return</span> !<span class="keyword">this</span>._count ? <span class="number">0</span> : <span class="keyword">this</span>._count;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">static</span> set circlesMade(val) &#123;</span><br><span class="line">		<span class="keyword">this</span>._count = val;</span><br><span class="line">	&#125;;</span><br><span class="line">	area() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Math</span>.pow(<span class="keyword">this</span>.radius, <span class="number">2</span>) * <span class="built_in">Math</span>.PI;</span><br><span class="line">	&#125;;</span><br><span class="line">	get radius() &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>._radius;</span><br><span class="line">	&#125;;</span><br><span class="line">	set radius(radius) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">Number</span>.isInteger(radius))</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"圆的半径必须为整数。"</span>);</span><br><span class="line">		<span class="keyword">this</span>._radius = radius;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><em>注意：重定义Class会抛出重定义错误。</em></p>
+<hr>
+<h3 id="11-Subclassing"><a href="#11-Subclassing" class="headerlink" title="11. Subclassing"></a>11. Subclassing</h3><blockquote>
+<p>同其他语言一样，JavaScript拥有了<code>Class</code>这样的句法结构，但是还需要一个更简单方便的继承机制。<br>关键词 <code>extends</code> 用来声明子类关系。</p>
+</blockquote>
+<p>某些情况下，如果在子类中重新定义了一个方法，有时又想绕开这个方法去使用父类中的同名方法，应该怎样做呢？</p>
+<blockquote>
+<p>关键词 <code>super</code> 可以绕开我们在子类中定义的属性，直接从子类的原型开始查找属性，从而绕过子类中覆盖父类上的同名方法。</p>
+</blockquote>
+<p>执行基类的构造函数前，this对象没有被分配，从而我们无法得到一个确定的this值。<br>因此，在子类的构造函数中，调用super构造函数之前访问this会触发一个引用错误（ReferenceError）。</p>
+<p>使用new创建的实例，可以在其基类的构造函数中使用 <code>new.target</code> 来确定子类的类型。<br>new.target在任何函数中都是合法的，如果函数不是通过new调用，new.target将被赋值为undefined。</p>
+<hr>
+<h3 id="12-let和const"><a href="#12-let和const" class="headerlink" title="12. let和const"></a>12. let和const</h3><blockquote>
+<p>JavaScript中变量（var）的作用域是函数体的全部。这实际上是JavaScript设计初的bug。</p>
+</blockquote>
+<h4 id="12-1-let"><a href="#12-1-let" class="headerlink" title="12.1 let"></a>12.1 let</h4><ul>
+<li>let声明的变量拥有<strong>块级作用域</strong>，并保留了良好的提升（hoisting）特性。</li>
+<li>let声明的<strong>全局变量不是全局对象的属性</strong>。</li>
+<li>形如for (let x…)的循环在<strong>每次迭代时都为x创建新的绑定</strong>。<br>如果一个for (let…)循环执行多次并且循环保持了一个闭包，那么每个闭包将捕捉一个循环变量的不同值作为副本，而不是所有闭包都捕捉循环变量的同一个值。<br>这种情况适用于现有的三种循环方式：<code>for-of</code>、<code>for-in</code>、以及传统的用分号分隔的<code>类C循环</code>。</li>
+<li>let声明的变量<strong>在到达其被定义的代码行之前使用，会触发错误（ReferenceError）</strong>。因为直到控制流到达该变量被定义的代码行时才会被装载。</li>
+<li><strong>用let重定义变量会抛出一个语法错误（SyntaxError）</strong>。</li>
+</ul>
+<h4 id="12-2-const"><a href="#12-2-const" class="headerlink" title="12.2 const"></a>12.2 const</h4><ul>
+<li>const声明的变量<strong>只可以在声明时赋值</strong>，不可随意修改，否则会导致语法错误（SyntaxError）。</li>
+<li><strong>用const声明变量后必须要赋值</strong>，否则也抛出语法错误。</li>
+</ul>
+<hr>
+<h3 id="13-模块系统"><a href="#13-模块系统" class="headerlink" title="13. 模块系统"></a>13. 模块系统</h3><blockquote>
+<p>一个js文件就是一个模块。</p>
+</blockquote>
+<p><strong>export list</strong>：公开的内容列表。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> &#123;detectCats, Kittydar&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">detectCats</span>(<span class="params">canvas, options</span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Kittydar</span> </span>&#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重命名名称</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v1</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">v2</span>(<span class="params"></span>) </span>&#123; ... &#125;</span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">	v1 <span class="keyword">as</span> streamV1,</span><br><span class="line">	v2 <span class="keyword">as</span> streamV2,</span><br><span class="line">	v2 <span class="keyword">as</span> streamLatestVersion</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>import</strong>：导入模块内容。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导入多个名称</span></span><br><span class="line"><span class="keyword">import</span> &#123;detectCats, Kittydar&#125; <span class="keyword">from</span> <span class="string">"kittydar.js"</span>;</span><br><span class="line"><span class="comment">// 重命名名称</span></span><br><span class="line"><span class="keyword">import</span> &#123;flip <span class="keyword">as</span> flipOmelet&#125; <span class="keyword">from</span> <span class="string">"eggs.js"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;flip <span class="keyword">as</span> flipHouse&#125; <span class="keyword">from</span> <span class="string">"real-estate.js"</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Default exports</strong>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> $ <span class="keyword">from</span> <span class="string">"jquery"</span>;</span><br><span class="line"><span class="comment">// 等价于：</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> $&#125; <span class="keyword">from</span> <span class="string">"jquery"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> colors = <span class="built_in">require</span>(<span class="string">"colors/safe"</span>); </span><br><span class="line"><span class="comment">// ES6等效代码</span></span><br><span class="line"><span class="keyword">import</span> colors <span class="keyword">from</span> <span class="string">"colors/safe"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认导出方式</span></span><br><span class="line"><span class="keyword">let</span> myObject = &#123;</span><br><span class="line">	field1: value1,</span><br><span class="line">	field2: value2</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> &#123;myObject <span class="keyword">as</span> <span class="keyword">default</span>&#125;;</span><br><span class="line"><span class="comment">// 等效于：</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	field1: value1,</span><br><span class="line">	field2: value2</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入一个模块命名空间对象，将它的所有属性都导出</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> cows <span class="keyword">from</span> <span class="string">"cows"</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>聚合模块</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// world-foods.js - 来自世界各地的好东西</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入"sri-lanka"并将它导出的内容的一部分重新导出</span></span><br><span class="line"><span class="keyword">export</span> &#123;Tea, Cinnamon&#125; <span class="keyword">from</span> <span class="string">"sri-lanka"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入"equatorial-guinea"并将它导出的内容的一部分重新导出</span></span><br><span class="line"><span class="keyword">export</span> &#123;Coffee, Cocoa&#125; <span class="keyword">from</span> <span class="string">"equatorial-guinea"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入"singapore"并将它导出的内容全部导出</span></span><br><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">"singapore"</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这些<code>export-from</code>语句每一个都好比是在一条<code>import-from语句后伴随着一个export</code>。<br>与真正的导入内容的方法不同的是，这些导入内容再重新导出的方法不会在作用域中绑定你导入的内容。<br>如果打算用world-foods.js中的Tea来写一些代码，别用这种方法导入模块，你会发现当前模块作用域中根本找不到Tea。</p>
+<p><strong>ES6的模块加载过程</strong>：</p>
+<p><code>语法解析</code>，检查语法错误 –&gt; 递归<code>加载</code>被导入的模块 –&gt; <code>连接</code> –&gt; <code>运行时</code>在每一个新加载的模块体内执行所有语句</p>
+<blockquote>
+<p><code>连接阶段</code>每遇到一个新加载的模块，为其<code>创建作用域</code>并将模块内声明的所有绑定填充到该作用域中，其中包括由其它模块导入的内容。</p>
+</blockquote>
+<p><strong>ES6中模块系统需要注意</strong>：</p>
+<ul>
+<li>只可以在模块的最外层作用域使用import和export，不可在条件语句中使用，也不能在函数作用域中使用import。</li>
+<li>所有导出的标识符一定要在源代码中明确地导出它们的名称，不能通过编写代码遍历一个数组然后用数据驱动的方式导出一堆名称。</li>
+<li>模块对象被冻结了，所以你无法hack模块对象并为其添加polyfill风格的新特性。</li>
+<li>一个模块的所有依赖必须在模块代码运行前完全加载、解析并且及早连接，不存在一种通过import来按需懒加载的语法。</li>
+<li>import模块产生的错误没有错误恢复机制。一个app可能囊括了上百个模块，一旦有一个模块无法加载或连接，所有的模块都不会运行，而且你不能在try/catch代码块中捕捉import的错误信息。</li>
+<li>不支持在模块加载依赖前运行其它代码的钩子，这也意味着无法控制模块的依赖加载过程。</li>
+</ul>
+<hr>
+<h3 id="14-需要Babel或Traceur协助"><a href="#14-需要Babel或Traceur协助" class="headerlink" title="14. 需要Babel或Traceur协助"></a>14. 需要Babel或Traceur协助</h3><blockquote>
+<p>通过 <a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a> 或Google的 <a href="https://github.com/google/traceur-compiler" target="_blank" rel="noopener">Traceur</a> 可以将ES6代码转译为Web友好的ES5代码。</p>
+</blockquote>
+<p><a href="http://www.infoq.com/cn/articles/es6-in-depth-babel-and-broccoli" target="_blank" rel="noopener">使用Broccoli + Babel 构建的小demo</a></p>
+<p>*<em> 注意第二个示例中，Brocfile.js 中 babelPath 的处理，原文中有bug。</em></p>
+<hr>
+<h3 id="15-其他"><a href="#15-其他" class="headerlink" title="15. 其他"></a>15. 其他</h3><blockquote>
+<p>以上并不是ES6中所有的新特性，还有更多内容是一些没有标准化，但早已被各大厂商广泛实现并使用的；还有一些特性采自过去其它的标准。</p>
+</blockquote>
+<ul>
+<li><strong>定型数组（Typed arrays）、数组缓冲（ArrayBuffer）和数据视图（DataView）</strong><br>- 来自WebGL标准，被用于实现Canvas、Web Audio还有WebRTC等。<br>- 可以协助处理大量原始的二进制数据或数值型数据。</li>
+<li><strong>Promise</strong><br>- 简而言之，它只不过是一段异步JS编程的构建代码块，它可以为你提供一些非立即可用的值。<br>- <a href="http://www.html5rocks.com/zh/tutorials/es6/promises/" target="_blank" rel="noopener">深入剖析Promise</a></li>
+<li><strong>块级作用域内部函数</strong><br>- ES6将此用法标准化，函数声明会被提升到封闭代码块的顶部。</li>
+<li><strong>函数名称</strong><br>- 所有主流的JS引擎都会为命名函数添加一个<code>.name属性</code>。<br>- 之前通过函数表达式声明的函数被认为是未命名函数，新标准通过命名感知的方式为其也添加了<code>.name属性</code>。</li>
+<li><strong>展开运算符（…）</strong></li>
+<li><strong>Object.assign(target, …sources)</strong></li>
+<li><strong>完全尾调用</strong><br>- 在ES6标准中所有的实现也都必须是“尾递归（Tail-Recursive）。</li>
+<li><strong>升级Unicode版本</strong><br>- ES6要求至少支持Unicode 5.1.0中的所有字符。</li>
+<li><strong>长Unicode转义序列</strong><br>- 你现在可以直接写<code>\u{13021}</code>啦。</li>
+<li><strong>更好地支持基本多文种平面（BMP）以外的字符</strong></li>
+<li><strong>Unicode正则表达式</strong><br>- ES6中的正则表达式支持一个新的修饰符：<code>u</code>。<br>- 在加入修饰符u的正则表达式中，BMP以外的字符都被视为单个字符，而不是两个相互分离的码元。<br>- 如果不加u，<code>/./</code>只能匹配字符<code>&amp;#x1f62d;</code>的前半部分，但是<code>/./u</code>就可以匹配整个字符。</li>
+<li><strong>粘性正则表达式</strong><br>- 该特性为正则表达式添加了一个粘性修饰符：<code>y</code>。<br>- 它只会查找始于特定偏移量的匹配，偏移量给自它的.lastIndex属性；如果没有相应匹配，它会立即返回null。</li>
+<li><strong>官方版国际化标准</strong><br>- 标准规定，任何提供国际化相关特性的ES6实现必须支持ECMAScript 2015国际化API规范——<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl" target="_blank" rel="noopener">ECMA-402</a></li>
+<li><strong>二进制和八进制数字字面量</strong><br>- 新标准中使用<code>0o表示八进制</code>，使用<code>0b表示二进制</code>。</li>
+<li><strong>新的Number函数和常量</strong><br>- <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-properties-of-the-number-constructor" target="_blank" rel="noopener">专门为Number打造的特性</a></li>
+<li><strong>新的Math函数</strong><br>- Math.sinh()、Math.cosh()、Math.tanh()、Math.asinh()、Math.acosh()、Math.atanh()：双曲三角函数和它们的逆函数<br>- Math.cbrt(x)：用于计算立方根<br>- Math.hypot(x, y)：用于计算直角三角形斜边<br>- Math.log2(x)和Math.log10(x)：用于计算同底对数<br>- Math.clz32(x)：帮助计算整数对数的函数<br>- Math.sign(x)：可以用来获取数字的符号<br>- Math.fround(x)：用于支持32位浮点数操作<br>- Math.imul(x, y)：用以计算x的y次幂<br>- 其它的一些函数。</li>
+</ul>
+<hr>
+<h3 id="16-ES7"><a href="#16-ES7" class="headerlink" title="16. ES7"></a>16. ES7</h3><blockquote>
+<p>ES7标准的提案已经在进行中，再说一些ES7中有趣的特性。</p>
+</blockquote>
+<ul>
+<li><strong>乘方操作符</strong><br>- 2 ** 8将返回256。</li>
+<li><strong>Array.prototype.includes(value)</strong><br>- 如果数组中包含给定值将返回true。</li>
+<li><strong>单指令多数据（SIMD）</strong><br>- 暴露现代CPU提供的128位SIMD指令， 这些指令可以对2、4或8组相邻的数组元素同时进行算数运算。</li>
+<li><strong>Async异步函数</strong><br>- Async函数与生成器类似，但是专门用于异步编程操作。<br>- 当你调用生成器时，它会返回一个迭代器；当你调用async函数时，它会返回一个promise。<br>- 生成器使用yield关键词来暂停并产生值；async函数使用await关键词来暂停并等待promise。</li>
+<li><strong>定型对象</strong><br>- 定型数组中包含着定型元素，定型对象与定型数组的概念类似，简单来说定型对象中的属性都拥有确定的类型。</li>
+<li><strong>类和属性修饰符</strong><br>- 下面的<a href="mailto:`@debug.logWhenCalled" target="_blank" rel="noopener">`@debug.logWhenCalled</a>`就是修饰符。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> debug <span class="keyword">from</span> <span class="string">"jsdebug"</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	@debug.logWhenCalled</span><br><span class="line">	hasRoundHead(assert) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.head <span class="keyword">instanceof</span> Spheroid;</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://www.infoq.com/cn/es6-in-depth/" target="_blank" rel="noopener">ES6更多内容</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/08/experience/github-backup-hexo/" data-toggle="tooltip" data-placement="top" title="用 Github 管理 Hexo 的博客项目">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/05/planting/succulent-water/" data-toggle="tooltip" data-placement="top" title="多肉浇水">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#ECMAScript 6" title="ECMAScript 6">ECMAScript 6</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "lusssn";
+    var disqus_identifier = "https://lusssn.github.io/2016/08/technology/es6/";
+    var disqus_url = "https://lusssn.github.io/2016/08/technology/es6/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://weibo.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                <li>
+                    <a href="mailto:lusssn@126.com">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; lusssn 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script type="text/javascript">
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("https://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- canvas-fog.js -->
+<script type="text/javascript">
+  // only load tagcloud.js in tag.html
+  if($('#fogCanvas').length){
+    async("https://lusssn.github.io/js/canvas-fog.js", function(){
+      // IE9+烟雾效果走起
+      if ([].map) {
+        FogCanvas(document.querySelector('#fogCanvas'), {
+          count: 30,
+          velocity: 1,
+          url: 'http://oyd1mgz9y.bkt.clouddn.com/lusssn-fog.png'
+        });
+      }
+    })
+  }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script type="text/javascript">
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length){
+        async("https://lusssn.github.io/js/jquery.tagcloud.js", function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!-- fastClick.js -->
+<script type="text/javascript">
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

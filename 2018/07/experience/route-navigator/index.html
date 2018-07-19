@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+          路由导航组件的实现 - Lusssn
+        
+    </title>
+
+    <link rel="canonical" href="https://lusssn.github.io/2018/07/experience/route-navigator/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/scss/hux-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">lusssn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                    
+                        
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/archives">Archives</a>
+                        </li>
+                        
+                    
+                    
+                        
+                        <li>
+                            <a href="/tags">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/images/comm-header/experience.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>路由导航组件的实现</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Chris Lu on
+                        2018-07-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>PC端的WEB项目中常常会需要一个路由导航的组件，可以显示当前路由的父级，点击可以跳转至相应页面。<br><a id="more"></a><br>最终的实现方案看起来其实并不简单和优雅。<br>写在这里也希望同行能给点优化意见，今后做类似需求也可以有参考。</p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><ol>
+<li>打开一个页面，显示当前页面的父级；</li>
+<li>点击非当前页的层级，跳转到相应页面；</li>
+<li><p>处理某些页面带有参数的情况；</p>
+<p>举个🌰 层级关系A -&gt; B -&gt; C</p>
+<ul>
+<li>打开A页面，显示<code>A</code>；</li>
+<li>打开B页面，显示<code>A / B</code>，其中A可点击；</li>
+<li>打开C页面，显示<code>A / B / C</code>，其中A、B可以点击。</li>
+</ul>
+</li>
+</ol>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ol>
+<li>根据路由获得其层级关系；</li>
+<li>页面参数传递。</li>
+</ol>
+<p>通过一个<strong>配置文件</strong>，记录路由的层级关系。配置内容包括：<br>显示名称（name）、跳转路由（path）、页面参数（query）、下一级（children）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    name: '物料活动',</span><br><span class="line">    path: '/activity/list',</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        name: '活动详情',</span><br><span class="line">        path: '/activity/detail',</span><br><span class="line">        query: ['activity'],</span><br><span class="line">        children: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: '门店活动详情',</span><br><span class="line">            path: '/activity/shopDetail',</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: '进行中的物料申请',</span><br><span class="line">    path: '/apply/active/list',</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">        name: '详情',</span><br><span class="line">        path: '/apply/active/detail',</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        name: '填写',</span><br><span class="line">        path: '/apply/active/edit',</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: '历史物料申请',</span><br><span class="line">    path: '/apply/history',</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>再按照深度优先原则遍历配置，进行路由匹配，最后得到一个记录层级关系的数组。</p>
+<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">_getGuideFromConfig = <span class="function">(<span class="params">pathName, config, guides = []</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> config) &#123;</span><br><span class="line">    <span class="keyword">let</span> path = item.path</span><br><span class="line">    <span class="comment">// 命中压入配置，退出遍历</span></span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">      pathName === path ||</span><br><span class="line">      (<span class="built_in">Array</span>.isArray(path) &amp;&amp; path.includes(pathName))</span><br><span class="line">    ) &#123;</span><br><span class="line">      guides.unshift(&#123;</span><br><span class="line">        name: item.name,</span><br><span class="line">        path: <span class="keyword">this</span>._getPathWithQuery(item),</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> guides</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 有下一层则继续遍历</span></span><br><span class="line">    <span class="keyword">let</span> children = item.children</span><br><span class="line">    <span class="keyword">if</span> (children) &#123;</span><br><span class="line">      <span class="keyword">this</span>._getGuideFromConfig(pathName, children, guides)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 如果guides长度不为0，认为已经找到相应配置，则从头部压入配置，退出遍历</span></span><br><span class="line">    <span class="keyword">if</span> (guides.length) &#123;</span><br><span class="line">      guides.unshift(&#123;</span><br><span class="line">        name: item.name,</span><br><span class="line">        path: <span class="keyword">this</span>._getPathWithQuery(item),</span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="keyword">return</span> guides</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> guides</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据配置内容拼接pathname和query</span></span><br><span class="line">_getPathWithQuery = <span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123; query = [], path &#125; = config</span><br><span class="line">  <span class="keyword">return</span> query.reduce(</span><br><span class="line">    (resPath, key, index) =&gt;</span><br><span class="line">      <span class="string">`<span class="subst">$&#123;resPath&#125;</span><span class="subst">$&#123;index ? <span class="string">'&amp;'</span> : <span class="string">'?'</span>&#125;</span><span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;<span class="keyword">this</span>.query[key]&#125;</span>`</span>,</span><br><span class="line">    path</span><br><span class="line">  )</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h3><p>最大的一个缺陷就是<strong>下一层路由必须携带父层级的所有参数</strong>，<br>导致子页面的参数会越来越多，单独看哪些与当前页面无关的变量有点莫名其妙。<br>所以建议父子层级关系最好不要超过 3 层。</p>
+<p>另一个缺陷是<strong>一个路由只能有一种父层级关系</strong>，即不能同时有<code>A / B / C</code>和<code>A / BB / C</code>。<br>原因很简单，因为是用路由匹配层级关系的，当C路由满足<code>A / B / C</code>层级后，遍历也就结束了。</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>👶🏻 希望小伙伴们有更优雅的实现方式的话，可以交流一下</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/03/experience/wxapp-extend-page/" data-toggle="tooltip" data-placement="top" title="微信小程序Page扩展">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "lusssn";
+    var disqus_identifier = "https://lusssn.github.io/2018/07/experience/route-navigator/";
+    var disqus_url = "https://lusssn.github.io/2018/07/experience/route-navigator/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://weibo.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lusssn">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                <li>
+                    <a href="mailto:lusssn@126.com">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; lusssn 2018
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script type="text/javascript">
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("https://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- canvas-fog.js -->
+<script type="text/javascript">
+  // only load tagcloud.js in tag.html
+  if($('#fogCanvas').length){
+    async("https://lusssn.github.io/js/canvas-fog.js", function(){
+      // IE9+烟雾效果走起
+      if ([].map) {
+        FogCanvas(document.querySelector('#fogCanvas'), {
+          count: 30,
+          velocity: 1,
+          url: 'http://oyd1mgz9y.bkt.clouddn.com/lusssn-fog.png'
+        });
+      }
+    })
+  }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script type="text/javascript">
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length){
+        async("https://lusssn.github.io/js/jquery.tagcloud.js", function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!-- fastClick.js -->
+<script type="text/javascript">
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
