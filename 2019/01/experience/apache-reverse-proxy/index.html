@@ -13,11 +13,11 @@
 
     <title>
         
-          Lusssn
+          Mac自带Apache2设置反向代理 - Lusssn
         
     </title>
 
-    <link rel="canonical" href="https://lusssn.github.io/tags/ECMAScript-6/">
+    <link rel="canonical" href="https://lusssn.github.io/2019/01/experience/apache-reverse-proxy/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/scss/bootstrap.min.css">
@@ -138,187 +138,210 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/images/home-bg-180123.jpg')">
+    
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/images/comm-header/experience.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>lusssn</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"></span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Tools" title="Tools">Tools</a>
+                        
+                    </div>
+                    <h1>Mac自带Apache2设置反向代理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Chris Lu on
+                        2019-01-11
+                    </span>
                 </div>
             </div>
         </div>
     </div>
-    <canvas class="canvas-heading" id="fogCanvas"></canvas>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，Apache设置反向代理并不难。<br><a id="more"></a><br>折腾这些事情的背景需要说明一下。</p>
+<p>首先在<strong>测试环境</strong>的域名为：<code>project.ndev.lusssn.cn</code></p>
+<p>在网页上登录成功后，后端会在cookie中存一个认证令牌，这个令牌在公司内部子系统中都是通用的，所以它的Domain为 <code>lusssn.cn</code></p>
+<p>我在<strong>本地环境</strong>开发通过 <code>localhost</code> 访问页面，借助Webpack反向代理，<strong>调用测试环境的后台接口</strong>（project.ndev.lusssn.cn）。然而</p>
+<blockquote>
+<p>localhost 不能访问Domain为 lusssn.cn 的cookie</p>
+</blockquote>
+<p>解决方法：</p>
+<ol>
+<li><strong>将cookie的Domain更改为localhost</strong><ul>
+<li>把Domain为 lusssn.cn 的cookie复制一份，Domain更改为localhost。</li>
+<li>这样的话，令牌过期一次就要手动复制粘贴一次。</li>
+</ul>
+</li>
+<li><strong>后端提供一个永久的令牌</strong><ul>
+<li>感觉并不美啊，cookie清空了还得手动添加，备选方案。</li>
+</ul>
+</li>
+<li><strong>本地通过带 lusssn.cn 域的自定义域名访问</strong><ul>
+<li>这样即不用复制粘贴，也不用手动添加，与测试环境共享cookie。</li>
+<li>堪称完美～</li>
+</ul>
+</li>
+</ol>
+<p>用Mac自带的Apache2起一个服务，设置反向代理，将自定义域名 <code>mydomain.lusssn.cn</code> 转发到localhost指定端口的服务即可。具体步骤和细节如下：</p>
+<p><strong>Step 1</strong></p>
+<p>终端运行 <code>sudo vi /etc/hosts</code><br>host列表中添加 <em>127.0.0.1  mydomain.lusssn.cn</em></p>
+<p><strong>Step 2</strong></p>
+<p>终端运行 <code>sudo open /etc/apache2/httpd.conf -a &#39;visual studio code&#39;</code><br>用vscode或其他文本编辑器打开apache2的配置文件。</p>
+<p>通常配置中没有启用的配置会用井号注释掉，启用反向代理需要解注释以下内容：</p>
+<ul>
+<li><em>Include /private/etc/apache2/extra/httpd-vhosts.conf</em></li>
+<li><em>LoadModule proxy_module modules/mod_proxy.so</em></li>
+<li><em>LoadModule proxy_http_module modules/mod_proxy_http.so</em></li>
+</ul>
+<p>找到ServerName配置，配置为 <em>ServerName localhost</em></p>
+<p>以上就完成了httpd.conf文件的修改。</p>
+<p><strong>Step 3</strong></p>
+<p>终端运行 <code>sudo open /etc/apache2/extra/httpd-vhosts.conf -a &#39;visual studio code&#39;</code><br>准备修改虚拟host文件的配置。</p>
+<p>添加配置内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:80&gt;</span><br><span class="line">  ServerName unicorn.dev.imdada.cn</span><br><span class="line">  ProxyRequests off</span><br><span class="line">  &lt;Proxy *&gt;</span><br><span class="line">    Order deny,allow</span><br><span class="line">    Allow from all</span><br><span class="line">  &lt;/Proxy&gt;</span><br><span class="line">  &lt;Location /&gt;</span><br><span class="line">    ProxyPass http://localhost:9026/</span><br><span class="line">    ProxyPassReverse http://localhost:9026/</span><br><span class="line">  &lt;/Location&gt;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></p>
+<p>一般此文件中原本有两个关于<strong>dummy-host2. example. com</strong>的虚拟host配置，如果你没有用到，就直接将相关配置注释掉。</p>
+<p><strong>Step 4</strong></p>
+<p>终端运行 <code>apachectl -t</code><br>若结果为 <strong>Syntax OK</strong>，表示之前的配置都没有问题。若不是，报什么错就自己去搜吧。</p>
+<p>接着继续运行 <code>sudo apachectl -k start</code> 启动apache服务。<br>浏览器访问 <strong>mydomain.lusssn.cn</strong> 按照配置自动跳转到localhost:9026服务器，就大功告成啦！</p>
+<p>apachectl常用命令：</p>
+<ul>
+<li>启动 <code>sudo apachectl -k start</code></li>
+<li>重启 <code>sudo apachectl -k restart</code></li>
+<li>停止 <code>sudo apachectl -k stop</code></li>
+<li>查看虚拟host列表 <code>apachectl -t -D DUMP_VHOSTS</code></li>
+</ul>
+<p>我自己配置的时候看了好些博客，没有一个是照做就能成功的，每一步骤总报错，不要怕，报错就去搜。</p>
 
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/11/technology/is-formula/" data-toggle="tooltip" data-placement="top" title="语法解析的思路验证数学公式">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
         
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
-            <ul class="col-lg-9 col-md-9 col-sm-12 col-xs-12 home-container">
-            
-                <!-- Main Content -->
-<audio class="bg-music" src="http://oyd1mgz9y.bkt.clouddn.com/%E6%8A%BC%E5%B0%BE%E3%82%B3%E3%83%BC%E3%82%BF%E3%83%AD%E3%83%BC%20-%20%E8%A7%81%E4%B8%8A%E3%81%92%E3%81%A6%E3%81%94%E3%82%89%E3%82%93%E5%A4%9C%E3%81%AE%E6%98%9F%E3%82%92.mp3" controls loop></audio>
-<ul class="post-list">
-    
-    <li>
-        <div class="post-preview">
-
-            <h2 class="post-title">
-                ES6 新特性
-            </h2>
-            <div class="post-subtitle">
-                
-            </div>
-            
-            <div class="post-content-preview">
-                <p>组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。<br>ES6语法能使代码变得更加简洁，很人性化。<br>2018-03-20 更新Arrow Functions、Symbol<br></p>
-            </div>
-            
-            <a href="/2016/08/technology/es6/" target="_blank">READ MORE</a>
-
-        </div>
-    </li>
-    
-</ul>
-<!-- Pager -->
-<ul class="pager">
-    
-    
-</ul>
-
-
-
-                <!-- 如果开启评论功能 -->
-                
-
-            </ul>
     <!-- Sidebar Container -->
-            <div class="col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
                 sidebar-container">
+
                 <!-- Featured Tags -->
                 
                 <section>
                     <!-- no hr -->
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
-                        
-                            
-                            <a href="/tags/#Tools" title="Tools" rel="2">Tools</a>
-                            
-                        
-                            
-                            <a href="/tags/#微信小程序" title="微信小程序" rel="3">微信小程序</a>
-                            
-                        
-                            
-                            <a href="/tags/#多肉植物" title="多肉植物" rel="3">多肉植物</a>
-                            
-                        
-                            
-                            <a href="/tags/#JavaScript" title="JavaScript" rel="5">JavaScript</a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                            <a href="/tags/#ThreeJs" title="ThreeJs" rel="3">ThreeJs</a>
-                            
-                        
-                            
+                       
+                          <a class="tag" href="/tags/#Tools" title="Tools">Tools</a>
                         
                     </div>
                 </section>
                 
 
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/images/avatar.jpg" />
-                        
-
-                        
-                            <p>Do you see the gift?</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="https://weibo.com/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank"  href="https://github.com/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                            <li>
-                                <a href="mailto:lusssn@126.com">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                
                 <!-- Friends Blog -->
                 
             </div>
-        
+
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "lusssn";
+    var disqus_identifier = "https://lusssn.github.io/2019/01/experience/apache-reverse-proxy/";
+    var disqus_url = "https://lusssn.github.io/2019/01/experience/apache-reverse-proxy/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
