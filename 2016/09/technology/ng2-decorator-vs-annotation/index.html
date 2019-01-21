@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword"  content="">
+    <meta name="keyword" content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -145,7 +145,7 @@
         background-image: url('/images/comm-header/technology.jpg')
     }
 </style>
-<header class="intro-header" >
+<header class="intro-header">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -191,7 +191,7 @@
 <p>转换的方式有很多，Babel，Traceur，TypeScript等等，每种方式的转译结果都不同。Traceur会将上面的代码转译成：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tabs = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Tabs</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">	Tabs.annotations = [</span><br><span class="line">			<span class="keyword">new</span> ComponentMetadata(&#123;...&#125;),</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> Tabs;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>最后，Annotation内容变成了class的annotations属性里的实例调用。当然，这并不是所有的Annotation都会以这样的方式被转译。如果Annotation作为构造器的参数，那么就会被Traceur转译为class的parameters属性，就像是这样：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> MyClass &#123;</span><br><span class="line"></span><br><span class="line">  constructor(@Annotation() foo) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> MyClass &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="meta">@Annotation</span>() foo</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>转换之后：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyClass = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">MyClass</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  MyClass.parameters = [[<span class="keyword">new</span> Annotation()]]; <span class="comment">// 参数可能是多个Annotation</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> MyClass;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>转译工作完成后，具体的一个类怎么成为一个Component的细节就是框架自己的事情了。<br>对于框架来说，它只关心从哪里可以获取到annotations属性和parameters属性，如果没有Traceur的转译，框架就不知道去哪里取数据了。</p>
@@ -365,7 +365,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/lusssn">
+                        <a target="_blank" href="https://github.com/lusssn">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
