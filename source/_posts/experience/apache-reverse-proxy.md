@@ -56,7 +56,7 @@ host列表中添加 *127.0.0.1  mydomain.lusssn.cn*
 添加配置内容：
 ```
 <VirtualHost *:80>
-  ServerName unicorn.dev.imdada.cn
+  ServerName mydomain.lusssn.cn
   ProxyRequests off
   <Proxy *>
     Order deny,allow
