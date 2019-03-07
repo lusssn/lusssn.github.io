@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: #404040; }
   a:hover, a:focus {
-    color: #0085A1; }
+    color: #b18db1; }
 
 a img:hover, a img:focus {
   cursor: zoom-in; }
@@ -52,12 +52,12 @@ blockquote {
 
 ::-moz-selection {
   color: white;
-  background: #0085A1;
+  background: #b18db1;
   text-shadow: none; }
 
 ::selection {
   color: white;
-  background: #0085A1;
+  background: #b18db1;
   text-shadow: none; }
 
 img::selection {
@@ -327,11 +327,11 @@ color-border = #ddd */
         .navbar-custom.is-fixed .navbar-brand {
           color: #404040; }
           .navbar-custom.is-fixed .navbar-brand:hover, .navbar-custom.is-fixed .navbar-brand:focus {
-            color: #0085A1; }
+            color: #b18db1; }
         .navbar-custom.is-fixed .nav li a {
           color: #404040; }
           .navbar-custom.is-fixed .nav li a:hover, .navbar-custom.is-fixed .nav li a:focus {
-            color: #0085A1; }
+            color: #b18db1; }
       .navbar-custom.is-visible {
         /* if the user changes the scrolling direction, we show the header */
         -webkit-transform: translate3d(0, 100%, 0);
@@ -382,11 +382,11 @@ color-border = #ddd */
   .sidebar-container a {
     color: #bfbfbf !important; }
     .sidebar-container a:hover, .sidebar-container a:active {
-      color: #0085A1 !important; }
+      color: #b18db1 !important; }
   .sidebar-container .tags a {
     border-color: #bfbfbf; }
     .sidebar-container .tags a:hover, .sidebar-container .tags a:active {
-      border-color: #0085A1; }
+      border-color: #b18db1; }
   .sidebar-container .short-about img {
     width: 80%;
     display: block;
@@ -454,7 +454,7 @@ color-border = #ddd */
       border-radius: 4px;
       background-color: #F5F5F5; }
       .side-catalog .catalog-body .active a {
-        color: #0085a1 !important; }
+        color: #b18db1 !important; }
 
 @media (max-width: 1200px) {
   .side-catalog {
@@ -499,7 +499,7 @@ color-border = #ddd */
     border: none;
     background: #D6D6D6; }
     #tag_cloud a:hover, #tag_cloud a:active, #tag_cloud .tag:hover, #tag_cloud .tag:active {
-      background-color: #0085A1 !important; }
+      background-color: #b18db1 !important; }
   @media only screen and (min-width: 768px) {
     #tag_cloud {
       margin-bottom: 25px; } }
@@ -515,7 +515,7 @@ color-border = #ddd */
 
 .listing-seperator {
   font-size: 21px !important;
-  color: #0085A1; }
+  color: #b18db1; }
   .listing-seperator::before {
     margin-right: 5px; }
   @media only screen and (min-width: 768px) {
@@ -536,7 +536,7 @@ color-border = #ddd */
   position: relative; }
   .one-tag-list .post-preview > a:hover, .one-tag-list .post-preview > a:focus {
     text-decoration: none;
-    color: #0085A1; }
+    color: #b18db1; }
   .one-tag-list .post-preview > a .post-title {
     margin-top: 20px;
     font-size: 16px;
@@ -602,7 +602,7 @@ pre code {
   .post-container a {
     color: #337AB7; }
     .post-container a:hover, .post-container a:focus {
-      color: #0085A1; }
+      color: #b18db1; }
   .post-container h1, .post-container h2, .post-container h3, .post-container h4, .post-container h5, .post-container h6 {
     margin: 30px 0 10px; }
   .post-container h5, .post-container h6 {
@@ -818,7 +818,7 @@ footer {
     footer .copyright a {
       color: #337AB7; }
       footer .copyright a:hover, footer .copyright a:focus {
-        color: #0085A1; }
+        color: #b18db1; }
 
 .floating-label-form-group {
   position: relative;
@@ -862,7 +862,7 @@ footer {
   opacity: 1; }
 
 .floating-label-form-group-with-focus label {
-  color: #0085A1; }
+  color: #b18db1; }
 
 form .row:first-child .floating-label-form-group {
   border-top: 1px solid #eee; }
@@ -887,8 +887,8 @@ form .row:first-child .floating-label-form-group {
 
 .btn-default:hover, .btn-default:focus {
   color: white;
-  border: 1px solid #0085A1;
-  background-color: #0085A1; }
+  border: 1px solid #b18db1;
+  background-color: #b18db1; }
 
 .pager {
   margin: 20px 0 0;
@@ -915,8 +915,8 @@ form .row:first-child .floating-label-form-group {
     color: #404040; }
   .pager li > a:hover, .pager li > a:focus {
     color: white;
-    border: 1px solid #0085A1;
-    background-color: #0085A1; }
+    border: 1px solid #b18db1;
+    background-color: #b18db1; }
     .pager li > a:hover > span, .pager li > a:focus > span {
       color: white; }
   .pager .disabled > a, .pager .disabled > a:hover, .pager .disabled > a:focus, .pager .disabled > span {
