@@ -29,7 +29,7 @@
                     
                         <% if(page.title){ %>
                         <li>
-                            <a href="<%= config.root %><%= page.path.replace('/index.html', '') %>"><%= __(page.title) %></a>
+                            <a href="<%= config.root %><%= page.path.replace('/index.html', '/') %>"><%= __(page.title) %></a>
                         </li>
                         <% } %>
                     <% }); %>
