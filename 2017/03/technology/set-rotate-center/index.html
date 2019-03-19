@@ -172,14 +172,11 @@
     <div class="container">
         <div class="row">
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+            <!-- Post Container -->
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
                 <p>在ThreeJs中，物体的旋转运动是绕世界中心旋转的，实际却有很多场景要求物体绕其他点旋转。<br><a id="more"></a></p>
-<h3 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h3><p>将物体移动至中心与世界中心重合的位置，绕世界中心旋转等于自己中心旋转。步骤：</p>
+<h3><span id="思路一">思路一</span></h3><p>将物体移动至中心与世界中心重合的位置，绕世界中心旋转等于自己中心旋转。步骤：</p>
 <ul>
 <li>加载模型</li>
 <li>获取模型的边界框</li>
@@ -188,7 +185,7 @@
 <li>旋转物体</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// loadObject</span></span><br><span class="line">loader.load(<span class="string">'./js/model/model.obj'</span>, onLoad);</span><br><span class="line"><span class="keyword">var</span> mesh, material = <span class="keyword">new</span> THREE.MeshLambertMaterial(&#123;<span class="attr">color</span>: <span class="number">0xffffff</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onLoad</span>(<span class="params">object</span>) </span>&#123;</span><br><span class="line">	mesh = object;</span><br><span class="line">	<span class="keyword">var</span> objBox = <span class="keyword">new</span> THREE.Box3().setFromObject(mesh);</span><br><span class="line">	<span class="comment">// 通过模型边界框获取模型中心</span></span><br><span class="line">	<span class="keyword">var</span> boxCenter = objBox.getCenter();</span><br><span class="line">	<span class="comment">// 中心点矩阵*-1 得到中心点关于原点对称的新点</span></span><br><span class="line">	boxCenter.multiplyScalar(<span class="number">-1</span>);</span><br><span class="line">	<span class="comment">// 添加材质</span></span><br><span class="line">	mesh.children.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">child</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (child <span class="keyword">instanceof</span> THREE.Mesh) &#123;</span><br><span class="line">			child.material = material;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="comment">// 通过translate将模型向对称点方向移动至中心点</span></span><br><span class="line">	mesh.traverse(<span class="function"><span class="keyword">function</span> (<span class="params">child</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (child <span class="keyword">instanceof</span> THREE.Mesh) &#123;</span><br><span class="line">			child.geometry.translate(boxCenter.x, boxCenter.y, boxCenter.z);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="comment">// mesh.position.set(boxCenter.x, boxCenter.y, boxCenter.z);</span></span><br><span class="line">	scene.add(mesh);</span><br><span class="line">	animation();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	requestAnimationFrame(animation);</span><br><span class="line">	<span class="comment">// 旋转物体</span></span><br><span class="line">	mesh.rotation.y += <span class="number">0.02</span>;</span><br><span class="line">	renderer.render(scene, camera);</span><br><span class="line">	stats.update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h3><p>不移动物体，让物体在原地绕自己的中心旋转。</p>
+<h3><span id="思路二">思路二</span></h3><p>不移动物体，让物体在原地绕自己的中心旋转。</p>
 <p>ThreeJs中有<code>Group</code>的概念，Group内的物体是绕着Group的中心旋转的。我<code>将Group看作一个新世界</code>来理解，转动Group就是在转动整个新世界。</p>
 <p>新建Group时，其位置（position）即新世界的中心是与世界中心重合的，转动Group看上去就是Group内的所有物体都在绕着世界中心旋转。</p>
 <p>想让物体在自己原来的位置（目标旋转点）旋转，步骤如下：</p>

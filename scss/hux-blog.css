@@ -362,14 +362,6 @@ color-border = #ddd */
   .navbar-default .navbar-toggle .icon-bar + .icon-bar {
     margin-top: 3px; }
 
-@media (min-width: 1200px) {
-  .post-container, .sidebar-container {
-    padding-right: 5%; } }
-
-@media (min-width: 768px) {
-  .post-container {
-    padding-right: 5%; } }
-
 .sidebar-container {
   color: #bfbfbf;
   font-size: 14px; }
@@ -565,6 +557,24 @@ color-border = #ddd */
         font-size: 18px; } }
 
 /* Tags support End*/
+.toc {
+  position: absolute;
+  width: 200px;
+  top: 50px;
+  right: 0;
+  padding-top: 30px;
+  padding-left: 15px; }
+  .toc::before {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    content: '目录'; }
+  .toc ul, .toc li {
+    list-style: none;
+    font-size: 14px; }
+  .toc ul {
+    padding-left: 15px; }
+
 small.img-hint {
   display: block;
   margin-top: -20px;
@@ -598,6 +608,7 @@ pre code {
   margin-bottom: 15px; }
 
 .post-container {
+  position: relative;
   /* Hux make all img responsible in post-container */ }
   .post-container a {
     color: #337AB7; }
@@ -647,6 +658,10 @@ pre code {
     max-width: 100%;
     height: auto;
     margin: 1.5em auto 1.6em auto; }
+
+@media (min-width: 768px) {
+  .post-container {
+    padding-right: 200px; } }
 
 .intro-header {
   -webkit-background-size: cover;

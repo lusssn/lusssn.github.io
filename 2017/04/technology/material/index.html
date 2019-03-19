@@ -172,32 +172,29 @@
     <div class="container">
         <div class="row">
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+            <!-- Post Container -->
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
                 <p>材质=材料+质感。光照射到物体上折射出不同的颜色、光强等，人眼才能感知物体的材质。构建材质的过程可以看作是操作改造反射光的过程。<br><a id="more"></a><br>将入射光比作原材料，物体比作工厂，反射光比作产品，人眼比作消费者。<br>那么材质就是工厂里的装配机器。<br>机器对入射光进行装配雕琢，改变其颜色、方向、强度等属性之后以反射光出厂，人眼消费后感知反射光反应的信息——物体材质。</p>
 <p>WebGL将大自然中的材质抽象出来，ThreeJs做了划分，下面就来看看阿3是怎么划分材质的。</p>
-<h3 id="0-材质"><a href="#0-材质" class="headerlink" title="0. 材质"></a>0. 材质</h3><p><img src="/2017/04/technology/material/material_2.jpg" alt=""></p>
+<h3><span id="0-材质">0. 材质</span></h3><p><img src="/2017/04/technology/material/material_2.jpg" alt=""></p>
 <ul>
 <li><em>Material</em><br>  材质基类，抽象了材质的基本属性，不列举全部属性。<br>  感光（<code>lights</code>）：物体什么颜色就反射什么颜色的光。<br>  雾化（<code>fog</code>）：是否受雾化影响。<br>  透明（<code>transparent</code>）：是否透明。<br>  可视（<code>visible</code>）：是否可见。<br>  透明度（<code>opacity</code>）：透明度。<br>  阿尔法值（<code>alphaTest</code>）：若opacity小于alpha值则不会渲染材质。<br>  混淆、混淆方程式、混淆目标等：不明白。<br>  平面剪裁：不明白。<br>  颜色（<code>colorWrite</code>）：是否进行颜色渲染。<br>  材质更新（<code>needsUpdate</code>）：是否实时更新材质变化。<br>  理论上基类的属性子类都会继承，但实际中并不是每个属性在具体子类上都会有效果。比如雾化对ShadowMaterial来说就无意义。</li>
 </ul>
-<h3 id="1-点材质"><a href="#1-点材质" class="headerlink" title="1. 点材质"></a>1. 点材质</h3><ul>
+<h3><span id="1-点材质">1. 点材质</span></h3><ul>
 <li><em>PointsMaterial</em><br>  一个点的属性：颜色（<code>color</code>）、感光（<code>lights</code>）、大小（<code>size</code>），另外在阿3中还可以设置尺寸衰减（<code>sizeAttenuation</code>，近大远小）。</li>
 </ul>
-<h3 id="2-线材质"><a href="#2-线材质" class="headerlink" title="2. 线材质"></a>2. 线材质</h3><p>两种线条：虚线 和 实线。<br>基本属性：颜色（<code>color</code>）、感光（<code>lights</code>）、粗细（<code>linewidth</code>）。</p>
+<h3><span id="2-线材质">2. 线材质</span></h3><p>两种线条：虚线 和 实线。<br>基本属性：颜色（<code>color</code>）、感光（<code>lights</code>）、粗细（<code>linewidth</code>）。</p>
 <ul>
 <li><em>LineBasicMaterial</em><br>  一根普通线条的属性：基本属性、末端结束方式（<code>linecap</code>）、连接方式（<code>linejoin</code>）。</li>
 <li><em>LineDashedMaterial</em><br>  一根虚线条的属性：基本属性、实部长度（<code>dashSize</code>）、虚部长度（<code>gapSize</code>）、虚线范围（<code>scale</code>）。</li>
 </ul>
-<h3 id="3-面材质"><a href="#3-面材质" class="headerlink" title="3. 面材质"></a>3. 面材质</h3><p>从点到线，再到面，属性就更加丰富了。<br>面的基本属性：感光（<code>lights</code>）。</p>
+<h3><span id="3-面材质">3. 面材质</span></h3><p>从点到线，再到面，属性就更加丰富了。<br>面的基本属性：感光（<code>lights</code>）。</p>
 <ul>
 <li><em>SpriteMaterial</em><br>  <strong>sprite</strong>是一个总是面向相机的平面。<br>  其材质属性：基本属性、颜色（<code>color</code>）、雾化（<code>fog</code>）、纹理映射（<code>map</code>）、旋转角度（<code>rotation</code>）。<br>  <img src="/2017/04/technology/material/sprite.png" alt=""></li>
 <li><em>ShadowMaterial</em><br>  继承自ShaderMaterial，可以接受物体投影呈现出阴影。<br>  属性：基本属性、透明（<code>transparent</code>）。</li>
 </ul>
-<h3 id="4-物体材质"><a href="#4-物体材质" class="headerlink" title="4. 物体材质"></a>4. 物体材质</h3><ul>
+<h3><span id="4-物体材质">4. 物体材质</span></h3><ul>
 <li><em>MeshBasicMaterial</em><br>  用在绘制简单轮廓的时候。比如物体扁平化（flat）或则仅线框。<br>  默认不感光，无质感。<br>  属性列举不全：线框模式（<code>wireframe</code>）、反射光模式（<code>reflectivity</code>、<code>combine</code>）。</li>
 <li><em>MeshDepthMaterial</em><br>  根据参数parameters创建基于相机远近裁切面自动变换亮度（明暗度）的材质类型,离相机越近,材质越亮（白）,离相机越远,材质越暗（黑）。<br>  默认不感光，无质感。体现的是远近，白色表示最近，黑色表示最远。</li>
 <li><em>MeshLambertMaterial</em><br>  表面均匀，粗糙，比如一张纸。<br>  其特点是能产生漫反射，有光泽，表面凹凸呈现出不同的阴暗效果。</li>

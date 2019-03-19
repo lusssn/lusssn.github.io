@@ -172,18 +172,15 @@
     <div class="container">
         <div class="row">
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+            <!-- Post Container -->
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
                 <p>Java的Annotation用起来很是顺手，AtScript和TypeScript都是JavaScript的扩展语言，AtScript支持Annotation，而TypeScript支持Decorator。<br><a id="more"></a><br>2015年3月的ng-conf大会Angular团队宣布抛弃AtScript项目，转用TypeScript开发，而TypeScript团队也表示TypeScript正在吸收AtScript的优点，为即将到来的TypeScript 1.5版本引入注解的功能。</p>
 <p>在<a href="http://tslang.cn/docs/release-notes/typescript-1.5.html" target="_blank" rel="noopener">TypeScript 1.5的变更记录</a>中我们找到了Decorator。</p>
 <p>那么Annotation和Decorator有什么关系，又有什么区别呢？？</p>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Decorator:    作用是在编译时根据元数据内容对一个函数进行一些修改，其实质是一个函数。</p>
+<h3><span id="定义">定义</span></h3><p>Decorator:    作用是在编译时根据元数据内容对一个函数进行一些修改，其实质是一个函数。</p>
 <p>Annotation:    是将元数据附加到代码中，如何附加是由transpiler来决定的。</p>
-<h3 id="详解AtScript之Annotations"><a href="#详解AtScript之Annotations" class="headerlink" title="详解AtScript之Annotations"></a>详解AtScript之Annotations</h3><p>首先看一段ng2代码：</p>
+<h3><span id="详解atscript之annotations">详解AtScript之Annotations</span></h3><p>首先看一段ng2代码：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ComponentMetadata <span class="keyword">as</span> Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'tabs'</span>,</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">      &lt;li&gt;Tab 1&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li&gt;Tab 2&lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Tabs &#123; &#125;</span><br></pre></td></tr></table></figure>
 <p>如果class Tabs没有@Component的注解，它就只是一个普通的类（类的实质也是一个方法）。<br>从import关键字，很容易想到，其实Component的内容是由框架实现的，Component的实质也是一个class。</p>
 <p>那么我们如何做到用一个普通的class去改变另一个class的行为？<br>为什么可以只用在类前带上前缀@就可以当注释使用？</p>
@@ -196,7 +193,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyClass = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">MyClass</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  MyClass.parameters = [[<span class="keyword">new</span> Annotation()]]; <span class="comment">// 参数可能是多个Annotation</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> MyClass;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>转译工作完成后，具体的一个类怎么成为一个Component的细节就是框架自己的事情了。<br>对于框架来说，它只关心从哪里可以获取到annotations属性和parameters属性，如果没有Traceur的转译，框架就不知道去哪里取数据了。</p>
 <p>在AtScript中，annotations会转译成什么样子又是一种不同的转译实现方式。</p>
-<h3 id="详解TypeScript之Decorators"><a href="#详解TypeScript之Decorators" class="headerlink" title="详解TypeScript之Decorators"></a>详解TypeScript之Decorators</h3><blockquote>
+<h3><span id="详解typescript之decorators">详解TypeScript之Decorators</span></h3><blockquote>
 <p>Decorators make it possible to annotate and modify classes and properties at design time.</p>
 </blockquote>
 <p>站在一个消费者的角度，如果可以自定义metadata用在代码中的什么地方是不是很爽？<br>事实上，在使用Decorator和Annotation时，它们的语法是一样的。</p>
@@ -208,8 +205,8 @@
 <p>之前我们关心的是Annotation被转译到什么地方（比如放到某个属性里）。<br>现在，我们要做的是定义一个Decorator函数要做些什么事情。</p>
 </blockquote>
 <p>所以，这也允许我们实现一个Decorator，让它能跟AtScript中的Annotation转译方式一样。</p>
-<h3 id="TypeScript支持Annotation和Decorator？"><a href="#TypeScript支持Annotation和Decorator？" class="headerlink" title="TypeScript支持Annotation和Decorator？"></a>TypeScript支持Annotation和Decorator？</h3><p>2015年的ng-conf大会上，Turner宣布<a href="https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/" target="_blank" rel="noopener">TypeScript将会整合AtScript中引入的标注（annotation）特性</a>，该特性将在TypeScript 1.5+版本中发布。<br>实际上，最后TypeScript支持Decorator，却不知道Angular 2内部的特殊Annotation实现。在使用装饰器之前我们需要引入metadata注释的实现（不是引入一个装饰器），用来组成一个装饰器。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从消费者的角度来看，Annotation和Decorator的作用和语法是一样的，它们的区别在于：</p>
+<h3><span id="typescript支持annotation和decorator">TypeScript支持Annotation和Decorator？</span></h3><p>2015年的ng-conf大会上，Turner宣布<a href="https://blogs.msdn.microsoft.com/typescript/2015/03/05/angular-2-built-on-typescript/" target="_blank" rel="noopener">TypeScript将会整合AtScript中引入的标注（annotation）特性</a>，该特性将在TypeScript 1.5+版本中发布。<br>实际上，最后TypeScript支持Decorator，却不知道Angular 2内部的特殊Annotation实现。在使用装饰器之前我们需要引入metadata注释的实现（不是引入一个装饰器），用来组成一个装饰器。</p>
+<h3><span id="总结">总结</span></h3><p>从消费者的角度来看，Annotation和Decorator的作用和语法是一样的，它们的区别在于：</p>
 <p><strong>Annotation</strong> 消费者不可以控制metadata如何被添加到代码中。<br><strong>Decorator</strong> 相当于是一个接口，用来构建某些最终作为注释的东西。</p>
 <p>长远来看，我们只需要关注Decorator，因为以后它将会成为一个标准。</p>
 <p><a href="http://blog.thoughtram.io/angular/2015/05/03/the-difference-between-annotations-and-decorators.html" target="_blank" rel="noopener">&gt;&gt; 参考阅读 &lt;&lt;</a></p>
