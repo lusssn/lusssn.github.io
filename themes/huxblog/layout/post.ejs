@@ -35,11 +35,8 @@ layout: layout
     <div class="container">
         <div class="row">
 
-    <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
+            <!-- Post Container -->
+            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
                 <%- page.content %>
 
@@ -47,7 +44,6 @@ layout: layout
 
                 <% if(config['duoshuo_share'] && config['duoshuo_username']) { %>
                 <!-- 多说 Share start -->
-                </style>
                 <div class="ds-share"
                     style="text-align: right"
                     data-thread-key="<%= page.path %>"

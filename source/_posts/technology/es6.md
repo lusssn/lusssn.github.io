@@ -10,25 +10,7 @@ date: 2016-08-15 10:06:39
 ES6语法能使代码变得更加简洁，很人性化。
 2018-03-20 更新Arrow Functions、Symbol
 <!-- more -->
-
-## 目录
-1. [数组遍历](#1-数组遍历)
-2. [Generators](#2-Generators)
-3. [Template](#3-Template)
-4. [Parameters](#4-Parameters)
-5. [Destructuring](#5-Destructuring)
-6. [Arrow Functions 2018-03-20](#6-Arrow-Functions)
-7. [Symbol 2018-03-20](#7-Symbol)
-8. [集合](#8-集合)
-9. [Proxy](#9-Proxy)
-10. [Class](#10-Class)
-11. [Subclassing](#11-Subclassing)
-12. [let和const](#12-let和const)
-13. [模块系统](#13-模块系统)
-14. [需要Babel或Traceur协助](#14-需要Babel或Traceur协助)
-15. [其他](#15-其他)
-16. [ES7](#16-ES7)
-
+<!-- toc -->
 * * *
 
 ### 1. 数组遍历

@@ -6,18 +6,53 @@ tags:
 date: 2018-01-10 18:30:13
 ---
 微信小程序官方提供的API很多用起来都有点鸡肋，针对不同项目的业务需求做二次封装是有必要的，这篇文章记一些有通用性的封装，若读者觉得有不好的地方，欢迎指出。
-更新时间：2018-01-15
 <!-- more -->
+<!-- toc -->
 * * *
-## 目录
-1. [路由跳转](#1-路由跳转)
-1. [刷新当前页](#2-刷新当前页)
-1. [消息提示](#3-消息提示)
-1. [发起网络请求](#4-发起网络请求)
-1. [图片预览](#5-图片预览)
-1. [页面信息传递](#6-页面信息传递)
 
-### 1. 路由跳转
+### ChangeLog
+
+- 2019-03-19 更新异步aip转为Promise风格、消息提示、页面信息传递
+
+### 1. 异步api转为Promise风格
+
+> 小程序中的异步api，风格都是统一为成功接受success参数作为回调，失败接受fail作为参数回调。比起Promise风格来说，感觉后者对开发者来说更加友好。
+
+```javascript
+/**
+ * 将大多数微信接口转换成promise形式
+ * 配置项中的success和fail回调会失效
+ * complete回调用finally处理
+ * @param fn
+ * @returns {Function}
+ */
+export const promisifyWxApi = fn => {
+  return args => {
+    return new Promise((resolve, reject) => {
+      fn({
+        ...args,
+        success: res => resolve(res),
+        fail: res => reject(res),
+      })
+    })
+  }
+}
+```
+
+#### 1.1 使用举例
+
+```javascript
+promisifyWxApi(wx.chooseImage)({
+  count: 1,
+}).then(res => {
+  console.log(res.tempFilePaths.pop())
+}, () => {
+  console.error('选择图片失败')
+})
+```
+
+### 2. 路由跳转
+
 > 官方提供了四种页面跳转的方式，接受参数类型是一个Json，使用起来复杂又麻烦。
 > 建议合并四种方式，简化参数形式。
 
@@ -30,7 +65,7 @@ const TABBAR_PAGES = ['productList', 'me']
  * @param urlParams Json 页面参数
  * @param close Boolean/String 跳转方式，true：关闭当前页再跳转；'all'：关闭所有页面再跳转
  */
-function navigateTo (pageName, urlParams, close) {
+const navigateTo = (pageName, urlParams, close) => {
   const objParams = {}
   let isTabbarPage = TABBAR_PAGES.indexOf(pageName) !== -1
   let strParams = ''
@@ -58,7 +93,7 @@ function navigateTo (pageName, urlParams, close) {
 }
 ```
 
-#### 1.1 使用举例
+#### 2.1 使用举例
 
 假设productList是一个tabbar页面，detail是一个普通页面。
 ```javascript
@@ -78,13 +113,15 @@ wxUtil.navigateTo('detail', {
 }, true)
 ```
 
-#### 1.2 特殊说明
+#### 2.2 特殊说明
+
 - 需要**手动配置**tabbar页面列表。
 - 方法会对**参数做编码**，所以如果参数值包含中文，取用时要解码。
 - **tabbar页面**只能通过reLaunch实现关闭当前页。
 
 
-### 2. 刷新当前页
+### 3. 刷新当前页
+
 > 如果程序缓存的token失效，或者遇到某些异常时，需要重新刷新加载页面。
 > 此方法是对方法1的扩展。
 
@@ -97,38 +134,36 @@ function refresh () {
 ```
 
 
-### 3. 消息提示
+### 4. 消息提示
+
 > 官方提供了 **showToast** 和 **showLoading** 两个消息提示的API，使用频率很高，Json的参数类型就显得很麻烦了。
 
 ```javascript
 /**
  * Toast提示重载
  * @param title String，必填
- * @param icon String，默认loading
- * @param duration Number，默认1500，单位ms
+ * @param icon String，默认warning
+ * @param others Object，其他配置
  */
-function showToast (title, icon, duration) {
-  const param = {
-    icon: 'loading'
+const showToast = (title = '', icon = 'warning', others) => {
+  const params = {
+    title,
+    icon,
+    mask: true,
+    duration: 3000,
+    ...others,
   }
-  if (!title) {
-    return
+  if (icon === 'warning') {
+    params.image = '../../images/warning-o.png'
   }
-  param.title = title
-  if (duration && typeof duration === 'number') {
-    param.duration = duration
-  }
-  if (icon) {
-    param.icon = icon
-  }
-  wx.showToast(param)
+  return promisifyWxApi(wx.showToast)(params)
 }
 ```
 
-#### 3.1 使用举例
+#### 4.1 使用举例
 ```javascript
 // 提示等待
-wxUtil.showToast('加载中...', '', 20000) 
+wxUtil.showToast('加载中...', 'loading', { ducation: 2000 }) 
 // 提示成功
 wxUtil.showToast('操作成功', 'success')
 // 提示失败
@@ -136,7 +171,7 @@ wxUtil.showToast('手机号必填')
 ```
 
 
-### 4. 发起网络请求
+### 5. 发起网络请求
 > 实际业务中需要对全部或绝大部分网络请求做统一的错误处理和数据预处理。
 
 ```javascript
@@ -186,7 +221,7 @@ function ajax (params, success, error) {
 }
 ```
 
-#### 4.1 使用举例
+#### 5.1 使用举例
 
 假设接口返回的内容格式为：
 ```json
@@ -211,10 +246,12 @@ wxUtil.ajax({
 })
 ```
 
-#### 4.2 特殊说明
+#### 5.2 特殊说明
+
 - 在实际项目中，方法应该根据接口的Header信息、出参格式稍作调整。
 
-### 5. 图片预览
+### 6. 图片预览
+
 > 官方提供的图片预览API，接受的参数同样是Json类型，回调方法一般使用不到。可以二次封装做一些简化。
 
 ```javascript
@@ -234,7 +271,8 @@ function previewImage (index, urls) {
 }
 ```
 
-#### 5.1 使用举例
+#### 6.1 使用举例
+
 ```javascript
 Page({
   data: {
@@ -248,26 +286,68 @@ Page({
 })
 ```
 
-#### 6. 页面信息传递
+### 7. 页面信息传递
+
 > 很多业务场景都需要在页面间传递状态，传递方式要满足使用简单，状态值易于管理的要求。
 
-- setNotification (key, value)
-  + 设置全局的消息变量
-  + 若value值缺省，则会**删除**对应键值
-- getNotification (key)
-  + 根据键值获取对应消息值
-- checkNotification (key, value, callback)
-  + 检查键值对应消息值，符合条件则callback并**删除**对应键值
-  + value若为function，只要消息值非空非零，则callback并**删除**对应键值
-  + value不为function，只有消息值等于value，才会callback并**删除**对应键值
+```javascript
+const NOTICE = {
+  edit: Symbol('edit')
+}
+APP({
+  /**
+   * 设置全局的消息变量
+   * @param key
+   * @param value 若为undefined，则删除对应键值
+   */
+  setNotice(key, value) {
+    const noticeKey = NOTICE[key]
+    if (!noticeKey) {
+      return
+    }
+    if (value === undefined) {
+      delete this.global[noticeKey]
+      return
+    }
+    this.setConfig({ [noticeKey]: value })
+  },
+  /**
+   * 根据键值获取对应消息值
+   * @param key
+   * @returns {*}
+   */
+  getNotice(key) {
+    const noticeKey = NOTICE[key]
+    if (!noticeKey) {
+      return ''
+    }
+    return this.global[noticeKey]
+  },
+  /**
+   * 检查键值对应消息值，符合条件则callback并删除对应键值
+   * @param key
+   * @param value
+   * @param callback
+   */
+  checkNotice(key, value, callback) {
+    if (this.getNotice(key) === value) {
+      this.setNotice(key)
+      typeof callback === 'function' && callback()
+    }
+  },
+})
+```
 
-#### 6.1 使用举例
+#### 7.1 使用举例
+
+场景：希望在编辑页提交数据之后，回到详情页，通知详情页刷新页面数据。
+
 ```javascript
 // in edit.js
 const APP = getApp()
 Page({
   submit () {
-    APP.setNotification('edit', true)
+    APP.setNotice('edit', true)
   }
 })
 ```
@@ -276,54 +356,21 @@ Page({
 const APP = getApp()
 Page({
   onShow () {
-    APP.checkNotification('edit', () => {
+    APP.checkNotice('edit', true, () => {
       console.log('Page edit has been changed')
     })
   }
 })
 ```
 
-#### 6.2 实现细节
-- 3个方法为了全局内可调用，**写在app.js里**。
-- **key应该放在Macro中**统一管理，为了不用在调用方法的文件中都引用Macro，统一在app.js中调用。
+#### 7.2 特殊说明
 
-```javascript
-APP({
-  setNotification (key, value) {
-    const self = this
-    const notification = Macro.CHANGE[key]
-    if (!notification) {
-      return
-    }
-    if (value === undefined) {
-      delete self.config[notification]
-      return
-    }
-    self.config[notification] = value
-  },
-  getNotification (key) {
-    const notification = Macro.CHANGE[key]
-    if (!notification) {
-      return ''
-    }
-    return this.config[notification]
-  },
-  checkNotification (key, value, callback) {
-    const self = this
-    if (typeof value === 'function') {
-      if (self.getNotification(key)) {
-        self.setNotification(key)
-        value()
-        return
-      }
-      return
-    }
-    if (typeof callback === 'function') {
-      if (self.getNotification(key) === value) {
-        self.setNotification(key)
-        callback()
-      }
-    }
-  }
-})
-```
+- setNotice (key, value)
+  + 设置全局的消息变量
+  + 若value值缺省，则会**删除**对应键值
+- getNotice (key)
+  + 根据键值获取对应消息值
+- checkNotice (key, value, callback)
+  + 检查键值对应消息值，符合条件则callback并**删除**对应键值
+- 3个方法为了全局内可调用，**写在app.js里**。
+- **key应该放在变量NOTICE中**统一管理，借助Symbol做唯一性处理。

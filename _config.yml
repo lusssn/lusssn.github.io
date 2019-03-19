@@ -116,3 +116,8 @@ deploy:
   type: git 
   repo: ssh://git@github.com/lusssn/lusssn.github.io 
   branch: master
+
+# hexo-toc
+toc:
+  maxDepth: 3
+  class: toc

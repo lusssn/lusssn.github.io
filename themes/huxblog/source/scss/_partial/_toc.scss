@@ -1,0 +1,22 @@
+.toc {
+  position: absolute;
+  width: $toc-width;
+  top: 50px;
+  right: 0;
+  padding-top: 30px;
+  padding-left: 15px;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    content: '目录';
+  }
+  ul, li {
+    list-style: none;
+    font-size: 14px;
+  }
+  ul {
+    padding-left: 15px;
+  }
+
+}

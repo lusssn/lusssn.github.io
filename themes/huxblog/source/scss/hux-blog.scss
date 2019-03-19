@@ -8,6 +8,7 @@
 @import "./_partial/_sidebar";
 @import "./_partial/_side-catalog";
 @import "./_partial/_tags";
+@import "./_partial/_toc";
 // Utils Style Class can be used in Markdown.
 small.img-hint {
 	display: block;
@@ -51,6 +52,7 @@ pre code {
 
 // In the post.
 .post-container {
+  position: relative;
 	a {
 		color: $blue-link;
 		// different to $brand-primary
@@ -124,6 +126,13 @@ pre code {
 		height: auto;
 		margin: 1.5em auto 1.6em auto;
 	}
+}
+
+// Large Screen
+@media (min-width: 768px){
+  .post-container{
+    padding-right: $toc-width;
+  }
 }
 
 // Header
