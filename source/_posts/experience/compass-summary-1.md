@@ -21,7 +21,7 @@ tags:
 - [搜索服务](https://lbs.amap.com/api/javascript-api/reference/search)：Autocomplete、DistrictSearch
 - [地图控件](https://lbs.amap.com/api/javascript-api/reference/map-control)：Scale、ToolBar
 
-通过看官方文档就能上手的部分就不啰嗦了。这里面比较坑的是图层、自建图层和搜索服务。
+通过看官方文档就能上手的部分就不啰嗦了。这里面值得一提的是图层、自建图层和搜索服务。
 * * *
 ### 1. 麻点图层 MassMarks
 > 需求说明
@@ -113,7 +113,7 @@ const getSvg = (iconName, color, bgType) => {
 **缺点：**覆盖的地区不全，不能调整边界线的粗细程度。
 
 #### 2.3 覆盖物结合图层
-综合上面两种方式的优缺点，最后采用二合一方式，贴一个伪代码：
+综合上面两种方式的优缺点，最后采用二合一方式，贴一个简单的代码：
 ```javascript
 const map = new AMap.Map('amap')
 const districtLayer = new AMap.DistrictLayer.Province({
@@ -122,11 +122,11 @@ const districtLayer = new AMap.DistrictLayer.Province({
     'county-stroke': '#CC66CC', // 中国区县边界
   }
 })
-const drawDistrictBounds = cityName => {
+const districtSearcher = new AMap.DistrictSearch()
+const drawDistrictBounds = async cityName => {
   // 用DistrictSearch根据城市名称获得城市的adcode、level。实现见本文4.1
-  const city = getAMapCity(cityName)
+  const city = await getAMapCity(districtSearcher, cityName)
   if (city.level === 'district') {
-    // 用DistrictSearch查询行政区边界，绘制Polygon。实现见本文4.2
     drawDistrictBoundsByCustom(city.adcode, city.level)
     return
   }
@@ -137,6 +137,19 @@ const drawDistrictBounds = cityName => {
     districtLayer.setDistricts([city.adcode])
   }
   map.add(districtLayer)
+}
+const drawDistrictBoundsByCustom = async (keyword, level = 'city') => {
+  // 用DistrictSearch查询行政区边界，绘制Polygon。实现见本文4.2
+  const group = await districtSearch(districtSearcher, { keyword, level })
+  const districtGroup = new AMap.OverlayGroup(group)
+  // 对此覆盖物群组设置同一属性
+  districtGroup.setOptions({
+    strokeWeight: 1,
+    fillOpacity: 0.3,
+    fillColor: '#CCF3FF',
+    strokeColor: '#CC66CC',
+  })
+  districtGroup.setMap(map)
 }
 ```
 * * *
@@ -161,7 +174,7 @@ const drawDistrictBounds = cityName => {
 ⚠️ 个别省市的行政区划分很特殊，目前发现的是重庆和苏州，重庆由重庆郊县和主城区组成，苏州由苏州工业园区和主城区组成。
 
 封装了两个搜索的方法，自我感觉并不是很满意，再慢慢优化吧。
-下面的代码引入了ramda工具库，缩写为R。
+下面的代码引入了[ramda工具库](https://ramdajs.com/docs/)，缩写为R。
 
 #### 4.1 搜索城市信息
 - searcher：DistrictSearch实例
