@@ -8,10 +8,12 @@ date: 2016-08-15 10:06:39
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。
 ES6语法能使代码变得更加简洁，很人性化。
-2018-03-20 更新Arrow Functions、Symbol
 <!-- more -->
 <!-- toc -->
-* * *
+
+### ChangeLog
+
+- 2018-03-20 更新Arrow Functions、Symbol
 
 ### 1. 数组遍历
 

@@ -6,8 +6,13 @@ headerimg: images/comm-header/technology.jpg
 date: 2016-04-11 00:00:00
 ---
 又整理了一遍『原型』和『原型链』，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了。
-2018-03-25 增加“拓展”、“继承”
 <!-- more -->
+<!-- toc -->
+
+### ChangeLog
+
+- 2018-03-25 增加“拓展”、“继承”
+
 ### 看一个实例
 ```javascript
 var animal = function() {};
@@ -62,7 +67,7 @@ console.log(tidy.price);
   
   ④ 如果``无 animal.price = 1000 ``，则会根据**animal**的 **\_\_proto\_\_** 找到下一个对象，最终都没有找到 `price`，**`结果就为undefined`**。
 
-### 深入
+### 拓展
 1. 创建一个对象的方式
 
   * {}、new Object()
