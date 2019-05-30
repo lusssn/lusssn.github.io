@@ -81,14 +81,14 @@
                     
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
                     
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -161,15 +161,15 @@
             <!-- 标签云 -->
             <div id="tag_cloud" class="tags">
                 
-                    <a href="#Tools" title="Tools" rel="2">Tools</a>
-                
                     <a href="#JS插件" title="JS插件" rel="1">JS插件</a>
+                
+                    <a href="#Tools" title="Tools" rel="2">Tools</a>
                 
                     <a href="#微信小程序" title="微信小程序" rel="3">微信小程序</a>
                 
-                    <a href="#多肉植物" title="多肉植物" rel="3">多肉植物</a>
-                
                     <a href="#JavaScript" title="JavaScript" rel="5">JavaScript</a>
+                
+                    <a href="#实用Demo" title="实用Demo" rel="1">实用Demo</a>
                 
                     <a href="#ECMAScript 6" title="ECMAScript 6" rel="1">ECMAScript 6</a>
                 
@@ -177,11 +177,33 @@
                 
                     <a href="#Angular2" title="Angular2" rel="1">Angular2</a>
                 
-                    <a href="#实用Demo" title="实用Demo" rel="1">实用Demo</a>
+                    <a href="#多肉植物" title="多肉植物" rel="3">多肉植物</a>
                 
             </div>
 
             <!-- 标签列表 -->
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="JS插件">
+                    <span class="tag-text">JS插件</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/03/experience/echarts/">
+                        <h2 class="post-title">
+                            Echarts折线图绘制
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="Tools">
@@ -221,28 +243,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="JS插件">
-                    <span class="tag-text">JS插件</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/03/experience/echarts/">
-                        <h2 class="post-title">
-                            Echarts折线图绘制
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="微信小程序">
                     <span class="tag-text">微信小程序</span>
                 </span>
@@ -252,9 +252,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2018/03/experience/wxapp-extend-page/">
+                     <a href="/2018/01/experience/wxapp-api-encapsulate/">
                         <h2 class="post-title">
-                            微信小程序Page扩展
+                            封装微信小程序API
                         </h2>
                         
                     </a>
@@ -267,9 +267,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2018/01/experience/wxapp-api-encapsulate/">
+                     <a href="/2018/03/experience/wxapp-extend-page/">
                         <h2 class="post-title">
-                            封装微信小程序API
+                            微信小程序Page扩展
                         </h2>
                         
                     </a>
@@ -295,58 +295,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="多肉植物">
-                    <span class="tag-text">多肉植物</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2017/03/planting/leaf-cutting/">
-                        <h2 class="post-title">
-                            多肉的无性繁殖
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2016/05/planting/succulent-planting/">
-                        <h2 class="post-title">
-                            多肉养护
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2016/05/planting/succulent-water/">
-                        <h2 class="post-title">
-                            多肉浇水
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="JavaScript">
                     <span class="tag-text">JavaScript</span>
                 </span>
@@ -356,9 +304,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2016/08/technology/es6/">
+                     <a href="/2016/01/technology/about-new-Date/">
                         <h2 class="post-title">
-                            ES6 新特性
+                            JS 中 new Date 的坑
                         </h2>
                         
                     </a>
@@ -371,9 +319,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2016/01/technology/about-new-Date/">
+                     <a href="/2016/08/technology/es6/">
                         <h2 class="post-title">
-                            JS 中 new Date 的坑
+                            ES6 新特性
                         </h2>
                         
                     </a>
@@ -419,6 +367,28 @@
                      <a href="/2016/04/technology/prototype-chain/">
                         <h2 class="post-title">
                             对原型链的理解
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="实用Demo">
+                    <span class="tag-text">实用Demo</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2016/09/technology/marquee/">
+                        <h2 class="post-title">
+                            无缝轮播的实现
                         </h2>
                         
                     </a>
@@ -525,8 +495,8 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="实用Demo">
-                    <span class="tag-text">实用Demo</span>
+                <span class="fa fa-tag listing-seperator" id="多肉植物">
+                    <span class="tag-text">多肉植物</span>
                 </span>
                 
                   <!-- <li class="listing-item">
@@ -534,9 +504,39 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2016/09/technology/marquee/">
+                     <a href="/2016/05/planting/succulent-planting/">
                         <h2 class="post-title">
-                            无缝轮播的实现
+                            多肉养护
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2017/03/planting/leaf-cutting/">
+                        <h2 class="post-title">
+                            多肉的无性繁殖
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2016/05/planting/succulent-water/">
+                        <h2 class="post-title">
+                            多肉浇水
                         </h2>
                         
                     </a>
@@ -697,6 +697,21 @@
 </script>
 
 <!-- Google Analytics -->
+
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _gaId = 'UA-141100372-1';
+    var _gaDomain = 'auto';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
 
 
 <!-- Baidu Tongji -->
