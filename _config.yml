@@ -21,20 +21,16 @@ email: lusssn@126.com
 weibo_username:     lusssn
 zhihu_username:     lusssn
 github_username:    lusssn
-# twitter_username:   Demonbane_x
-# facebook_username:  demonbane.cn
-# linkedin_username:  kaijun-chen-42089354
 
 # Build settings
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+anchorjs: true
 
 # Disqus settings
 disqus_username: lusssn
 
-# Duoshuo settings
-# duoshuo_username: kaijun
-# Share component is depend on Comment so we can NOT use share only.
-# duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+# Google Analytics
+ga_track_id: UA-141100372-1
+ga_domain: auto
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
