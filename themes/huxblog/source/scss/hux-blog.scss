@@ -44,7 +44,14 @@ pre code {
 	white-space: pre;	// save it but no-wrap;
 	word-wrap: normal;	// no-wrap
 }
-
+.image-container {
+  display: flex;
+  & > img {
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+  }
+}
 // In the list of posts
 .postlist-container {
 	margin-bottom: 15px;

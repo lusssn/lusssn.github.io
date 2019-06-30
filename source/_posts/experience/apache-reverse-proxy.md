@@ -1,14 +1,16 @@
 ---
-title: Mac自带Apache2设置反向代理
+title: Mac设置代理的方式
 tags:
   - Tools
 headerimg: images/comm-header/experience.jpg
 date: 2019-01-11 19:42:23
 ---
-在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，Apache设置反向代理并不难。
+在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，总结两种在Mac设置反向代理的方式。
 <!-- more -->
-折腾这些事情的背景需要说明一下。
+<!-- toc -->
+### 要设置代理的原因
 
+折腾这些事情的背景需要说明一下。
 首先在**测试环境**的域名为：`project.ndev.lusssn.cn`
 
 在网页上登录成功后，后端会在cookie中存一个认证令牌，这个令牌在公司内部子系统中都是通用的，所以它的Domain为 `lusssn.cn`
@@ -17,7 +19,8 @@ date: 2019-01-11 19:42:23
 
 > localhost 不能访问Domain为 lusssn.cn 的cookie
 
-解决方法：
+### 解决方法
+
 1. **将cookie的Domain更改为localhost**
   - 把Domain为 lusssn.cn 的cookie复制一份，Domain更改为localhost。
   - 这样的话，令牌过期一次就要手动复制粘贴一次。
@@ -26,6 +29,10 @@ date: 2019-01-11 19:42:23
 3. **本地通过带 lusssn.cn 域的自定义域名访问**
   - 这样即不用复制粘贴，也不用手动添加，与测试环境共享cookie。
   - 堪称完美～
+
+### 反向代理自定义域名
+
+#### 1. Apache2代理
 
 用Mac自带的Apache2起一个服务，设置反向代理，将自定义域名 `mydomain.lusssn.cn` 转发到localhost指定端口的服务即可。具体步骤和细节如下：
 
@@ -86,3 +93,32 @@ apachectl常用命令：
 - 查看虚拟host列表 `apachectl -t -D DUMP_VHOSTS`
 
 我自己配置的时候看了好些博客，没有一个是照做就能成功的，每一步骤总报错，不要怕，报错就去搜。
+
+#### 2. Charles代理
+
+用Apache2设置代理好在启动了守护进程之后，不关机就是无感的存在，但是配置过程有点复杂。
+同事小兄弟就找到了借助Charles代理的方式，很简单。
+
+**Step 1**
+
+下载Charles，并安装好。具体过程就跳过了
+
+**Step 2**
+
+打开Charles，选择菜单中Tools > Map Remote选项，按需配置映射的域名，就完了。
+
+![](tools.png) ![](edit-map.png)
+
+**Tips**
+
+配置完后，按道理打开浏览器，输入自定义的域名就能访问到本地页面了，但是有两个情况说明下：
+**1. Chrome安装了代理插件，比如 Switchy Omega**
+&emsp;&nbsp;这个情况下可能会导致浏览器内的网络访问先被插件拦截，走不到Charles。
+&emsp;&nbsp;**解决办法：**关掉插件，或者插件中增设一个代理。
+<span class="image-container">&emsp;&nbsp;![](omega.png)</span>
+
+**2. Charles代理开启时，FireFox中访问网络可能会被安全机制拦截**
+&emsp;&nbsp;**解决办法：**先将Charles的证书导出到本地
+<span class="image-container">&emsp;&nbsp;![](save-certificate.png)</span>
+&emsp;&nbsp;再导入FireFox中即可。
+<span class="image-container">&emsp;&nbsp;![](import-certificate.png)</span>
