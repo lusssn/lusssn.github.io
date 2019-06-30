@@ -13,7 +13,7 @@
 
     <title>
         
-          Mac自带Apache2设置反向代理 - Lusssn
+          Mac设置代理的方式 - Lusssn
         
     </title>
 
@@ -155,7 +155,7 @@
                           <a class="tag" href="/tags/#Tools" title="Tools">Tools</a>
                         
                     </div>
-                    <h1>Mac自带Apache2设置反向代理</h1>
+                    <h1>Mac设置代理的方式</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Chris Lu on
@@ -175,15 +175,28 @@
             <!-- Post Container -->
             <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
-                <p>在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，Apache设置反向代理并不难。<br><a id="more"></a><br>折腾这些事情的背景需要说明一下。</p>
-<p>首先在<strong>测试环境</strong>的域名为：<code>project.ndev.lusssn.cn</code></p>
+                <p>在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，总结两种在Mac设置反向代理的方式。<br><a id="more"></a></p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#要设置代理的原因">要设置代理的原因</a></li>
+<li><a href="#解决方法">解决方法</a></li>
+<li><a href="#反向代理自定义域名">反向代理自定义域名</a><ul>
+<li><a href="#1-apache2代理">1. Apache2代理</a></li>
+<li><a href="#2-charles代理">2. Charles代理</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+<p></p></div><p></p>
+<h3><span id="要设置代理的原因">要设置代理的原因</span></h3><p>折腾这些事情的背景需要说明一下。<br>首先在<strong>测试环境</strong>的域名为：<code>project.ndev.lusssn.cn</code></p>
 <p>在网页上登录成功后，后端会在cookie中存一个认证令牌，这个令牌在公司内部子系统中都是通用的，所以它的Domain为 <code>lusssn.cn</code></p>
 <p>我在<strong>本地环境</strong>开发通过 <code>localhost</code> 访问页面，借助Webpack反向代理，<strong>调用测试环境的后台接口</strong>（project.ndev.lusssn.cn）。然而</p>
 <blockquote>
 <p>localhost 不能访问Domain为 lusssn.cn 的cookie</p>
 </blockquote>
-<p>解决方法：</p>
-<ol>
+<h3><span id="解决方法">解决方法</span></h3><ol>
 <li><strong>将cookie的Domain更改为localhost</strong><ul>
 <li>把Domain为 lusssn.cn 的cookie复制一份，Domain更改为localhost。</li>
 <li>这样的话，令牌过期一次就要手动复制粘贴一次。</li>
@@ -199,7 +212,7 @@
 </ul>
 </li>
 </ol>
-<p>用Mac自带的Apache2起一个服务，设置反向代理，将自定义域名 <code>mydomain.lusssn.cn</code> 转发到localhost指定端口的服务即可。具体步骤和细节如下：</p>
+<h3><span id="反向代理自定义域名">反向代理自定义域名</span></h3><h4><span id="1-apache2代理">1. Apache2代理</span></h4><p>用Mac自带的Apache2起一个服务，设置反向代理，将自定义域名 <code>mydomain.lusssn.cn</code> 转发到localhost指定端口的服务即可。具体步骤和细节如下：</p>
 <p><strong>Step 1</strong></p>
 <p>终端运行 <code>sudo vi /etc/hosts</code><br>host列表中添加 <em>127.0.0.1  mydomain.lusssn.cn</em></p>
 <p><strong>Step 2</strong></p>
@@ -227,6 +240,15 @@
 <li>查看虚拟host列表 <code>apachectl -t -D DUMP_VHOSTS</code></li>
 </ul>
 <p>我自己配置的时候看了好些博客，没有一个是照做就能成功的，每一步骤总报错，不要怕，报错就去搜。</p>
+<h4><span id="2-charles代理">2. Charles代理</span></h4><p>用Apache2设置代理好在启动了守护进程之后，不关机就是无感的存在，但是配置过程有点复杂。<br>同事小兄弟就找到了借助Charles代理的方式，很简单。</p>
+<p><strong>Step 1</strong></p>
+<p>下载Charles，并安装好。具体过程就跳过了</p>
+<p><strong>Step 2</strong></p>
+<p>打开Charles，选择菜单中Tools &gt; Map Remote选项，按需配置映射的域名，就完了。</p>
+<p><img src="/2019/01/experience/apache-reverse-proxy/tools.png" alt=""> <img src="/2019/01/experience/apache-reverse-proxy/edit-map.png" alt=""></p>
+<p><strong>Tips</strong></p>
+<p>配置完后，按道理打开浏览器，输入自定义的域名就能访问到本地页面了，但是有两个情况说明下：<br><strong>1. Chrome安装了代理插件，比如 Switchy Omega</strong><br>&emsp;&nbsp;这个情况下可能会导致浏览器内的网络访问先被插件拦截，走不到Charles。<br>&emsp;&nbsp;<strong>解决办法：</strong>关掉插件，或者插件中增设一个代理。<br><span class="image-container">&emsp;&nbsp;<img src="/2019/01/experience/apache-reverse-proxy/omega.png" alt=""></span></p>
+<p><strong>2. Charles代理开启时，FireFox中访问网络可能会被安全机制拦截</strong><br>&emsp;&nbsp;<strong>解决办法：</strong>先将Charles的证书导出到本地<br><span class="image-container">&emsp;&nbsp;<img src="/2019/01/experience/apache-reverse-proxy/save-certificate.png" alt=""></span><br>&emsp;&nbsp;再导入FireFox中即可。<br><span class="image-container">&emsp;&nbsp;<img src="/2019/01/experience/apache-reverse-proxy/import-certificate.png" alt=""></span></p>
 
 
                 <hr>

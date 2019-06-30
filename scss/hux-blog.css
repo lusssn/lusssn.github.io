@@ -604,6 +604,13 @@ pre code {
   white-space: pre;
   word-wrap: normal; }
 
+.image-container {
+  display: flex; }
+  .image-container > img {
+    width: 100%;
+    flex: 1;
+    overflow: hidden; }
+
 .postlist-container {
   margin-bottom: 15px; }
 
