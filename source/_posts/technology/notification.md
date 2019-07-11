@@ -1,7 +1,6 @@
 ---
 title: Web桌面消息推送
-tags:
-  - JavaScript
+tags: JavaScript
 headerimg: images/comm-header/technology.jpg
 date: 2016-10-08 14:54:10
 ---

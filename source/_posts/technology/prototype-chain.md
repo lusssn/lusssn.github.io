@@ -1,7 +1,6 @@
 ---
 title: 对原型链的理解
-tags:
-  - JavaScript
+tags: JavaScript
 headerimg: images/comm-header/technology.jpg
 date: 2016-04-11 00:00:00
 ---

@@ -1,7 +1,6 @@
 ---
 title: 用 Github 管理 Hexo 的博客项目
-tags:
-  - Tools
+tags: Tools
 headerimg: images/comm-header/experience.jpg
 date: 2016-08-16 13:22:50
 ---

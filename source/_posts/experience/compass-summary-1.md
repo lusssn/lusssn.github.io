@@ -2,11 +2,11 @@
 title: 高德地图和D3js的结合（上）
 headerimg: images/comm-header/experience.jpg
 date: 2019-05-24 16:42:35
-tags:
+tags: JS插件
 ---
-最近负责开发一个地图项目，用到了高德地图的SDK和D3js，记录一下探索过程和心得体会吧。
+内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。
 <!-- more -->
-<!-- toc -->内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分。本篇是对高德地图使用的总结。
+<!-- toc -->最近负责开发一个地图项目，用到了高德地图的SDK和D3js，记录一下探索过程和心得体会吧。
 
 高德地图算是一款国内比较成熟的地图SDK了吧。
 完成这次项目用到了：
@@ -264,7 +264,7 @@ const districtSearch = (searcher, others = {}) => {
 }
 ```
 * * *
-### 5. 杂七杂八的记录
+### 5. 遇到的问题
 有些琐碎的、我觉得挺坑的点，也顺便记录在这里。
 - 🙄**OverlayGroup的作用很鸡肋**
 我还以为`AMap.OverlayGroup`是批量绘制覆盖物的对象，实际测试下来并不是，我估计它的底层只是代替开发者做了一个循环，因为对性能没有一点儿帮助。
@@ -279,6 +279,26 @@ const districtSearch = (searcher, others = {}) => {
 
 - 😤**clearMap接口效率奇低**
 清除地图上所有覆盖物的API `clearMap`，能把人逼疯。我们的业务场景下地图上绘制了成千上万的覆盖物，切换城市时这些覆盖物需要一次性清除掉，绘制新的。8000个覆盖物要耗费十几秒！实在恼火，且无能为力。
+
+- 🙄**绘制Polygon传入的path参数会被更改**
+创建一个`AMap.Polygon`时需要传入多边形的path参数，讲道理，函数不应该直接修改传引用的参数，亲测发现这里path会被改写。
+解决办法就是path传入时使用副本。
+```javascript
+const drawPolygon = (data) => {
+  const group = data.map(item => {
+    const polygon = R.map(p => ([p.lng, p.lat]), item.boundaries)
+    return new AMap.Polygon({
+      // 注意：如果没有传入拷贝的话，从getExtData取到的polygon参数就不再是期望值
+      path: R.clone(polygon),
+      extData: {
+        polygon,
+        ...R.omit(['blockIds', 'boundaries'], item)
+      },
+    })
+  })
+}
+```
+
 * * *
 高德只支持了点数据的海量绘制，需要海量绘制覆盖物的时候，性能就下滑得难以让人接受了，不得不另寻出路。
 借助CustomLayer，就可以自定义覆盖物的绘制方式，canvas也好，svg也好。

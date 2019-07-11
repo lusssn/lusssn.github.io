@@ -1,8 +1,6 @@
 ---
 title: ES6 新特性
-tags:
-  - JavaScript
-  - ECMAScript 6
+tags: JavaScript
 headerimg: images/comm-header/technology.jpg
 date: 2016-08-15 10:06:39
 ---

@@ -2,7 +2,7 @@
 title: 路由导航组件的实现
 headerimg: images/comm-header/experience.jpg
 date: 2018-07-19 17:19:40
-tags:
+tags: 实用Demo
 ---
 PC端的WEB项目中常常会需要一个路由导航的组件，可以显示当前路由的父级，点击可以跳转至相应页面。
 <!-- more -->

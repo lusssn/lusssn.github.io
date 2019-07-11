@@ -1,7 +1,6 @@
 ---
 title: JS 中 new Date 的坑
-tags:
-  - JavaScript
+tags: JavaScript
 headerimg: images/comm-header/technology.jpg
 date: 2016-01-24 00:00:00
 ---

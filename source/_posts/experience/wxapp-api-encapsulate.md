@@ -1,8 +1,7 @@
 ---
 title: 封装微信小程序API
 headerimg: images/comm-header/experience.jpg
-tags:
-  - 微信小程序
+tags: 微信小程序
 date: 2018-01-10 18:30:13
 ---
 微信小程序官方提供的API很多用起来都有点鸡肋，针对不同项目的业务需求做二次封装是有必要的，这篇文章记一些有通用性的封装，若读者觉得有不好的地方，欢迎指出。

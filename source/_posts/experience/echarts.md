@@ -1,7 +1,6 @@
 ---
 title: Echarts折线图绘制
-tags:
-  - JS插件
+tags: JS插件
 headerimg: images/comm-header/experience.jpg
 date: 2017-03-08 17:14:44
 ---

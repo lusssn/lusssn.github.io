@@ -1,8 +1,7 @@
 ---
 title: 语法解析的思路验证数学公式
 headerimg: images/comm-header/technology.jpg
-tags:
-  - JavaScript
+tags: 实用Demo
 date: 2018-11-05 10:36:59
 ---
 一个包含加减乘除和圆括号的基本数学公式，如何用JS去实现其语法正确性的判断呢？

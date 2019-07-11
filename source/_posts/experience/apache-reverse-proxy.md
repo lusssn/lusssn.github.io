@@ -1,7 +1,6 @@
 ---
 title: Mac设置代理的方式
-tags:
-  - Tools
+tags: Tools
 headerimg: images/comm-header/experience.jpg
 date: 2019-01-11 19:42:23
 ---
