@@ -152,6 +152,8 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
+                        
                     </div>
                     <h1>高德地图和D3js的结合（上）</h1>
                     <h2 class="subheading"></h2>
@@ -173,7 +175,7 @@
             <!-- Post Container -->
             <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
 
-                <p>最近负责开发一个地图项目，用到了高德地图的SDK和D3js，记录一下探索过程和心得体会吧。<br><a id="more"></a></p>
+                <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。<br><a id="more"></a></p>
 <div class="toc">
 
 <!-- toc -->
@@ -196,10 +198,10 @@
 <li><a href="#42-搜索区域边界线">4.2 搜索区域边界线</a></li>
 </ul>
 </li>
-<li><a href="#5-杂七杂八的记录">5. 杂七杂八的记录</a></li>
+<li><a href="#5-遇到的问题">5. 遇到的问题</a></li>
 </ul>
 <!-- tocstop -->
-<p></p></div>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分。本篇是对高德地图使用的总结。<p></p>
+<p></p></div>最近负责开发一个地图项目，用到了高德地图的SDK和D3js，记录一下探索过程和心得体会吧。<p></p>
 <p>高德地图算是一款国内比较成熟的地图SDK了吧。<br>完成这次项目用到了：</p>
 <ul>
 <li><a href="https://lbs.amap.com/api/javascript-api/reference/map" target="_blank" rel="noopener">地图生命周期和状态</a></li>
@@ -266,7 +268,7 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> districtSearch = <span class="function">(<span class="params">searcher, others = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; keyword, level, subDistrict = <span class="number">1</span> &#125; = others</span><br><span class="line">    <span class="comment">// all-返回行政区边界坐标点</span></span><br><span class="line">    searcher.setExtensions(<span class="string">'all'</span>)</span><br><span class="line">    <span class="comment">// 1-返回下一级行政区</span></span><br><span class="line">    searcher.setSubdistrict(subDistrict)</span><br><span class="line">    searcher.search(keyword, <span class="keyword">async</span> (status, result) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (status !== <span class="string">'complete'</span>) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> district = R.find(R.propEq(<span class="string">'level'</span>, level))(result.districtList)</span><br><span class="line">      <span class="keyword">if</span> (!district) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> &#123; boundaries, districtList = [] &#125; = district</span><br><span class="line">      <span class="comment">// 如果是城市级别，进一步获取下一级行政区</span></span><br><span class="line">      <span class="keyword">if</span> (level === <span class="string">'city'</span> &amp;&amp; !R.isEmpty(districtList)) &#123;</span><br><span class="line">        <span class="keyword">const</span> next = districtList.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> districtSearch(searcher, &#123; <span class="attr">keyword</span>: item.adcode, <span class="attr">level</span>: item.level &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">const</span> group = <span class="keyword">await</span> <span class="built_in">Promise</span>.all(next)</span><br><span class="line">        <span class="comment">// 如果是重庆市，处理重庆郊县</span></span><br><span class="line">        <span class="keyword">if</span> (district.adcode === <span class="string">'500100'</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> &#123; <span class="attr">districtList</span>: districtJiao &#125; = R.find(R.propEq(<span class="string">'adcode'</span>, <span class="string">'500200'</span>))(result.districtList)</span><br><span class="line">          <span class="keyword">const</span> nextJiao = districtJiao.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> districtSearch(searcher, &#123; <span class="attr">keyword</span>: item.adcode, <span class="attr">level</span>: item.level &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="built_in">Promise</span>.all(nextJiao).then(<span class="function"><span class="params">jiaoGroup</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(group.concat([jiaoGroup]))</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果是苏州市，处理苏州工业园区</span></span><br><span class="line">        <span class="keyword">if</span> (district.adcode === <span class="string">'320500'</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> districtPark = R.find(R.propEq(<span class="string">'adcode'</span>, <span class="string">'320571'</span>))(result.districtList)</span><br><span class="line">          <span class="keyword">const</span> industrialPark = districtPark.boundaries.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AMap.Polygon(&#123; <span class="attr">path</span>: item &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          resolve(group.concat([industrialPark]))</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        resolve(group)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 生成行政区划polygon</span></span><br><span class="line">      resolve(boundaries.map(<span class="function"><span class="params">item</span> =&gt;</span> (<span class="keyword">new</span> AMap.Polygon(&#123; <span class="attr">path</span>: item &#125;))))</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3><span id="5-杂七杂八的记录">5. 杂七杂八的记录</span></h3><p>有些琐碎的、我觉得挺坑的点，也顺便记录在这里。</p>
+<h3><span id="5-遇到的问题">5. 遇到的问题</span></h3><p>有些琐碎的、我觉得挺坑的点，也顺便记录在这里。</p>
 <ul>
 <li><p>🙄<strong>OverlayGroup的作用很鸡肋</strong><br>我还以为<code>AMap.OverlayGroup</code>是批量绘制覆盖物的对象，实际测试下来并不是，我估计它的底层只是代替开发者做了一个循环，因为对性能没有一点儿帮助。</p>
 </li>
@@ -275,6 +277,9 @@
 <li><p>😡<strong>moveend事件触发的时机和文档不符</strong><br>给地图绑定事件的时候，意外发现ToolBar控制、键盘控制地图缩放时，moveend事件没有被触发，但是鼠标滚轮控制缩放时就会触发moveend事件，真的是奇怪。<br>解决办法是全局添加一个标记值isZoomEnd，绑定zoomend事件，触发时置isZoomEnd为true，在moveend回调中阻止重复处理，并改isZoomEnd为false。</p>
 </li>
 <li><p>😤<strong>clearMap接口效率奇低</strong><br>清除地图上所有覆盖物的API <code>clearMap</code>，能把人逼疯。我们的业务场景下地图上绘制了成千上万的覆盖物，切换城市时这些覆盖物需要一次性清除掉，绘制新的。8000个覆盖物要耗费十几秒！实在恼火，且无能为力。</p>
+</li>
+<li><p>🙄<strong>绘制Polygon传入的path参数会被更改</strong><br>创建一个<code>AMap.Polygon</code>时需要传入多边形的path参数，讲道理，函数不应该直接修改传引用的参数，亲测发现这里path会被改写。<br>解决办法就是path传入时使用副本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> drawPolygon = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> group = data.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> polygon = R.map(<span class="function"><span class="params">p</span> =&gt;</span> ([p.lng, p.lat]), item.boundaries)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">      <span class="comment">// 注意：如果没有传入拷贝的话，从getExtData取到的polygon参数就不再是期望值</span></span><br><span class="line">      path: R.clone(polygon),</span><br><span class="line">      extData: &#123;</span><br><span class="line">        polygon,</span><br><span class="line">        ...R.omit([<span class="string">'blockIds'</span>, <span class="string">'boundaries'</span>], item)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <hr>
@@ -287,6 +292,10 @@
                 
 
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/experience/compass-summary-2/" data-toggle="tooltip" data-placement="top" title="高德地图和D3js的结合（下）">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -323,6 +332,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
+                        
                     </div>
                 </section>
                 

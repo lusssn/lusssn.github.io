@@ -152,7 +152,7 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#ThreeJs" title="ThreeJs">ThreeJs</a>
+                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
                         
                     </div>
                     <h1>旋转</h1>
@@ -203,6 +203,7 @@
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// loadObject</span></span><br><span class="line">loader.load(<span class="string">'./js/model/model.obj'</span>, onLoad);</span><br><span class="line"><span class="keyword">var</span> mesh, material = <span class="keyword">new</span> THREE.MeshLambertMaterial(&#123;<span class="attr">color</span>: <span class="number">0xffffff</span>&#125;),</span><br><span class="line">	pivot = <span class="keyword">new</span> THREE.Group();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onLoad</span>(<span class="params">object</span>) </span>&#123;</span><br><span class="line">	mesh = object;</span><br><span class="line">	<span class="keyword">var</span> objBbox = <span class="keyword">new</span> THREE.Box3().setFromObject(mesh);</span><br><span class="line">	<span class="comment">// 通过模型边界框获取模型中心（目标旋转点）</span></span><br><span class="line">	<span class="keyword">var</span> bboxCenter = objBbox.clone().getCenter();</span><br><span class="line">	<span class="comment">// 添加材质</span></span><br><span class="line">	mesh.children.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">child</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (child <span class="keyword">instanceof</span> THREE.Mesh) &#123;</span><br><span class="line">			child.material = material;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="comment">// 反方向移动物体</span></span><br><span class="line">	mesh.position.set(-bboxCenter.x, -bboxCenter.y, -bboxCenter.z);</span><br><span class="line">	scene.add(pivot);</span><br><span class="line">	pivot.add(mesh);</span><br><span class="line">	<span class="comment">// 移动Group的位置到目标旋转点</span></span><br><span class="line">	pivot.position.set(bboxCenter.x, bboxCenter.y, bboxCenter.z);</span><br><span class="line">	animation();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animation</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	requestAnimationFrame(animation);</span><br><span class="line">	<span class="comment">// 旋转新世界</span></span><br><span class="line">	pivot.rotation.y += <span class="number">0.02</span>;</span><br><span class="line">	renderer.render(scene, camera);</span><br><span class="line">	stats.update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
                 <hr>
 
                 
@@ -248,7 +249,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#ThreeJs" title="ThreeJs">ThreeJs</a>
+                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
                         
                     </div>
                 </section>
