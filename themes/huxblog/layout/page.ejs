@@ -1,24 +1,8 @@
 ---
 layout: layout
 ---
-<!-- Page Header Home Page -->
-<header
-        class="intro-header"
-        style="background-image: url('<%= config.root %><%= page["headerimg"] || config["headerimg"] %>')"
->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1><%= page.title || config.title %></h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"><%= page.description || config.subtitle || "" %></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--<canvas class="canvas-heading" id="fogCanvas"></canvas>-->
-</header>
+
+<%- partial('_partial/header') %>
 
 <!-- Main Content -->
 <div class="container">

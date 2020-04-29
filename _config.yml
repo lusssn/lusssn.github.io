@@ -33,7 +33,7 @@ ga_track_id: UA-141100372-1
 ga_domain: auto
 
 # Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
+sidebar: false                           # whether or not using Sidebar.
 sidebar-about-description: "Do you see the gift?"
 sidebar-avatar: images/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
@@ -104,13 +104,13 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: huxblog 
+theme: huxblog
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
-deploy: 
-  type: git 
-  repo: ssh://git@github.com/lusssn/lusssn.github.io 
+deploy:
+  type: git
+  repo: ssh://git@github.com/lusssn/lusssn.github.io
   branch: master
 
 # hexo-toc

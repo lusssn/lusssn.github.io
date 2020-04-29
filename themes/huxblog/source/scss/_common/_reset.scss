@@ -20,7 +20,7 @@ a {
 	color: $gray-dark;
 	&:hover,
 	&:focus {
-		color: $brand-primary;
+		color: $theme-primary;
 	}
 }
 a img {
@@ -53,12 +53,12 @@ blockquote {
 // -- Highlight Color Customization
 ::-moz-selection {
 	color: white;
-	background: $brand-primary;
+	background: $theme-primary;
 	text-shadow: none;
 }
 ::selection {
 	color: white;
-	background: $brand-primary;
+	background: $theme-primary;
 	text-shadow: none;
 }
 img::selection {
@@ -68,4 +68,4 @@ img::selection {
 img::-moz-selection {
 	color: white;
 	background: transparent;
-}
+}

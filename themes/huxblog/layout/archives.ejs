@@ -2,27 +2,14 @@
 layout: layout
 ---
 
-<!-- Page Header -->
-<header class="intro-header" style="background-image: url('<%= config.root %><%= page["headerimg"] || config["headerimg"] %>')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1><%= page.title || config.title %></h1>
-                    <span class="subheading"><%= page.description || config.subtitle || "" %></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+<%- partial('_partial/header') %>
 
 <!-- Main Content -->
-<div class="container">
+<div class="container site-content">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <!-- 归档列表 -->
-
-            <% 
+            <%
                 var years = {};
                 site.posts.sort('date').reverse().forEach(function(post){
                     var year = post.date.year()
@@ -32,9 +19,7 @@ layout: layout
                     years[year].push(post);
                 });
             %>
-
              <!-- 归档列表 -->
-
             <% Object.keys(years).reverse().forEach(function(year){  %>
             <div class="one-tag-list">
                 <span class="fa fa-calendar-times-o listing-seperator" id="<%= year %>">
@@ -55,8 +40,6 @@ layout: layout
                 </ul>
             </div>
             <% }) %>
-
-
         </div>
     </div>
 </div>

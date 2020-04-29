@@ -1,6 +1,6 @@
 // Variables
 
-$brand-primary: #b18db1;
+$theme-primary: #b18db1;
 
 $gray-dark: lighten(black, 25%);
 
@@ -8,10 +8,11 @@ $gray: lighten(black, 50%);
 
 $gray-l: lighten(black, 75%);
 
-$white-faded: opacify(rgba(255, 255, 255, 0), 0.8);
-
 $gray-light: #eee;
 
 $blue-link: #337AB7;
 
 $toc-width: 200px;
+
+// size
+$nav-height: 50px;
