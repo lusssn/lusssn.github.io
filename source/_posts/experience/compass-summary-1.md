@@ -6,9 +6,10 @@ tags: JS插件
 ---
 内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。
 <!-- more -->
-<!-- toc -->最近负责开发一个地图项目，用到了高德地图的SDK和D3js，记录一下探索过程和心得体会吧。
+<!-- toc -->国内Web端用到的地图引擎，基本是高德、百度和腾讯三家中的一个。
+我最后选择了高德，虽然我司不是阿里系，但是腾讯的文档不完善，接口也不够丰富。至于百度嘛，不知道为啥，做的时候根本没有想起来要去对它做调研，就这样忘记它吧～
 
-高德地图算是一款国内比较成熟的地图SDK了吧。
+
 完成这次项目用到了：
 - [地图生命周期和状态](https://lbs.amap.com/api/javascript-api/reference/map)
 - [基础类](https://lbs.amap.com/api/javascript-api/reference/core)：Pixel、LngLat、Bounds
