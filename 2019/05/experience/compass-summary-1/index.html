@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+          高德地图和D3js的结合（上） - Lusssn
+        
+    </title>
+
+    <link rel="canonical" href="https://lusssn.github.io/2019/05/experience/compass-summary-1/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">lusssn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>高德地图和D3js的结合（上）</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#JS插件"
+                        title="JS插件"
+                >
+                    JS插件
+                </a>
+            
+        </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2019-05-24
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="post-container">
+                <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。<br><a id="more"></a></p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#1-麻点图层-massmarks">1. 麻点图层 MassMarks</a><ul>
+<li><a href="#11-图标尺寸">1.1 图标尺寸</a></li>
+<li><a href="#12-图标形状">1.2 图标形状</a></li>
+<li><a href="#13-图标颜色">1.3 图标颜色</a></li>
+</ul>
+</li>
+<li><a href="#2-行政区图层-districtlayer">2. 行政区图层 DistrictLayer</a><ul>
+<li><a href="#21-覆盖物">2.1 覆盖物</a></li>
+<li><a href="#22-图层">2.2 图层</a></li>
+<li><a href="#23-覆盖物结合图层">2.3 覆盖物结合图层</a></li>
+</ul>
+</li>
+<li><a href="#3-自建图层-customlayer">3. 自建图层 CustomLayer</a></li>
+<li><a href="#4-搜索服务-districtsearch">4. 搜索服务 DistrictSearch</a><ul>
+<li><a href="#41-搜索城市信息">4.1 搜索城市信息</a></li>
+<li><a href="#42-搜索区域边界线">4.2 搜索区域边界线</a></li>
+</ul>
+</li>
+<li><a href="#5-遇到的问题">5. 遇到的问题</a></li>
+</ul>
+<!-- tocstop -->
+<p></div>国内Web端用到的地图引擎，基本是高德、百度和腾讯三家中的一个。<br>我最后选择了高德，虽然我司不是阿里系，但是腾讯的文档不完善，接口也不够丰富。至于百度嘛，不知道为啥，做的时候根本没有想起来要去对它做调研，就这样忘记它吧～</p>
+<p>完成这次项目用到了：</p>
+<ul>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/map" target="_blank" rel="noopener">地图生命周期和状态</a></li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/core" target="_blank" rel="noopener">基础类</a>：Pixel、LngLat、Bounds</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/overlay" target="_blank" rel="noopener">覆盖物</a>：Marker、Polygon、Rectangle、OverlayGroup</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/infowindow" target="_blank" rel="noopener">信息窗体</a>：InfoWindow</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/layer" target="_blank" rel="noopener">图层</a>：MassMarks、DistrictLayer</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/self-own-layers" target="_blank" rel="noopener">自建图层</a>：CustomLayer</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/search" target="_blank" rel="noopener">搜索服务</a>：Autocomplete、DistrictSearch</li>
+<li><a href="https://lbs.amap.com/api/javascript-api/reference/map-control" target="_blank" rel="noopener">地图控件</a>：Scale、ToolBar</li>
+</ul>
+<p>通过看官方文档就能上手的部分就不啰嗦了。这里面值得一提的是图层、自建图层和搜索服务。</p>
+<hr>
+<h3><span id="1-麻点图层-massmarks">1. 麻点图层 MassMarks</span></h3><blockquote>
+<p>需求说明<br>☝🏼 将3000多个数据，以图标的方式渲染到地图上<br>✌🏼 图标的颜色和形状取决于接口返回的字段<br>👌🏼 图标的尺寸根据地图当前的缩放级别动态调整</p>
+</blockquote>
+<p>因为高德地图已经有高效渲染海量点数据的API，直接用就是了。<br>需要自己稍微处理一下的部分就是图标的形状、颜色和尺寸。</p>
+<h4><span id="11-图标尺寸">1.1 图标尺寸</span></h4><p>设置尺寸很容易，根据缩放级别设置相应的图标尺寸，修改配置项中的<code>style &gt; size</code>即可（size支持数组或者<code>AMap.Size</code>类）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MASS_STYLE_MAPPING = &#123;</span><br><span class="line">  <span class="number">9</span>: [<span class="number">4</span>, <span class="number">4</span>], <span class="comment">// 20km</span></span><br><span class="line">  <span class="number">10</span>: [<span class="number">6</span>, <span class="number">6</span>], <span class="comment">// 10km</span></span><br><span class="line">  <span class="number">11</span>: [<span class="number">10</span>, <span class="number">10</span>], <span class="comment">// 5km</span></span><br><span class="line">  <span class="number">12</span>: [<span class="number">10</span>, <span class="number">10</span>], <span class="comment">// 2km</span></span><br><span class="line">  <span class="number">13</span>: [<span class="number">20</span>, <span class="number">20</span>], <span class="comment">// 1km</span></span><br><span class="line">  <span class="number">14</span>: [<span class="number">20</span>, <span class="number">20</span>], <span class="comment">// 500m</span></span><br><span class="line">  <span class="number">15</span>: [<span class="number">22</span>, <span class="number">22</span>], <span class="comment">// 200m</span></span><br><span class="line">  <span class="number">16</span>: [<span class="number">22</span>, <span class="number">22</span>], <span class="comment">// 200m</span></span><br><span class="line">  <span class="number">17</span>: [<span class="number">26</span>, <span class="number">26</span>], <span class="comment">// 100m</span></span><br><span class="line">  <span class="number">18</span>: [<span class="number">26</span>, <span class="number">26</span>], <span class="comment">// 50m</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4><span id="12-图标形状">1.2 图标形状</span></h4><p>设置图标形状对应配置<code>style &gt; url</code>。<br>文档中只说url是图标地址，string类型，看示例用的是网络图片地址。<br>经过测试摸索后发现，<strong>是支持svg字符串的</strong>，为了方便配置图标颜色，svg当然是比图片灵活许多。<br>最后的实现方案：</p>
+<ol>
+<li>接口返回的数据包含该点的图标名称</li>
+<li>前端静态维护名称-path的映射</li>
+<li>渲染图标的时候，根据图标名称找到对应的path，动态生成svg字符串</li>
+</ol>
+<p>贴一下前端动态生成svg字符串的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> SVG_MAPPING = &#123;</span><br><span class="line">  user: &#123;</span><br><span class="line">    viewBox: <span class="string">'0 0 20 20'</span>,</span><br><span class="line">    path: <span class="string">'M19 19h-18v-1c0-5 4-9 9-9s9 4 9 9v1zM3.1 17h13.9c-0.5-3.4-3.4-6-6.9-6s-6.5 2.6-7 6z M10 11c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5zM10 3c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 动态生成svg字符串</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>iconName 图标名称</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>color 图标颜色</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param </span>bgType 如需添加背景色，传入rect或者circle</span></span><br><span class="line"><span class="comment">* <span class="doctag">@returns <span class="type">&#123;string&#125;</span></span></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> getSvg = <span class="function">(<span class="params">iconName, color, bgType</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> svg = SVG_MAPPING[iconName]</span><br><span class="line">  <span class="keyword">if</span> (!svg) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> bg = <span class="string">''</span></span><br><span class="line">  <span class="keyword">if</span> (bgType === <span class="string">'rect'</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> box = svg.viewBox.split(<span class="string">' '</span>)</span><br><span class="line">    bg = <span class="string">`%3Cpath fill='%23fff' d='M0 0h<span class="subst">$&#123;box[<span class="number">2</span>]&#125;</span>v<span class="subst">$&#123;box[<span class="number">3</span>]&#125;</span>H0z'/%3E`</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bgType === <span class="string">'circle'</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> r = svg.viewBox.split(<span class="string">' '</span>)[<span class="number">2</span>] / <span class="number">2</span></span><br><span class="line">    bg = <span class="string">`%3Ccircle fill='%23fff' cx='<span class="subst">$&#123;r&#125;</span>' cy='<span class="subst">$&#123;r&#125;</span>' r='<span class="subst">$&#123;r&#125;</span>'/%3E`</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='<span class="subst">$&#123;svg.viewBox&#125;</span>'%3E<span class="subst">$&#123;bg&#125;</span>%3Cpath fill='<span class="subst">$&#123;color&#125;</span>' d='<span class="subst">$&#123;svg.path&#125;</span>'/%3E%3C/svg%3E`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4><span id="13-图标颜色">1.3 图标颜色</span></h4><p>图标是什么颜色是接口返回的，在动态生成svg字符串的时候，同时传入颜色字段就可以了。</p>
+<hr>
+<h3><span id="2-行政区图层-districtlayer">2. 行政区图层 DistrictLayer</span></h3><blockquote>
+<p>需求说明<br>☝🏼 页面可以进行城市切换<br>✌🏼 地图上显示当前城市地图，并绘制行政区域边界线</p>
+</blockquote>
+<p><img src="/.io//shanghai.png" alt=""></p>
+<h4><span id="21-覆盖物">2.1 覆盖物</span></h4><p>最开始的方案，是先用DistrictSearch根据城市名称获得城市的adcode，再用城市adcode和level去查询下面的行政区边界，最后绘制成<code>AMap.Polygon</code>类。<br><strong>优点：</strong>可以自定义边界线的粗细程度。<br><strong>缺点：</strong>耗费时间，大概要600ms。</p>
+<h4><span id="22-图层">2.2 图层</span></h4><p>后来发现高德2018-09-12就发布了简易行政区图层插件。<br>这个插件用起来很简单，重点是特别快，大概200ms完成绘制。<br>但是它真的太简单，只支持到大部分市级的行政区边界，太仓、辛集都没有，重庆绘制出来不包括郊县。<br><strong>优点：</strong>绘制高效，调用简单。<br><strong>缺点：</strong>覆盖的地区不全，不能调整边界线的粗细程度。</p>
+<h4><span id="23-覆盖物结合图层">2.3 覆盖物结合图层</span></h4><p>综合上面两种方式的优缺点，最后采用二合一方式，贴一个简单的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">'amap'</span>)</span><br><span class="line"><span class="keyword">const</span> districtLayer = <span class="keyword">new</span> AMap.DistrictLayer.Province(&#123;</span><br><span class="line">  styles: &#123;</span><br><span class="line">    fill: <span class="string">'rgba(204,243,255,0.3)'</span>,</span><br><span class="line">    <span class="string">'county-stroke'</span>: <span class="string">'#CC66CC'</span>, <span class="comment">// 中国区县边界</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> districtSearcher = <span class="keyword">new</span> AMap.DistrictSearch()</span><br><span class="line"><span class="keyword">const</span> drawDistrictBounds = <span class="keyword">async</span> cityName =&gt; &#123;</span><br><span class="line">  <span class="comment">// 用DistrictSearch根据城市名称获得城市的adcode、level。实现见本文4.1</span></span><br><span class="line">  <span class="keyword">const</span> city = <span class="keyword">await</span> getAMapCity(districtSearcher, cityName)</span><br><span class="line">  <span class="keyword">if</span> (city.level === <span class="string">'district'</span>) &#123;</span><br><span class="line">    drawDistrictBoundsByCustom(city.adcode, city.level)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 处理重庆郊县</span></span><br><span class="line">  <span class="keyword">if</span> (city.adcode === <span class="string">'500100'</span>) &#123;</span><br><span class="line">    districtLayer.setDistricts([city.adcode, <span class="number">500200</span>])</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    districtLayer.setDistricts([city.adcode])</span><br><span class="line">  &#125;</span><br><span class="line">  map.add(districtLayer)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> drawDistrictBoundsByCustom = <span class="keyword">async</span> (keyword, level = <span class="string">'city'</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 用DistrictSearch查询行政区边界，绘制Polygon。实现见本文4.2</span></span><br><span class="line">  <span class="keyword">const</span> group = <span class="keyword">await</span> districtSearch(districtSearcher, &#123; keyword, level &#125;)</span><br><span class="line">  <span class="keyword">const</span> districtGroup = <span class="keyword">new</span> AMap.OverlayGroup(group)</span><br><span class="line">  <span class="comment">// 对此覆盖物群组设置同一属性</span></span><br><span class="line">  districtGroup.setOptions(&#123;</span><br><span class="line">    strokeWeight: <span class="number">1</span>,</span><br><span class="line">    fillOpacity: <span class="number">0.3</span>,</span><br><span class="line">    fillColor: <span class="string">'#CCF3FF'</span>,</span><br><span class="line">    strokeColor: <span class="string">'#CC66CC'</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  districtGroup.setMap(map)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3><span id="3-自建图层-customlayer">3. 自建图层 CustomLayer</span></h3><blockquote>
+<p>需求说明<br>自定义图层内容<br>图层状态可以同步地图的缩放、平移、尺寸变化状态</p>
+</blockquote>
+<p>高德的自定义图层功能必须给点个赞，这个功能给地图产品带来更多的可能。除了CustomLayer，还有TileLayer、ImageLayer、CanvasLayer、VideoLayer。不是很明白细化这些图层的原因是什么，感觉有个万能的CustomLayer就够了。</p>
+<p>使用起来也简单：</p>
+<ol>
+<li>加载CustomLayer插件</li>
+<li>创建CustomLayer实例，初始化render方法，此方法会在地图状态变化时被调用</li>
+<li>添加自定义图层到地图实例</li>
+</ol>
+<p>需要注意的是，render方法会有被频繁调用可能，最好是做一个<strong>防抖判断</strong>。</p>
+<hr>
+<h3><span id="4-搜索服务-districtsearch">4. 搜索服务 DistrictSearch</span></h3><p>坑点有二<br>⚠️ 高德的行政级别划分跟我们的认知不一致。举个例子，重庆市我认为是市级别，但是高德是省级；太仓市我认为是市级别，实际又是区级。<br>⚠️ 个别省市的行政区划分很特殊，目前发现的是重庆和苏州，重庆由重庆郊县和主城区组成，苏州由苏州工业园区和主城区组成。</p>
+<p>封装了两个搜索的方法，自我感觉并不是很满意，再慢慢优化吧。<br>下面的代码引入了<a href="https://ramdajs.com/docs/" target="_blank" rel="noopener">ramda工具库</a>，缩写为R。</p>
+<h4><span id="41-搜索城市信息">4.1 搜索城市信息</span></h4><ul>
+<li>searcher：DistrictSearch实例</li>
+<li>keyword：关键字（城市名称或adcode）</li>
+<li>level：搜索级别</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getAMapCity = <span class="function">(<span class="params">searcher, keyword, level = <span class="string">'city'</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// base-不返回行政区边界坐标点</span></span><br><span class="line">    searcher.setExtensions(<span class="string">'base'</span>)</span><br><span class="line">    <span class="comment">// 0-不返回下级行政区</span></span><br><span class="line">    searcher.setSubdistrict(<span class="number">0</span>)</span><br><span class="line">    searcher.search(keyword, (status, result) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (status !== <span class="string">'complete'</span>) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> district = R.find(R.propEq(<span class="string">'level'</span>, level))(result.districtList) || result.districtList[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">if</span> (!district) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      resolve(district)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="42-搜索区域边界线">4.2 搜索区域边界线</span></h4><ul>
+<li>searcher：DistrictSearch实例</li>
+<li>others：更多配置<ul>
+<li>keyword：关键字（城市名称或adcode）</li>
+<li>level：搜索级别</li>
+<li>subDistrict：是否获取下一级的行政区边界 1-返回，0-不返回</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> districtSearch = <span class="function">(<span class="params">searcher, others = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; keyword, level, subDistrict = <span class="number">1</span> &#125; = others</span><br><span class="line">    <span class="comment">// all-返回行政区边界坐标点</span></span><br><span class="line">    searcher.setExtensions(<span class="string">'all'</span>)</span><br><span class="line">    <span class="comment">// 1-返回下一级行政区</span></span><br><span class="line">    searcher.setSubdistrict(subDistrict)</span><br><span class="line">    searcher.search(keyword, <span class="keyword">async</span> (status, result) =&gt; &#123;</span><br><span class="line">      <span class="keyword">if</span> (status !== <span class="string">'complete'</span>) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> district = R.find(R.propEq(<span class="string">'level'</span>, level))(result.districtList)</span><br><span class="line">      <span class="keyword">if</span> (!district) &#123;</span><br><span class="line">        reject(result)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">const</span> &#123; boundaries, districtList = [] &#125; = district</span><br><span class="line">      <span class="comment">// 如果是城市级别，进一步获取下一级行政区</span></span><br><span class="line">      <span class="keyword">if</span> (level === <span class="string">'city'</span> &amp;&amp; !R.isEmpty(districtList)) &#123;</span><br><span class="line">        <span class="keyword">const</span> next = districtList.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> districtSearch(searcher, &#123; <span class="attr">keyword</span>: item.adcode, <span class="attr">level</span>: item.level &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">const</span> group = <span class="keyword">await</span> <span class="built_in">Promise</span>.all(next)</span><br><span class="line">        <span class="comment">// 如果是重庆市，处理重庆郊县</span></span><br><span class="line">        <span class="keyword">if</span> (district.adcode === <span class="string">'500100'</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> &#123; <span class="attr">districtList</span>: districtJiao &#125; = R.find(R.propEq(<span class="string">'adcode'</span>, <span class="string">'500200'</span>))(result.districtList)</span><br><span class="line">          <span class="keyword">const</span> nextJiao = districtJiao.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> districtSearch(searcher, &#123; <span class="attr">keyword</span>: item.adcode, <span class="attr">level</span>: item.level &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="built_in">Promise</span>.all(nextJiao).then(<span class="function"><span class="params">jiaoGroup</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(group.concat([jiaoGroup]))</span><br><span class="line">          &#125;)</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果是苏州市，处理苏州工业园区</span></span><br><span class="line">        <span class="keyword">if</span> (district.adcode === <span class="string">'320500'</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> districtPark = R.find(R.propEq(<span class="string">'adcode'</span>, <span class="string">'320571'</span>))(result.districtList)</span><br><span class="line">          <span class="keyword">const</span> industrialPark = districtPark.boundaries.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AMap.Polygon(&#123; <span class="attr">path</span>: item &#125;)</span><br><span class="line">          &#125;)</span><br><span class="line">          resolve(group.concat([industrialPark]))</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        resolve(group)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 生成行政区划polygon</span></span><br><span class="line">      resolve(boundaries.map(<span class="function"><span class="params">item</span> =&gt;</span> (<span class="keyword">new</span> AMap.Polygon(&#123; <span class="attr">path</span>: item &#125;))))</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3><span id="5-遇到的问题">5. 遇到的问题</span></h3><p>有些琐碎的、我觉得挺坑的点，也顺便记录在这里。</p>
+<ul>
+<li><p>🙄<strong>OverlayGroup的作用很鸡肋</strong><br>我还以为<code>AMap.OverlayGroup</code>是批量绘制覆盖物的对象，实际测试下来并不是，我估计它的底层只是代替开发者做了一个循环，因为对性能没有一点儿帮助。</p>
+</li>
+<li><p>🙄<strong>获取Bounds中心点存在问题</strong><br>创建一个<code>AMap.Rectangle</code>时需要传入矩形的bounds参数，文档是说用东北-西南角坐标。亲测下来，这样会在创建完矩形后，获取bounds中心点时，经度为负数。<br>解决办法就是使用西北-东南角坐标。</p>
+</li>
+<li><p>😡<strong>moveend事件触发的时机和文档不符</strong><br>给地图绑定事件的时候，意外发现ToolBar控制、键盘控制地图缩放时，moveend事件没有被触发，但是鼠标滚轮控制缩放时就会触发moveend事件，真的是奇怪。<br>解决办法是全局添加一个标记值isZoomEnd，绑定zoomend事件，触发时置isZoomEnd为true，在moveend回调中阻止重复处理，并改isZoomEnd为false。</p>
+</li>
+<li><p>😤<strong>clearMap接口效率奇低</strong><br>清除地图上所有覆盖物的API <code>clearMap</code>，能把人逼疯。我们的业务场景下地图上绘制了成千上万的覆盖物，切换城市时这些覆盖物需要一次性清除掉，绘制新的。8000个覆盖物要耗费十几秒！实在恼火，且无能为力。</p>
+</li>
+<li><p>🙄<strong>绘制Polygon传入的path参数会被更改</strong><br>创建一个<code>AMap.Polygon</code>时需要传入多边形的path参数，讲道理，函数不应该直接修改传引用的参数，亲测发现这里path会被改写。<br>解决办法就是path传入时使用副本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> drawPolygon = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> group = data.map(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> polygon = R.map(<span class="function"><span class="params">p</span> =&gt;</span> ([p.lng, p.lat]), item.boundaries)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> AMap.Polygon(&#123;</span><br><span class="line">      <span class="comment">// 注意：如果没有传入拷贝的话，从getExtData取到的polygon参数就不再是期望值</span></span><br><span class="line">      path: R.clone(polygon),</span><br><span class="line">      extData: &#123;</span><br><span class="line">        polygon,</span><br><span class="line">        ...R.omit([<span class="string">'blockIds'</span>, <span class="string">'boundaries'</span>], item)</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>高德只支持了点数据的海量绘制，需要海量绘制覆盖物的时候，性能就下滑得难以让人接受了，不得不另寻出路。<br>借助CustomLayer，就可以自定义覆盖物的绘制方式，canvas也好，svg也好。</p>
+<p>下面一篇文就继续总结高德地图配合D3js的开发经验。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a
+                                    href="/2019/07/experience/compass-summary-2/" data-toggle="tooltip"
+                                    data-placement="top" title="高德地图和D3js的结合（下）"
+                            >&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a
+                                    href="/2019/01/experience/apache-reverse-proxy/" data-toggle="tooltip"
+                                    data-placement="top" title="Mac设置代理的方式"
+                            >Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- Comment Content -->
+
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2019/05/experience/compass-summary-1/";
+        var disqus_url = "https://lusssn.github.io/2019/05/experience/compass-summary-1/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
+
+            </div>
+            <!-- Side Catalog Container -->
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right'
+        };
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
+        }
+    </style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; lusssn 2020
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+
+<!-- async load function -->
+<script type="text/javascript">
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("https://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- jquery.tagcloud.js -->
+<script type="text/javascript">
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length){
+        async("https://lusssn.github.io/js/jquery.tagcloud.js", function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#b18db1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!-- fastClick.js -->
+<script type="text/javascript">
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _gaId = 'UA-141100372-1';
+    var _gaDomain = 'auto';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
