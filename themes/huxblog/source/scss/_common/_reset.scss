@@ -40,12 +40,12 @@ blockquote {
 		margin: 0;
 	}
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: $screen-width-sm) {
 	select {
 		margin-top: 15px;
 		padding: 0 .4em;
-		color: $blue-link;
-		border-color: $blue-link;
+		color: $link-color;
+		border-color: $link-color;
 		background: white;
 		-webkit-appearance: none;
 	}

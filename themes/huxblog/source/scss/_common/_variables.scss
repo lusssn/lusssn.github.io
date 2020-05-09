@@ -1,18 +1,21 @@
 // Variables
-
-$theme-primary: #b18db1;
-
+// Color
+$theme-primary: #B18DB1;
 $gray-dark: lighten(black, 25%);
-
 $gray: lighten(black, 50%);
+$gray-light: lighten(black, 75%);
+$border-color: #EEEEEE;
+$muted-text: #A3A3A3;
+$link-color: #337AB7;
 
-$gray-l: lighten(black, 75%);
-
-$gray-light: #eee;
-
-$blue-link: #337AB7;
-
+// Size
 $toc-width: 200px;
-
-// size
 $nav-height: 50px;
+
+// Screen Size
+$screen-width-xl: 1200px;
+$screen-width-lg: 992px;
+$screen-width-md: 800px;
+$screen-width-sm: 768px;
+$screen-width-xs: 480px;
+

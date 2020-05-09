@@ -1,6 +1,5 @@
 ---
 title: 旋转
-headerimg: images/comm-header/technology.jpg
 tags: JS插件
 date: 2017-03-14 17:19:42
 ---

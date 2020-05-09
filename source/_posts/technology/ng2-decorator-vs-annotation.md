@@ -1,7 +1,6 @@
 ---
 title: Decorators 和 Annotations 的不同
 tags: Angular2
-headerimg: images/comm-header/technology.jpg
 date: 2016-09-12 14:29:59
 ---
 Java的Annotation用起来很是顺手，AtScript和TypeScript都是JavaScript的扩展语言，AtScript支持Annotation，而TypeScript支持Decorator。

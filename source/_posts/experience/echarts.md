@@ -1,11 +1,11 @@
 ---
 title: Echarts折线图绘制
 tags: JS插件
-headerimg: images/comm-header/experience.jpg
 date: 2017-03-08 17:14:44
 ---
 Echarts算是国内JS图表插件一顶一的优秀了，通过JSON配置项就可以轻松实现丰富多样的图表效果。
 <!-- more -->
+<!-- toc -->
 <style>p img {box-shadow: 0 5px 20px rgba(0,0,0,0.2)}</style>
 为了做一个数据统计图表的需求，翻来覆去尝试，好在最后各种效果基本都实现了。
 

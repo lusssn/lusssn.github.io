@@ -1,6 +1,5 @@
 ---
 title: 微信小程序Page扩展
-headerimg: images/comm-header/experience.jpg
 tags: 微信小程序
 date: 2018-03-12 15:29:54
 ---

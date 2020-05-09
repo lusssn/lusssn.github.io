@@ -1,6 +1,5 @@
 ---
 title: 语法解析的思路验证数学公式
-headerimg: images/comm-header/technology.jpg
 tags: 实用Demo
 date: 2018-11-05 10:36:59
 ---

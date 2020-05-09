@@ -1,6 +1,5 @@
 ---
 title: 微信小程序陷阱集锦
-headerimg: images/comm-header/experience.jpg
 tags: 微信小程序
 date: 2017-12-06 14:25:13
 ---

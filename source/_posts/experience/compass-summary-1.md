@@ -1,6 +1,5 @@
 ---
 title: 高德地图和D3js的结合（上）
-headerimg: images/comm-header/experience.jpg
 date: 2019-05-24 16:42:35
 tags: JS插件
 ---

@@ -1,7 +1,6 @@
 ---
 title: ES6 新特性
 tags: JavaScript
-headerimg: images/comm-header/technology.jpg
 date: 2016-08-15 10:06:39
 ---
 组内给我分配了分享AngularJS 2.0的任务，为了更好的理解Angular2，比较粗略地学习了ES6。

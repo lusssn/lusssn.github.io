@@ -2,7 +2,6 @@
 layout: about
 title: About
 description: No matter how far you may fly
-headerimg: images/spring/about-bg.jpg
 date: 2016-05-18 23:51:02
 ---
 

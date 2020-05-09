@@ -1,22 +1,26 @@
 .toc {
   position: absolute;
+  top: 0;
+  right: -$toc-width;
   width: $toc-width;
-  top: 50px;
-  right: 0;
-  padding-top: 30px;
-  padding-left: 15px;
   &::before {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    content: '目录';
+    padding-left: 4px;
+    line-height: 18px;
+    content: "目录";
+    border-left: 3px solid $theme-primary;
   }
   ul, li {
-    list-style: none;
     font-size: 14px;
+    list-style: none;
   }
   ul {
-    padding-left: 15px;
+    padding-left: 8px;
   }
+}
 
+// Small Screen
+@media (max-width: $screen-width-xl) {
+  .toc {
+    display: none;
+  }
 }

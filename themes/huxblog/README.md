@@ -29,7 +29,6 @@ keyword: ""
 # SNS settings
 # RSS: false
 weibo_username:     Demonbane
-zhihu_username:     Demonbane
 github_username:    Kaijun
 twitter_username:   Demonbane_x
 facebook_username:  demonbane.cn
@@ -58,8 +57,8 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "我要成为魔法师!"
-sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+about-description: "我要成为魔法师!"
+about-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # Featured Tags

@@ -1,7 +1,6 @@
 ---
 title: 对原型链的理解
 tags: JavaScript
-headerimg: images/comm-header/technology.jpg
 date: 2016-04-11 00:00:00
 ---
 又整理了一遍『原型』和『原型链』，例子是网上的，图是按照自己的理解画的，看完这篇文章整个人都通透了。

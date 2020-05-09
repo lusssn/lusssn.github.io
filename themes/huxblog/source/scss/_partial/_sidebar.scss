@@ -4,7 +4,7 @@
 
 // Container of Sidebar, also Friends
 .sidebar-container{
-    color: $gray-l;
+    color: $gray-light;
     font-size: 14px;
     h5{
         color: $gray;
@@ -15,14 +15,14 @@
         }
     }
     a{
-        color: $gray-l !important;
+        color: $gray-light !important;
         &:hover, &:active{
             color: $theme-primary !important;
         }
     }
     .tags{
         a{
-            border-color: $gray-l;
+            border-color: $gray-light;
             &:hover, &:active{
                 border-color: $theme-primary;
             }

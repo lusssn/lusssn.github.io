@@ -1,6 +1,5 @@
 ---
 title: 多肉的无性繁殖
-headerimg: images/comm-header/planting.jpg
 tags: 多肉植物
 date: 2017-03-16 10:17:20
 ---

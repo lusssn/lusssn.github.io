@@ -20,7 +20,7 @@
 			border-color: white;
 			background-color: rgba(255,255,255,.4);
 		}
-		@media only screen and (min-width: 768px) {
+		@media only screen and (min-width: $screen-width-sm) {
 			margin-right: 5px;
 		}
 	}
@@ -28,7 +28,7 @@
 
 #tag-heading {
 	padding: 70px 0 60px;
-	@media only screen and (min-width: 768px) {
+	@media only screen and (min-width: $screen-width-sm) {
 		padding: 55px 0;
 	}
 }
@@ -46,14 +46,14 @@
 			background-color: $theme-primary !important;
 		}
 	}
-	@media only screen and (min-width: 768px) {
+	@media only screen and (min-width: $screen-width-sm) {
 		margin-bottom: 25px;
 	}
 }
 
 .tag-comments {
 	font-size: 12px;
-	@media only screen and (min-width: 768px) {
+	@media only screen and (min-width: $screen-width-sm) {
 		font-size: 14px;
 	}
 }
@@ -73,7 +73,7 @@
 	&::before {
 		margin-right: 5px;
 	}
-	@media only screen and (min-width: 768px) {
+	@media only screen and (min-width: $screen-width-sm) {
 		font-size: 20px !important;
 		line-height: 2 !important;
 	}
@@ -114,7 +114,7 @@
 			font-size: 12px;
 			line-height: 12px;
 		}
-		@media only screen and (min-width: 768px) {
+		@media only screen and (min-width: $screen-width-sm) {
 			margin-left: 20px;
 			> a {
 				> .post-title {

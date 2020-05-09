@@ -3,83 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                <% if (config.twitter_username) { %>
-                    <li>
-                        <a target="_blank" href="https://twitter.com/<%= config.twitter_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-                <% if (config.zhihu_username) { %>
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/<%= config.zhihu_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-
-                <% if (config.weibo_username) { %>
-                    <li>
-                        <a target="_blank" href="https://weibo.com/<%= config.weibo_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-
-                <% if (config.facebook_username) { %>
-                    <li>
-                        <a target="_blank" href="https://www.facebook.com/<%= config.facebook_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-
-                <% if (config.github_username) { %>
-                    <li>
-                        <a target="_blank"  href="https://github.com/<%= config.github_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-
-                <% if (config.linkedin_username) { %>
-                    <li>
-                        <a target="_blank"  href="https://www.linkedin.com/in/<%= config.linkedin_username %>">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                <% } %>
-
-                <% if (config.email) { %>
-                <li>
-                    <a href="<%= 'mailto:' + config.email %>">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                <% } %>
-                </ul>
+                <%- partial('_partial/SNS') %>
                 <p class="copyright text-muted">
                     Copyright &copy; <%= config.title %> <%= new Date().getFullYear() %>
                 </p>
@@ -95,7 +19,7 @@
 <%- js('js/bootstrap.min.js') %>
 
 <!-- Custom Theme JavaScript -->
-<%- js('js/hux-blog.min.js') %>
+<%- js('js/hux-blog.js') %>
 
 
 <!-- async load function -->
@@ -110,14 +34,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -127,23 +51,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("<%= config.url%><%= config.root%>js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: '<%= config.url%><%= config.root%>images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

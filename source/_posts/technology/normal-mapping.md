@@ -1,6 +1,5 @@
 ---
 title: 法向贴图
-headerimg: images/comm-header/technology.jpg
 tags: JS插件
 date: 2017-04-22 14:34:13
 ---

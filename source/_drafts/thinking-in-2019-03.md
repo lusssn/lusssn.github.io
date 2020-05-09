@@ -1,6 +1,5 @@
 ---
 title: 春天怎么还不来
-headerimg: images/comm-header/essay.jpg
 date: 2019-03-07 16:12:51
 tags:
 ---

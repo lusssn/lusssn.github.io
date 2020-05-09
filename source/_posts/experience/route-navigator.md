@@ -1,6 +1,5 @@
 ---
 title: 路由导航组件的实现
-headerimg: images/comm-header/experience.jpg
 date: 2018-07-19 17:19:40
 tags: 实用Demo
 ---

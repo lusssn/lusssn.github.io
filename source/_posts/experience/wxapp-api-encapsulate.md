@@ -1,6 +1,5 @@
 ---
 title: 封装微信小程序API
-headerimg: images/comm-header/experience.jpg
 tags: 微信小程序
 date: 2018-01-10 18:30:13
 ---

@@ -1,7 +1,6 @@
 ---
 title: Mac设置代理的方式
 tags: Tools
-headerimg: images/comm-header/experience.jpg
 date: 2019-01-11 19:42:23
 ---
 在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，总结两种在Mac设置反向代理的方式。

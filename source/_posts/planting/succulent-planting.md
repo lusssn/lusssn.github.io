@@ -1,7 +1,6 @@
 ---
 title: 多肉养护
 tags: 多肉植物
-headerimg: images/comm-header/planting.jpg
 date: 2016-05-18 23:08:19
 ---
 喜欢多肉生命的顽强，喜欢它们一年四季的变幻，喜欢它们在阳光下的样子。

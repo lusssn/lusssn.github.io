@@ -1,7 +1,6 @@
 ---
 title: 多肉浇水
 tags: 多肉植物
-headerimg: images/comm-header/planting.jpg
 date: 2016-05-19 15:35:51
 ---
 刚入肉坑最晕的问题就是什么时候要浇水。

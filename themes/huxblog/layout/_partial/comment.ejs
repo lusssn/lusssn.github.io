@@ -1,6 +1,5 @@
 <!-- Comment Content -->
 <% if(config['duoshuo_username']) { %>
-
     <!-- 多说评论框 start -->
     <div class="container comment">
         <div class="ds-thread"
@@ -28,7 +27,6 @@
     <!-- 多说公共JS代码 end -->
 <% } %>
 
-
 <% if(config['disqus_username']) { %>
     <div class="container comment">
         <div id="disqus_thread" class="disqus-thread">
@@ -43,7 +41,9 @@
         var disqus_url = "<%= page.permalink %>";
 
         (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
           dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();

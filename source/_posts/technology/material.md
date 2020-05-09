@@ -1,6 +1,5 @@
 ---
 title: 材质
-headerimg: images/comm-header/technology.jpg
 tags: JS插件
 date: 2017-04-08 16:18:13
 ---
