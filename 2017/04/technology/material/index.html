@@ -85,6 +85,13 @@
 
                         
                             <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
                                 <a href="/about/">About</a>
                             </li>
                         
@@ -93,13 +100,6 @@
                         
                             <li>
                                 <a href="/tags/">Tags</a>
-                            </li>
-                        
-                    
-
-                        
-                            <li>
-                                <a href="/archives/">Archives</a>
                             </li>
                         
                     
@@ -174,7 +174,7 @@
             <div class="post-container">
                 <p>材质=材料+质感。光照射到物体上折射出不同的颜色、光强等，人眼才能感知物体的材质。构建材质的过程可以看作是操作改造反射光的过程。<br><a id="more"></a><br>将入射光比作原材料，物体比作工厂，反射光比作产品，人眼比作消费者。<br>那么材质就是工厂里的装配机器。<br>机器对入射光进行装配雕琢，改变其颜色、方向、强度等属性之后以反射光出厂，人眼消费后感知反射光反应的信息——物体材质。</p>
 <p>WebGL将大自然中的材质抽象出来，ThreeJs做了划分，下面就来看看阿3是怎么划分材质的。</p>
-<h3><span id="0-材质">0. 材质</span></h3><p><img src="/.io//material_2.jpg" alt=""></p>
+<h3><span id="0-材质">0. 材质</span></h3><p><img src="/2017/04/technology/material/material_2.jpg" alt=""></p>
 <ul>
 <li><em>Material</em><br>  材质基类，抽象了材质的基本属性，不列举全部属性。<br>  感光（<code>lights</code>）：物体什么颜色就反射什么颜色的光。<br>  雾化（<code>fog</code>）：是否受雾化影响。<br>  透明（<code>transparent</code>）：是否透明。<br>  可视（<code>visible</code>）：是否可见。<br>  透明度（<code>opacity</code>）：透明度。<br>  阿尔法值（<code>alphaTest</code>）：若opacity小于alpha值则不会渲染材质。<br>  混淆、混淆方程式、混淆目标等：不明白。<br>  平面剪裁：不明白。<br>  颜色（<code>colorWrite</code>）：是否进行颜色渲染。<br>  材质更新（<code>needsUpdate</code>）：是否实时更新材质变化。<br>  理论上基类的属性子类都会继承，但实际中并不是每个属性在具体子类上都会有效果。比如雾化对ShadowMaterial来说就无意义。</li>
 </ul>
@@ -188,19 +188,19 @@
 </ul>
 <h3><span id="3-面材质">3. 面材质</span></h3><p>从点到线，再到面，属性就更加丰富了。<br>面的基本属性：感光（<code>lights</code>）。</p>
 <ul>
-<li><em>SpriteMaterial</em><br>  <strong>sprite</strong>是一个总是面向相机的平面。<br>  其材质属性：基本属性、颜色（<code>color</code>）、雾化（<code>fog</code>）、纹理映射（<code>map</code>）、旋转角度（<code>rotation</code>）。<br>  <img src="/.io//sprite.png" alt=""></li>
+<li><em>SpriteMaterial</em><br>  <strong>sprite</strong>是一个总是面向相机的平面。<br>  其材质属性：基本属性、颜色（<code>color</code>）、雾化（<code>fog</code>）、纹理映射（<code>map</code>）、旋转角度（<code>rotation</code>）。<br>  <img src="/2017/04/technology/material/sprite.png" alt=""></li>
 <li><em>ShadowMaterial</em><br>  继承自ShaderMaterial，可以接受物体投影呈现出阴影。<br>  属性：基本属性、透明（<code>transparent</code>）。</li>
 </ul>
 <h3><span id="4-物体材质">4. 物体材质</span></h3><ul>
 <li><em>MeshBasicMaterial</em><br>  用在绘制简单轮廓的时候。比如物体扁平化（flat）或则仅线框。<br>  默认不感光，无质感。<br>  属性列举不全：线框模式（<code>wireframe</code>）、反射光模式（<code>reflectivity</code>、<code>combine</code>）。</li>
 <li><em>MeshDepthMaterial</em><br>  根据参数parameters创建基于相机远近裁切面自动变换亮度（明暗度）的材质类型,离相机越近,材质越亮（白）,离相机越远,材质越暗（黑）。<br>  默认不感光，无质感。体现的是远近，白色表示最近，黑色表示最远。</li>
 <li><em>MeshLambertMaterial</em><br>  表面均匀，粗糙，比如一张纸。<br>  其特点是能产生漫反射，有光泽，表面凹凸呈现出不同的阴暗效果。</li>
-<li><em>MeshPhongMaterial</em><br>  有光泽的材质，比如塑料、金属，可以从某个方向上看到很强的反射光。<br>  <img src="/.io//material_1.png" alt=""><br>  镜面反射的光强与反射光线和视角的夹角相关。</li>
-<li><em>MeshToonMaterial</em><br>  使用了Toon Shader的MeshPhongMaterial的扩展，或叫做物体拥有高光。<br>  Toon Shader又被叫做Cel Shader，这种效果能让物体看上去有卡通的感觉，很神奇吧！<br>  <img src="/.io//toon.png" alt=""></li>
+<li><em>MeshPhongMaterial</em><br>  有光泽的材质，比如塑料、金属，可以从某个方向上看到很强的反射光。<br>  <img src="/2017/04/technology/material/material_1.png" alt=""><br>  镜面反射的光强与反射光线和视角的夹角相关。</li>
+<li><em>MeshToonMaterial</em><br>  使用了Toon Shader的MeshPhongMaterial的扩展，或叫做物体拥有高光。<br>  Toon Shader又被叫做Cel Shader，这种效果能让物体看上去有卡通的感觉，很神奇吧！<br>  <img src="/2017/04/technology/material/toon.png" alt=""></li>
 <li><em>MeshNormalMaterial</em><br>  将普通的向量映射成RGB值，呈现出相应色彩。</li>
 <li><em>MeshStandardMaterial</em><br>  标准物体材质，可设置其粗糙度、颜色、纹理、光感等属性，理论上讲，Lambert和Phong材质效果可以通过该API构建出来。</li>
 <li><em>MeshPhysicalMaterial</em><br>  MeshStandardMaterial的扩展，更好地控制反射率（高光）。</li>
-<li><em>MultiMaterial</em><br>  给同一个物体设置多个材质，比如一个立方体的六个面设置六种材质。<br>  参数接受一个material数组。<br>  <img src="/.io//multi.png" alt=""></li>
+<li><em>MultiMaterial</em><br>  给同一个物体设置多个材质，比如一个立方体的六个面设置六种材质。<br>  参数接受一个material数组。<br>  <img src="/2017/04/technology/material/multi.png" alt=""></li>
 <li><em>RawShaderMaterial</em><br>  继承自ShaderMaterial，自定义的uniforms和attribute属性不会自动追加到GLSL着色器代码中</li>
 <li><em>ShaderMaterial</em><br>  以着色器的方式自定义材质，用户可借此扩充材质类型。</li>
 </ul>

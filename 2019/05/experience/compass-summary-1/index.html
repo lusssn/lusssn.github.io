@@ -85,6 +85,13 @@
 
                         
                             <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
                                 <a href="/about/">About</a>
                             </li>
                         
@@ -93,13 +100,6 @@
                         
                             <li>
                                 <a href="/tags/">Tags</a>
-                            </li>
-                        
-                    
-
-                        
-                            <li>
-                                <a href="/archives/">Archives</a>
                             </li>
                         
                     
@@ -229,7 +229,7 @@
 <h3><span id="2-行政区图层-districtlayer">2. 行政区图层 DistrictLayer</span></h3><blockquote>
 <p>需求说明<br>☝🏼 页面可以进行城市切换<br>✌🏼 地图上显示当前城市地图，并绘制行政区域边界线</p>
 </blockquote>
-<p><img src="/.io//shanghai.png" alt=""></p>
+<p><img src="/2019/05/experience/compass-summary-1/shanghai.png" alt=""></p>
 <h4><span id="21-覆盖物">2.1 覆盖物</span></h4><p>最开始的方案，是先用DistrictSearch根据城市名称获得城市的adcode，再用城市adcode和level去查询下面的行政区边界，最后绘制成<code>AMap.Polygon</code>类。<br><strong>优点：</strong>可以自定义边界线的粗细程度。<br><strong>缺点：</strong>耗费时间，大概要600ms。</p>
 <h4><span id="22-图层">2.2 图层</span></h4><p>后来发现高德2018-09-12就发布了简易行政区图层插件。<br>这个插件用起来很简单，重点是特别快，大概200ms完成绘制。<br>但是它真的太简单，只支持到大部分市级的行政区边界，太仓、辛集都没有，重庆绘制出来不包括郊县。<br><strong>优点：</strong>绘制高效，调用简单。<br><strong>缺点：</strong>覆盖的地区不全，不能调整边界线的粗细程度。</p>
 <h4><span id="23-覆盖物结合图层">2.3 覆盖物结合图层</span></h4><p>综合上面两种方式的优缺点，最后采用二合一方式，贴一个简单的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> AMap.Map(<span class="string">'amap'</span>)</span><br><span class="line"><span class="keyword">const</span> districtLayer = <span class="keyword">new</span> AMap.DistrictLayer.Province(&#123;</span><br><span class="line">  styles: &#123;</span><br><span class="line">    fill: <span class="string">'rgba(204,243,255,0.3)'</span>,</span><br><span class="line">    <span class="string">'county-stroke'</span>: <span class="string">'#CC66CC'</span>, <span class="comment">// 中国区县边界</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> districtSearcher = <span class="keyword">new</span> AMap.DistrictSearch()</span><br><span class="line"><span class="keyword">const</span> drawDistrictBounds = <span class="keyword">async</span> cityName =&gt; &#123;</span><br><span class="line">  <span class="comment">// 用DistrictSearch根据城市名称获得城市的adcode、level。实现见本文4.1</span></span><br><span class="line">  <span class="keyword">const</span> city = <span class="keyword">await</span> getAMapCity(districtSearcher, cityName)</span><br><span class="line">  <span class="keyword">if</span> (city.level === <span class="string">'district'</span>) &#123;</span><br><span class="line">    drawDistrictBoundsByCustom(city.adcode, city.level)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 处理重庆郊县</span></span><br><span class="line">  <span class="keyword">if</span> (city.adcode === <span class="string">'500100'</span>) &#123;</span><br><span class="line">    districtLayer.setDistricts([city.adcode, <span class="number">500200</span>])</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    districtLayer.setDistricts([city.adcode])</span><br><span class="line">  &#125;</span><br><span class="line">  map.add(districtLayer)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> drawDistrictBoundsByCustom = <span class="keyword">async</span> (keyword, level = <span class="string">'city'</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 用DistrictSearch查询行政区边界，绘制Polygon。实现见本文4.2</span></span><br><span class="line">  <span class="keyword">const</span> group = <span class="keyword">await</span> districtSearch(districtSearcher, &#123; keyword, level &#125;)</span><br><span class="line">  <span class="keyword">const</span> districtGroup = <span class="keyword">new</span> AMap.OverlayGroup(group)</span><br><span class="line">  <span class="comment">// 对此覆盖物群组设置同一属性</span></span><br><span class="line">  districtGroup.setOptions(&#123;</span><br><span class="line">    strokeWeight: <span class="number">1</span>,</span><br><span class="line">    fillOpacity: <span class="number">0.3</span>,</span><br><span class="line">    fillColor: <span class="string">'#CCF3FF'</span>,</span><br><span class="line">    strokeColor: <span class="string">'#CC66CC'</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  districtGroup.setMap(map)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
