@@ -48,7 +48,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -85,14 +85,14 @@
 
                         
                             <li>
-                                <a href="/archives/">Archives</a>
+                                <a href="/about/">About</a>
                             </li>
                         
                     
 
                         
                             <li>
-                                <a href="/about/">About</a>
+                                <a href="/archives/">Archives</a>
                             </li>
                         
                     
@@ -242,7 +242,7 @@
 <ul>
 <li>创建一个空对象，它的<strong>proto</strong>等于构造函数的原型对象（可以用Object.create()完成）</li>
 <li>构造函数以第1步创建的对象做为上下文，是否会返回一个对象</li>
-<li>若第2步返回了对象，则使用该对象作为新实例，否则用第1步创建的对象作为新实例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNew = <span class="function"><span class="keyword">function</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="built_in">Object</span>.create(func.prototype)</span><br><span class="line">  <span class="keyword">var</span> i = func.call(o)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> i === <span class="string">'object'</span> ? i : o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>若第2步返回了对象，则使用该对象作为新实例，否则用第1步创建的对象作为新实例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myNew = <span class="function"><span class="keyword">function</span> (<span class="params">func</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> o = <span class="built_in">Object</span>.create(func.prototype)</span><br><span class="line">  <span class="keyword">var</span> i = func.call(o)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> i === <span class="string">&#x27;object&#x27;</span> ? i : o</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -272,7 +272,7 @@
 </ul>
 </li>
 </ul>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
                 
 

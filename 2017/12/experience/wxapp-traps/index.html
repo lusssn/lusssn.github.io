@@ -48,7 +48,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -85,14 +85,14 @@
 
                         
                             <li>
-                                <a href="/archives/">Archives</a>
+                                <a href="/about/">About</a>
                             </li>
                         
                     
 
                         
                             <li>
-                                <a href="/about/">About</a>
+                                <a href="/archives/">Archives</a>
                             </li>
                         
                     
@@ -261,18 +261,18 @@
 <li><p><strong>wx.openSetting</strong>方法会调起授权设置页面，此时小程序在后台运行，如果在<strong>wx.openSetting</strong>的成功回调中调用<strong>reLaunch</strong>，安卓环境下回报错：<em>reLaunch:fail can not invoke reLaunch in background</em>。</p>
 </li>
 <li><p>模板传参方式不局限于文档中的方式，可以有；</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 若item是obj的一个属性，total是一个基本数据类型 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">"tplName"</span> <span class="attr">data</span>=<span class="string">"&#123;&#123;...obj, info: obj.item, total&#125;&#125;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">"tplName"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 1. ...obj像ES6的解构一样，可以直接使用其内部的属性 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 2. info: obj.item 指定一个参数名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;info.name&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 3. 直接使用传入的参数做为参数名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;total&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 若item是obj的一个属性，total是一个基本数据类型 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;tplName&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;...obj, info: obj.item, total&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;tplName&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 1. ...obj像ES6的解构一样，可以直接使用其内部的属性 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 2. info: obj.item 指定一个参数名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;info.name&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 3. 直接使用传入的参数做为参数名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123;total&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>自定义组件中slot标签的样式会同时受到自定义组件内外样式的影响。</p>
 </li>
 <li><p>WXML节点信息错误做法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $control = wx.createSelectorQuery().select(<span class="string">'#control'</span>)</span><br><span class="line">$control.boundingClientRect(巴拉).exec()  </span><br><span class="line">$control.boundingClientRect(叮当).exec() <span class="comment">// 叮当的时候就会巴拉</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $control = wx.createSelectorQuery().select(<span class="string">&#x27;#control&#x27;</span>)</span><br><span class="line">$control.boundingClientRect(巴拉).exec()  </span><br><span class="line">$control.boundingClientRect(叮当).exec() <span class="comment">// 叮当的时候就会巴拉</span></span><br></pre></td></tr></table></figure>
 <p>正确做法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $control = wx.createSelectorQuery().select(<span class="string">'#control'</span>).boundingClientRect()</span><br><span class="line">$control.exec(巴拉)   </span><br><span class="line">$control.exec(叮当)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $control = wx.createSelectorQuery().select(<span class="string">&#x27;#control&#x27;</span>).boundingClientRect()</span><br><span class="line">$control.exec(巴拉)   </span><br><span class="line">$control.exec(叮当)</span><br></pre></td></tr></table></figure>
 <p><em>注意：</em>boundingClientRect回调方法接受的第一个参数类型是对象（<strong>object</strong>），exec回调方法接受的第一个参数是对象数组（<strong>object array</strong>）。</p>
 </li>
 </ol>
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
                 
 

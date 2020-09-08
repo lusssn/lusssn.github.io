@@ -48,7 +48,7 @@
 
     <!-- ga & ba script hoook -->
     <script></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -85,14 +85,14 @@
 
                         
                             <li>
-                                <a href="/archives/">Archives</a>
+                                <a href="/about/">About</a>
                             </li>
                         
                     
 
                         
                             <li>
-                                <a href="/about/">About</a>
+                                <a href="/archives/">Archives</a>
                             </li>
                         
                     
@@ -181,9 +181,9 @@
 <li>白色意思是最高的突起部分。</li>
 <li>黑色表示最低的凹下部分。</li>
 </ul>
-<h3><span id="js代码怎么使用法向贴图">js代码怎么使用法向贴图</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh,</span><br><span class="line">    scene = <span class="keyword">new</span> THREE.Scene(),</span><br><span class="line">    textureLoader = <span class="keyword">new</span> THREE.TextureLoader();</span><br><span class="line"></span><br><span class="line">textureLoader.load( <span class="string">"./texture/cloud.png"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> texture </span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 加载法向贴图</span></span><br><span class="line">    textureLoader.load(<span class="string">"./texture/normal.png"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> normalTexture </span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry( <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span> );</span><br><span class="line">        <span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshPhongMaterial(&#123;</span><br><span class="line">            map: texture, </span><br><span class="line">            normalMap: normalTexture <span class="comment">// 只要将法向贴图赋给材质的normalMap属性即可</span></span><br><span class="line">        &#125;);</span><br><span class="line">        mesh = <span class="keyword">new</span> THREE.Mesh( geometry, material );</span><br><span class="line">        scene.add( mesh );</span><br><span class="line">    &#125; );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><a href="http://www.opengl-tutorial.org/cn/intermediate-tutorials/tutorial-13-normal-mapping/" target="_blank" rel="noopener">更多关于法线贴图的内容</a></p>
-
+<h3><span id="js代码怎么使用法向贴图">js代码怎么使用法向贴图</span></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mesh,</span><br><span class="line">    scene = <span class="keyword">new</span> THREE.Scene(),</span><br><span class="line">    textureLoader = <span class="keyword">new</span> THREE.TextureLoader();</span><br><span class="line"></span><br><span class="line">textureLoader.load( <span class="string">&quot;./texture/cloud.png&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> texture </span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 加载法向贴图</span></span><br><span class="line">    textureLoader.load(<span class="string">&quot;./texture/normal.png&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"> normalTexture </span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry( <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span> );</span><br><span class="line">        <span class="keyword">var</span> material = <span class="keyword">new</span> THREE.MeshPhongMaterial(&#123;</span><br><span class="line">            map: texture, </span><br><span class="line">            normalMap: normalTexture <span class="comment">// 只要将法向贴图赋给材质的normalMap属性即可</span></span><br><span class="line">        &#125;);</span><br><span class="line">        mesh = <span class="keyword">new</span> THREE.Mesh( geometry, material );</span><br><span class="line">        scene.add( mesh );</span><br><span class="line">    &#125; );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://www.opengl-tutorial.org/cn/intermediate-tutorials/tutorial-13-normal-mapping/">更多关于法线贴图的内容</a></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
                 
 
