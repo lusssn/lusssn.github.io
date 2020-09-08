@@ -5,6 +5,7 @@ layout: page
 <ul class="post-list">
     <% page.posts.each(function(post){ %>
         <li class="post-preview">
+            <a href="<%- config.root %><%- post.path %>" target="_blank"></a>
             <h2 class="post-title">
                 <%- post.title || "Untitled" %>
                 <span class="post-subtitle">
@@ -16,8 +17,6 @@ layout: page
                     <%- post.excerpt %>
                 </div>
             <% } %>
-            <a href="<%- config.root %><%- post.path %>" target="_blank">READ MORE</a>
-
         </li>
     <% }); %>
 </ul>

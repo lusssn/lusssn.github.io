@@ -128,12 +128,10 @@ pre code {
     &.next {
       float: right;
     }
-    ;
 
     &.previous {
       float: left;
     }
-    ;
 
     > a {
       width: 100%;
@@ -202,6 +200,7 @@ pre code {
 
     // Post Preview Pages (Home Page)
     .post-preview {
+      position: relative;
       display: block;
       margin-bottom: 16px;
       padding: 0 20px 10px;
@@ -229,18 +228,15 @@ pre code {
       }
 
       > a {
-        display: inline-block;
-        padding: 4px 8px;
-        font-size: 12px;
-        font-weight: bold;
-        text-decoration: none;
-        color: $gray-dark;
-        border: 2px solid $gray-dark;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
 
-        &:hover {
-          color: white;
-          background-color: $gray-dark;
-        }
+      &:hover {
+        border-color: $theme-primary;
       }
     }
   }
@@ -488,19 +484,19 @@ form .row:first-child .floating-label-form-group {
   left: 0;
   display: -webkit-box;
   display: -webkit-flex;
-  display:         flex;
+  display: flex;
   width: 100%;
   height: 100%;
   padding-bottom: 150px;
   -webkit-box-align: center;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .page-fullscreen footer {
