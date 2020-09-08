@@ -125,9 +125,7 @@ Manacher在算法中给出了 *r* 数组的求取公式：
   一个做法是在字符串首再添加一个辅助字符，如：$#n#o#o#n#。
   当然，也可以选择在取中轴左右两边字符时做有效判断。
 
----
-
-JavaScript代码实现：
+{% spoiler JavaScript 代码实现 %}
 ```javascript
 function longestPalindrome(str) {
   let maxRadius = 0
@@ -170,3 +168,4 @@ function longestPalindrome(str) {
   return str.substr((maxCenterIndex - maxRadius) / 2, maxRadius - 1)
 }
 ```
+{% endspoiler %}

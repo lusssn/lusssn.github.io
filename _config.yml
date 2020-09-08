@@ -109,6 +109,8 @@ pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins:
+  - hexo-sliding-spoiler
 ## Themes: https://hexo.io/themes/
 theme: huxblog
 

@@ -5,21 +5,27 @@ date: 2018-11-05 10:36:59
 ---
 一个包含加减乘除和圆括号的基本数学公式，如何用JS去实现其语法正确性的判断呢？
 <!-- more -->
-首先，我们先规定几个语法规则：
-用 `A` 表示因子，`&` 表示符号，左右括号仍然分别用 `(`、`)` 表示。
+一般情况，如果是个只有数字和符号的字符串，要验证它是不是一个正确的数学公式，可以有三种解法。
 
+**1⃣️** 借助 `eval()` 函数，直接执行公式。
+**2⃣️** 结合正则表达式，层层匹配来验证语法的合法性。
+**3⃣️** 根据编译原理，进行语法解析。
+
+解法 1⃣️ 中，如果字符串中语法符合 Javascript 的语法，却不符合数学公式的语法，不能被检测出来。
+另外，**如果字符串不是一个真实的计算表达式，而是一个抽象的公式**，比如 `ax + b`，上面的解法 1⃣️ 和解法 2⃣️ 就不好做了，此时运用编译原理的思路就显得很自然。
+
+根据编译原理，进行语法解析步骤也不复杂。
+首先，我们要规定几个语法规则：
+用 `A` 表示因子，`&` 表示数学运算符（加减乘除等），左右括号仍然分别用 `(`、`)` 表示。
 1. A&A => A
 1. (A) => A
 
-若给定的式子，通过上述规则进行规约，最后得到一个因子A，就认为这个式子是一个正确的数学计算公式。
+若给定的式子，通过上述规则进行规约，最后得到一个因子 `A`，就认为这个式子是一个正确的数学计算公式。
 
 有了上面的规定，就可以开始写代码啦！
-代码只根据思考逻辑实现，并不是最为简洁高效的。
+悄悄说一句，代码只根据思考逻辑实现，并不是最为简洁高效的。
 
-### 入口函数
-
-实现如下：
-
+{% spoiler 入口函数实现 %}
 ```js
 function mergeFormula(originArray = []) {
   let data = [...originArray]
@@ -44,11 +50,9 @@ function mergeFormula(originArray = []) {
   return []
 }
 ```
+{% endspoiler %}
 
-### 语法 `A&A => A` 的规约
-
-实现如下：
-
+{% spoiler 语法 A&A => A 的规约 %}
 ```js
 function mergeNormal(originArray = []) {
   let data = [...originArray]
@@ -83,11 +87,9 @@ function mergeNormal(originArray = []) {
   return []
 }
 ```
+{% endspoiler %}
 
-### 语法 `(A) => A` 的规约
-
-实现如下：
-
+{% spoiler 语法 (A) => A 的规约 %}
 ```js
 function mergeParenthesis(originArray = []) {
   let data = [...originArray]
@@ -129,10 +131,12 @@ function mergeParenthesis(originArray = []) {
   return []
 }
 ```
+{% endspoiler %}
 
-### 特别说明
+⚠️ **代码说明**
 
-1. 以上方法均默认传入参数为数组类型，应用前需要保证入参类型为数组。应用举例：
+1. 以上方法均**默认传入参数为数组类型**，应用前需要保证入参类型为数组。
+{% spoiler 应用举例 %}
 ```js
 const isFormula = (originArray = []) => {
   if (Array.isArray(originArray)) {
@@ -142,12 +146,9 @@ const isFormula = (originArray = []) => {
   return false
 }
 ```
-
+{% endspoiler %}
 2. 判断子项类型的工具方法：`getItemType` 根据具体情况具体实现，约定为：
-  - 因子 -> 'factor'
-  - 运算符 -> 'operator'
-  - 左括号 -> 'left'
-  - 右括号 -> 'right'
-
-
-好啦，语法解析的思路验证数学公式已经说完啦，有啥要吐槽的写在评论里吧！
+  - 因子 -> factor
+  - 运算符 -> operator
+  - 左括号 -> left
+  - 右括号 -> right

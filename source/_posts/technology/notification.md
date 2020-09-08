@@ -10,8 +10,7 @@ date: 2016-10-08 14:54:10
 除了IE外，各大现代浏览器都对这个桌面推送有了基本的支持。
 在移动端浏览器方面，可能因为平台的权限限制的原因目前只有firefox积极地支持这个属性。
 
-#### 样例代码：
-
+{% spoiler 样例代码 %}
 ```javascript
 if (window.Notification) {
         var ua = navigator.userAgent.toLowerCase();
@@ -56,6 +55,7 @@ if (window.Notification) {
         console.log('不支持Notification');
     }
 ```
+{% endspoiler %}
 
 #### 说明：
 
