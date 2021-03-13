@@ -135,10 +135,10 @@ pre code {
     }
     ;
 
-    > a {
+     > a {
       width: 100%;
 
-      > span {
+       > span {
         font-weight: normal;
         letter-spacing: .5px;
         color: $gray;
@@ -167,6 +167,14 @@ pre code {
 }
 
 .post-heading {
+  & > h1 {
+    margin-top: 0;
+    padding: 20px 0 10px;
+    background-image: url("../../images/painter.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+  }
   .tags {
     a {
       color: $gray-light;
@@ -228,7 +236,7 @@ pre code {
         color: $muted-text;
       }
 
-      > a {
+       > a {
         display: inline-block;
         padding: 4px 8px;
         font-size: 12px;
@@ -270,9 +278,9 @@ footer {
   font-size: 20px;
 
   .list-inline {
-    text-align: center;
     margin: 0;
     padding: 0;
+    text-align: center;
   }
 
   .copyright {
@@ -385,7 +393,7 @@ form .row:first-child .floating-label-form-group {
   padding: 0 6px;
 
   li {
-    > a, > span {
+     > a,   > span {
       @include sans-serif();
 
       padding: 10px;
@@ -401,23 +409,23 @@ form .row:first-child .floating-label-form-group {
       }
     }
 
-    > a {
+     > a {
       color: $gray-dark;
     }
 
-    > a:hover, > a:focus {
+     > a:hover,   > a:focus {
       color: white;
       border: 1px solid $theme-primary;
       background-color: $theme-primary;
       // V1.6 display title
-      > span {
+       > span {
         color: white;
       }
     }
   }
 
   .disabled {
-    > a, > a:hover, > a:focus, > span {
+     > a,   > a:hover,   > a:focus,   > span {
       cursor: not-allowed;
       color: $gray;
       background-color: $gray-dark;
