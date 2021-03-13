@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/self-define-archives/2019/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,121 +112,89 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
-    <!-- Page Header Home Page -->
-<header class="intro-header" style="background-image: url('/images/spring/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>lusssn</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--<canvas class="canvas-heading" id="fogCanvas"></canvas>-->
-</header>
-
+    
 <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-            <!-- USE SIDEBAR -->
-            <!-- Post Container -->
-            <ul class="col-lg-9 col-md-9 col-sm-12 col-xs-12 home-container">
-
-                <!-- Main Content -->
-<!-- <audio class="bg-music" src="" controls loop></audio> -->
+<div class="container site-heading">
+    <!-- Post Container -->
+    <div class="home-container">
+        <!-- Main Content -->
 <ul class="post-list">
     
-    <li>
-        <div class="post-preview">
-
+        <li class="post-preview">
+            <a href="/2019/07/experience/compass-summary-2/" target="_blank"></a>
             <h2 class="post-title">
                 高德地图和D3js的结合（下）
+                <span class="post-subtitle">
+                    2019-07-11
+                </span>
             </h2>
-            <div class="post-subtitle">
-                
-            </div>
             
-            <div class="post-content-preview">
-                <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对D3js使用的总结。<br></p>
-            </div>
+                <div class="post-content-preview">
+                    <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对D3js使用的总结。<br></p>
+                </div>
             
-            <a href="/2019/07/experience/compass-summary-2/" target="_blank">READ MORE</a>
-
-        </div>
-    </li>
+        </li>
     
-    <li>
-        <div class="post-preview">
-
+        <li class="post-preview">
+            <a href="/2019/05/experience/compass-summary-1/" target="_blank"></a>
             <h2 class="post-title">
                 高德地图和D3js的结合（上）
+                <span class="post-subtitle">
+                    2019-05-24
+                </span>
             </h2>
-            <div class="post-subtitle">
-                
-            </div>
             
-            <div class="post-content-preview">
-                <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。<br></p>
-            </div>
+                <div class="post-content-preview">
+                    <p>内容太多所以分成高德地图篇（上）、D3js篇（下）两个部分，本篇是对高德地图使用的总结。<br></p>
+                </div>
             
-            <a href="/2019/05/experience/compass-summary-1/" target="_blank">READ MORE</a>
-
-        </div>
-    </li>
+        </li>
     
-    <li>
-        <div class="post-preview">
-
+        <li class="post-preview">
+            <a href="/2019/01/experience/apache-reverse-proxy/" target="_blank"></a>
             <h2 class="post-title">
                 Mac设置代理的方式
+                <span class="post-subtitle">
+                    2019-01-11
+                </span>
             </h2>
-            <div class="post-subtitle">
-                
-            </div>
             
-            <div class="post-content-preview">
-                <p>在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，总结两种在Mac设置反向代理的方式。<br></p>
-            </div>
+                <div class="post-content-preview">
+                    <p>在本地环境开发前端项目时，除了访问localhost外，还有通过自定义域名访问的需求，总结两种在Mac设置反向代理的方式。<br></p>
+                </div>
             
-            <a href="/2019/01/experience/apache-reverse-proxy/" target="_blank">READ MORE</a>
-
-        </div>
-    </li>
+        </li>
     
 </ul>
 <!-- Pager -->
@@ -232,127 +204,103 @@
 </ul>
 
 
-
-                <!-- 如果开启评论功能 -->
-                
-
-            </ul>
-            <!-- Sidebar Container -->
-            <div class="col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container">
-                <!-- Featured Tags -->
-                
-                    <section>
-                        <!-- no hr -->
-                        <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                        <div class="tags">
-                            
-                                
-                                    <a href="/tags/#Tools" title="Tools" rel="2">Tools</a>
-                                
-                            
-                                
-                                    <a href="/tags/#JS插件" title="JS插件" rel="6">JS插件</a>
-                                
-                            
-                                
-                                    <a href="/tags/#实用Demo" title="实用Demo" rel="3">实用Demo</a>
-                                
-                            
-                                
-                                    <a href="/tags/#微信小程序" title="微信小程序" rel="3">微信小程序</a>
-                                
-                            
-                                
-                                    <a href="/tags/#多肉植物" title="多肉植物" rel="3">多肉植物</a>
-                                
-                            
-                                
-                                    <a href="/tags/#JavaScript" title="JavaScript" rel="4">JavaScript</a>
-                                
-                            
-                                
-                            
-                        </div>
-                    </section>
-                
-
-                <!-- Short About -->
-                <section class="visible-md visible-lg">
-                    <hr>
-                    <h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-
-                        
-                            <img src="/images/avatar.jpg">
-                        
-
-                        
-                            <p>Do you see the gift?</p>
-                        
-
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                                <li>
-                                    <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="https://weibo.com/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a target="_blank" href="https://github.com/lusssn">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-
-                            
-
-                            
-                                <li>
-                                    <a href="mailto:lusssn@126.com">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- Friends Blog -->
-                
-            </div>
-        
     </div>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container">
+        
+        <!-- Featured Tags -->
+
+    <section>
+        <!-- no hr -->
+        <h5><a href="/tags/">FEATURED TAGS</a></h5>
+        <div class="tags">
+            
+                
+                    <a
+                            href="/tags/#多肉植物"
+                            title="多肉植物"
+                            rel="3"
+                    >
+                        多肉植物
+                    </a>
+                
+            
+                
+                    <a
+                            href="/tags/#Tools"
+                            title="Tools"
+                            rel="2"
+                    >
+                        Tools
+                    </a>
+                
+            
+                
+                    <a
+                            href="/tags/#JS插件"
+                            title="JS插件"
+                            rel="6"
+                    >
+                        JS插件
+                    </a>
+                
+            
+                
+                    <a
+                            href="/tags/#实用Demo"
+                            title="实用Demo"
+                            rel="3"
+                    >
+                        实用Demo
+                    </a>
+                
+            
+                
+                    <a
+                            href="/tags/#微信小程序"
+                            title="微信小程序"
+                            rel="3"
+                    >
+                        微信小程序
+                    </a>
+                
+            
+                
+                    <a
+                            href="/tags/#JavaScript"
+                            title="JavaScript"
+                            rel="5"
+                    >
+                        JavaScript
+                    </a>
+                
+            
+                
+            
+                
+            
+        </div>
+    </section>
+
+
+        <!-- Friends Blog -->
+
+    <hr>
+    <h5>FRIENDS</h5>
+    <ul class="list-inline">
+        
+            <li><a href="https://www.jianshu.com/u/948bb76985e6" target="_blank">ya_nn</a></li>
+        
+            <li><a href="https://huozhi.im/" target="_blank">Huozhi</a></li>
+        
+            <li><a href="http://online.njtech.edu.cn/blog/" target="_blank">目不识丁</a></li>
+        
+    </ul>
+
+
+    </div>
+
 </div>
 
 
@@ -362,58 +310,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -421,13 +362,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -442,14 +389,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -459,23 +406,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

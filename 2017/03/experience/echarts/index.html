@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/2017/03/experience/echarts/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,62 +112,57 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/images/comm-header/experience.jpg')
-    }
-</style>
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
-                        
-                    </div>
-                    <h1>Echarts折线图绘制</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Chris Lu on
-                        2017-03-08
-                    </span>
-                </div>
-            </div>
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>Echarts折线图绘制</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#JS插件"
+                        title="JS插件"
+                >
+                    JS插件
+                </a>
+            
         </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2017-03-08
+        </span>
     </div>
 </header>
 
@@ -171,43 +170,51 @@
 <article>
     <div class="container">
         <div class="row">
-
             <!-- Post Container -->
-            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
-
+            <div class="post-container">
                 <p>Echarts算是国内JS图表插件一顶一的优秀了，通过JSON配置项就可以轻松实现丰富多样的图表效果。<br><a id="more"></a></p>
+<div class="toc">
+
+<!-- toc -->
+<ul>
+<li><a href="#第一版">第一版</a></li>
+<li><a href="#第二版">第二版</a></li>
+<li><a href="#第三版">第三版</a></li>
+</ul>
+<!-- tocstop -->
+<p></div></p>
 <p><style>p img {box-shadow: 0 5px 20px rgba(0,0,0,0.2)}</style><br>为了做一个数据统计图表的需求，翻来覆去尝试，好在最后各种效果基本都实现了。</p>
-<p>配置项统一写在一个方法中<br><code>xaxis_data</code> 是x轴的类目，格式为 [{index: 0, date: 1488962498826}, …]<br><code>chart_data</code> 是渲染数据，格式为 [1, 0, …]<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">'echarts'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">echarts</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> echart = echarts.init($(<span class="string">'.charts'</span>)[<span class="number">0</span>]);</span><br><span class="line">  echart.setOption(getEchartsOption.call(echart, echarts, xaxis_data, chart_data));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> getEchartsOption = <span class="function"><span class="keyword">function</span>(<span class="params">echarts, xaxis_data, chart_data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;...&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>配置项统一写在一个方法中<br><code>xaxis_data</code> 是x轴的类目，格式为 [{index: 0, date: 1488962498826}, …]<br><code>chart_data</code> 是渲染数据，格式为 [1, 0, …]<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>([<span class="string">&#x27;echarts&#x27;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">echarts</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> echart = echarts.init($(<span class="string">&#x27;.charts&#x27;</span>)[<span class="number">0</span>]);</span><br><span class="line">  echart.setOption(getEchartsOption.call(echart, echarts, xaxis_data, chart_data));</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> getEchartsOption = <span class="function"><span class="keyword">function</span>(<span class="params">echarts, xaxis_data, chart_data</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> self = <span class="built_in">this</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;...&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h3><span id="第一版">第一版</span></h3><p><img src="/2017/03/experience/echarts/1.png" alt=""></p>
 <p>浏览按钮和保存按钮分别对应一张表，点击切换</p>
 <ul>
 <li><p><strong>图表左右上下均有留白：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">grid: &#123;</span><br><span class="line">  top: <span class="number">32</span>,</span><br><span class="line">  bottom: <span class="number">23</span>,</span><br><span class="line">  right: <span class="number">10</span>,</span><br><span class="line">  <span class="comment">// _calcEchartsLeft方法根据chart_data最大值计算出图表y轴到容器左边的距离</span></span><br><span class="line">  <span class="comment">// 第一个参数表示一个字符的宽度</span></span><br><span class="line">  left: _calcEchartsLeft(<span class="number">7</span>, chart_data) || <span class="string">'auto'</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">grid: &#123;</span><br><span class="line">  top: <span class="number">32</span>,</span><br><span class="line">  bottom: <span class="number">23</span>,</span><br><span class="line">  right: <span class="number">10</span>,</span><br><span class="line">  <span class="comment">// _calcEchartsLeft方法根据chart_data最大值计算出图表y轴到容器左边的距离</span></span><br><span class="line">  <span class="comment">// 第一个参数表示一个字符的宽度</span></span><br><span class="line">  left: _calcEchartsLeft(<span class="number">7</span>, chart_data) || <span class="string">&#x27;auto&#x27;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>不显示标记点：</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.showSymbol: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>x轴设置：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">xAxis: &#123;</span><br><span class="line">  data: xaxis_data,</span><br><span class="line">  boundaryGap: <span class="literal">false</span>, <span class="comment">// 留白策略，若为柱状图则按需置为true</span></span><br><span class="line">  axisLine: &#123;</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">'#A0A0A0'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  axisLabel: &#123;</span><br><span class="line">    interval: <span class="number">3</span> <span class="comment">// 每隔3个数据显示一个label</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">xAxis: &#123;</span><br><span class="line">  data: xaxis_data,</span><br><span class="line">  boundaryGap: <span class="literal">false</span>, <span class="comment">// 留白策略，若为柱状图则按需置为true</span></span><br><span class="line">  axisLine: &#123;</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">&#x27;#A0A0A0&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  axisLabel: &#123;</span><br><span class="line">    interval: <span class="number">3</span> <span class="comment">// 每隔3个数据显示一个label</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>y轴lable只显示整数：</strong>yAxis</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">axisLabel: &#123;</span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span>(<span class="params">value, index</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 不显示小数刻度</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">parseInt</span>(value) != value) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">axisLabel: &#123;</span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span>(<span class="params">value, index</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 不显示小数刻度</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">parseInt</span>(value) != value) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>线的样式：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.itemStyle.normal.color: <span class="string">'#00AFFE'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.itemStyle.normal.color: <span class="string">&#x27;#00AFFE&#x27;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>标记点使用空心方形：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.symbol: <span class="string">'emptyrect'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.symbol: <span class="string">&#x27;emptyrect&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>　　ECharts 提供的标记类型包括 <code>&#39;circle&#39;</code>, <code>&#39;rect&#39;</code>, <code>&#39;roundRect&#39;</code>, <code>&#39;triangle&#39;</code>, <code>&#39;diamond&#39;</code>, <code>&#39;pin&#39;</code>, <code>&#39;arrow&#39;</code><br>　　类型均支持empty前缀。</p>
 </li>
 </ul>
-<p>　　ECharts 提供的标记类型包括 <code>&#39;circle&#39;</code>, <code>&#39;rect&#39;</code>, <code>&#39;roundRect&#39;</code>, <code>&#39;triangle&#39;</code>, <code>&#39;diamond&#39;</code>, <code>&#39;pin&#39;</code>, <code>&#39;arrow&#39;</code><br>　　类型均支持empty前缀。</p>
 <p>　　也可以通过 <code>&#39;image://url&#39;</code> 设置为图片，其中 url 为图片的链接；通过 <code>&#39;path://&#39;</code> 将图标设置为任意的矢量路径。</p>
 <ul>
-<li><p><strong>tooltip内容格式化：</strong><br>　　提示框浮层内容可以通过格式器formatter进行模板配置。<br>　　折线（区域）图、柱状（条形）图、K线图 : <code>{a}（系列名称）</code>，<code>{b}（类目值）</code>，<code>{c}（数值）</code>, {d}（无）<br>　　第一版的提示框样式和模板是默认样式，{b} x轴，月/日；{a} series[i]-line.name；{c} y轴值</p>
+<li><p><strong>tooltip内容格式化：</strong><br>　　提示框浮层内容可以通过格式器formatter进行模板配置。<br>　　折线（区域）图、柱状（条形）图、K线图 : <code>&#123;a&#125;（系列名称）</code>，<code>&#123;b&#125;（类目值）</code>，<code>&#123;c&#125;（数值）</code>, {d}（无）<br>　　第一版的提示框样式和模板是默认样式，{b} x轴，月/日；{a} series[i]-line.name；{c} y轴值</p>
 </li>
 <li><p><strong>tooltip显示位置固定y坐标</strong></p>
 </li>
-<li><strong>tooltip在图表区域内显示：</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">tooltip: &#123;</span><br><span class="line">  trigger: <span class="string">'axis'</span>,</span><br><span class="line">  position: <span class="function"><span class="keyword">function</span> (<span class="params">point, params, dom</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// tooltip显示位置固定y坐标：37</span></span><br><span class="line">    <span class="comment">// tooltip在图表区域内显示</span></span><br><span class="line">    <span class="keyword">if</span> (point[<span class="number">0</span>] + <span class="number">20</span> + dom.offsetWidth &gt; view.width()) &#123;</span><br><span class="line">      <span class="keyword">return</span> [point[<span class="number">0</span>] + <span class="number">5</span> - **dom.offsetWidth, <span class="number">37</span>];**</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [point[<span class="number">0</span>]+<span class="number">5</span>, <span class="number">37</span>];</span><br><span class="line">  &#125;,</span><br><span class="line">  axisPointer: &#123;</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">'#5F5F5F'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  textStyle: &#123;</span><br><span class="line">    fontFamily: <span class="string">'"Microsoft YaHei", Arial, sans-serif'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><strong>tooltip在图表区域内显示：</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">tooltip: &#123;</span><br><span class="line">  trigger: <span class="string">&#x27;axis&#x27;</span>,</span><br><span class="line">  position: <span class="function"><span class="keyword">function</span> (<span class="params">point, params, dom</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// tooltip显示位置固定y坐标：37</span></span><br><span class="line">    <span class="comment">// tooltip在图表区域内显示</span></span><br><span class="line">    <span class="keyword">if</span> (point[<span class="number">0</span>] + <span class="number">20</span> + dom.offsetWidth &gt; view.width()) &#123;</span><br><span class="line">      <span class="keyword">return</span> [point[<span class="number">0</span>] + <span class="number">5</span> - **dom.offsetWidth, <span class="number">37</span>];**</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [point[<span class="number">0</span>]+<span class="number">5</span>, <span class="number">37</span>];</span><br><span class="line">  &#125;,</span><br><span class="line">  axisPointer: &#123;</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">&#x27;#5F5F5F&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  textStyle: &#123;</span><br><span class="line">    fontFamily: <span class="string">&#x27;&quot;Microsoft YaHei&quot;, Arial, sans-serif&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3><span id="第二版">第二版</span></h3><p><img src="/2017/03/experience/echarts/2.png" alt=""></p>
@@ -216,12 +223,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grid: &#123;</span><br><span class="line">  top: <span class="number">35</span>,</span><br><span class="line">  bottom: <span class="number">30</span>,</span><br><span class="line">  right: <span class="number">0</span>,</span><br><span class="line">  left: <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>图表区域纹理贴图：</strong>series[i]-line.areaStyle</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> patternImg = <span class="keyword">new</span> Image();</span><br><span class="line">patternImg.src = STATIC_URL + <span class="string">'/images/line_x1.png'</span>;</span><br><span class="line"><span class="comment">// ...中间代码省略</span></span><br><span class="line">areaStyle: &#123;</span><br><span class="line">  normal : &#123;</span><br><span class="line">    color: &#123;</span><br><span class="line">      image: patternImg,</span><br><span class="line">      repeat: <span class="string">'repeat-x'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> patternImg = <span class="keyword">new</span> Image();</span><br><span class="line">patternImg.src = STATIC_URL + <span class="string">&#x27;/images/line_x1.png&#x27;</span>;</span><br><span class="line"><span class="comment">// ...中间代码省略</span></span><br><span class="line">areaStyle: &#123;</span><br><span class="line">  normal : &#123;</span><br><span class="line">    color: &#123;</span><br><span class="line">      image: patternImg,</span><br><span class="line">      repeat: <span class="string">&#x27;repeat-x&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>不显示标记点</strong></p>
 </li>
 <li><p><strong>点击时显示蓝色实心点：</strong>series[i]</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一：</span></span><br><span class="line">itemStyle: &#123;</span><br><span class="line">  normal: &#123;</span><br><span class="line">    opacity: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  emphasis: &#123;</span><br><span class="line">    opacity: <span class="number">1</span>,</span><br><span class="line">    color: <span class="string">'#008BFD'</span>,</span><br><span class="line">    borderWidth: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方式二：</span></span><br><span class="line">showSymbol: <span class="literal">false</span>,</span><br><span class="line">itemStyle: &#123;</span><br><span class="line">  emphasis: &#123;</span><br><span class="line">    opacity: <span class="number">1</span>,</span><br><span class="line">    color: <span class="string">'#008BFD'</span>,</span><br><span class="line">    borderWidth: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一：</span></span><br><span class="line">itemStyle: &#123;</span><br><span class="line">  normal: &#123;</span><br><span class="line">    opacity: <span class="number">0</span></span><br><span class="line">  &#125;,</span><br><span class="line">  emphasis: &#123;</span><br><span class="line">    opacity: <span class="number">1</span>,</span><br><span class="line">    color: <span class="string">&#x27;#008BFD&#x27;</span>,</span><br><span class="line">    borderWidth: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 方式二：</span></span><br><span class="line">showSymbol: <span class="literal">false</span>,</span><br><span class="line">itemStyle: &#123;</span><br><span class="line">  emphasis: &#123;</span><br><span class="line">    opacity: <span class="number">1</span>,</span><br><span class="line">    color: <span class="string">&#x27;#008BFD&#x27;</span>,</span><br><span class="line">    borderWidth: <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>首尾平滑绘制：</strong><br>　　数据处理时在xaxis_data、chart_data的首尾分别添加3个值相同的数据，置index为-1。</p>
 </li>
@@ -229,22 +236,21 @@
 </li>
 <li><strong>长短两种不同刻度：</strong>两个xAxis叠加</li>
 </ul>
-<p>　　xAxis[0]为短刻度：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">axisLabel: &#123;</span><br><span class="line">  show: <span class="literal">false</span> <span class="comment">// 不显示label</span></span><br><span class="line">&#125;,</span><br><span class="line">axisTick: &#123;</span><br><span class="line">  inside: <span class="literal">true</span>, <span class="comment">// 坐标轴刻度朝内</span></span><br><span class="line">  length: <span class="number">3</span>, <span class="comment">// 刻度长度</span></span><br><span class="line">  interval: <span class="number">0</span>,</span><br><span class="line">  lineStyle: &#123;</span><br><span class="line">    color: <span class="string">'#87CBFF'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>　　xAxis[1]为长刻度：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">position: <span class="string">'bottom'</span>,</span><br><span class="line">axisLabel: &#123;</span><br><span class="line">  interval: <span class="number">2</span>,</span><br><span class="line">  margin: <span class="number">4</span>, <span class="comment">// label距离轴的距离</span></span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span>(<span class="params">value, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(value.index &lt; <span class="number">0</span>) &#123; <span class="comment">// 不显示index为-1的数据label</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// label格式化</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(value.date * <span class="number">1000</span>)).Format(<span class="string">"d"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">axisTick: &#123;</span><br><span class="line">  inside: <span class="literal">true</span>, <span class="comment">// 坐标轴刻度朝内</span></span><br><span class="line">  length: <span class="number">6</span>, <span class="comment">// 刻度长度</span></span><br><span class="line">  interval: <span class="number">2</span>,</span><br><span class="line">  lineStyle: &#123;</span><br><span class="line">    color: <span class="string">'#29A2FF'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　xAxis[0]为短刻度：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">axisLabel: &#123;</span><br><span class="line">  show: <span class="literal">false</span> <span class="comment">// 不显示label</span></span><br><span class="line">&#125;,</span><br><span class="line">axisTick: &#123;</span><br><span class="line">  inside: <span class="literal">true</span>, <span class="comment">// 坐标轴刻度朝内</span></span><br><span class="line">  length: <span class="number">3</span>, <span class="comment">// 刻度长度</span></span><br><span class="line">  interval: <span class="number">0</span>,</span><br><span class="line">  lineStyle: &#123;</span><br><span class="line">    color: <span class="string">&#x27;#87CBFF&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>　　xAxis[1]为长刻度：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">position: <span class="string">&#x27;bottom&#x27;</span>,</span><br><span class="line">axisLabel: &#123;</span><br><span class="line">  interval: <span class="number">2</span>,</span><br><span class="line">  margin: <span class="number">4</span>, <span class="comment">// label距离轴的距离</span></span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span>(<span class="params">value, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(value.index &lt; <span class="number">0</span>) &#123; <span class="comment">// 不显示index为-1的数据label</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// label格式化</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="built_in">Date</span>(value.date * <span class="number">1000</span>)).Format(<span class="string">&quot;d&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">axisTick: &#123;</span><br><span class="line">  inside: <span class="literal">true</span>, <span class="comment">// 坐标轴刻度朝内</span></span><br><span class="line">  length: <span class="number">6</span>, <span class="comment">// 刻度长度</span></span><br><span class="line">  interval: <span class="number">2</span>,</span><br><span class="line">  lineStyle: &#123;</span><br><span class="line">    color: <span class="string">&#x27;#29A2FF&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><strong>线的渐变色</strong></li>
 <li><p><strong>尾部线无颜色：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.itemStyle.normal.color: <span class="keyword">new</span> echarts.graphic.LinearGradient(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">    [&#123;<span class="attr">offset</span>: <span class="number">0</span>, <span class="attr">color</span>: <span class="string">'#40DBFF'</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">offset</span>: <span class="number">0.97</span>, <span class="attr">color</span>: <span class="string">'#008BFD'</span>&#125;, </span><br><span class="line">    &#123;<span class="attr">offset</span>: <span class="number">0.97</span>, <span class="attr">color</span>: <span class="string">'transparent'</span>&#125;], <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.itemStyle.normal.color: <span class="keyword">new</span> echarts.graphic.LinearGradient(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>,</span><br><span class="line">    [&#123;<span class="attr">offset</span>: <span class="number">0</span>, <span class="attr">color</span>: <span class="string">&#x27;#40DBFF&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">offset</span>: <span class="number">0.97</span>, <span class="attr">color</span>: <span class="string">&#x27;#008BFD&#x27;</span>&#125;, </span><br><span class="line">    &#123;<span class="attr">offset</span>: <span class="number">0.97</span>, <span class="attr">color</span>: <span class="string">&#x27;transparent&#x27;</span>&#125;], <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>计数第一天使用空心圆标记：</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">markPoint: &#123;</span><br><span class="line">  <span class="comment">// 此处用svg代替'emptyCircle'，是因为在某些手机上emptyCircle有bug</span></span><br><span class="line">  symbol: <span class="string">'path://M7,3.5 C7,1.56700338 5.43299662,0 3.5,0 C1.56700338,0 0,1.56700338 0,3.5 C0,5.43299662 1.56700338,7 3.5,7 C5.43299662,7 7,5.43299662 7,3.5 Z'</span>,</span><br><span class="line">  symbolSize: <span class="number">6</span>,</span><br><span class="line">  itemStyle: &#123;</span><br><span class="line">    normal: &#123;</span><br><span class="line">      color: <span class="string">'#FFFFFF'</span>, <span class="comment">// 中心圆圈颜色</span></span><br><span class="line">      borderColor: <span class="string">'#32A3FC'</span>, <span class="comment">// 蓝色描边</span></span><br><span class="line">      borderWidth: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  label:&#123;</span><br><span class="line">    normal: &#123;</span><br><span class="line">      textStyle: &#123;</span><br><span class="line">        color: <span class="string">'transparent'</span> <span class="comment">// 隐藏markPoint文字</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data: [&#123;</span><br><span class="line">    name: xaxis_data[<span class="number">3</span>],</span><br><span class="line">    coord: [<span class="number">3</span>, chart_data[<span class="number">3</span>]] <span class="comment">// 标记点坐标</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">markPoint: &#123;</span><br><span class="line">  <span class="comment">// 此处用svg代替&#x27;emptyCircle&#x27;，是因为在某些手机上emptyCircle有bug</span></span><br><span class="line">  symbol: <span class="string">&#x27;path://M7,3.5 C7,1.56700338 5.43299662,0 3.5,0 C1.56700338,0 0,1.56700338 0,3.5 C0,5.43299662 1.56700338,7 3.5,7 C5.43299662,7 7,5.43299662 7,3.5 Z&#x27;</span>,</span><br><span class="line">  symbolSize: <span class="number">6</span>,</span><br><span class="line">  itemStyle: &#123;</span><br><span class="line">    normal: &#123;</span><br><span class="line">      color: <span class="string">&#x27;#FFFFFF&#x27;</span>, <span class="comment">// 中心圆圈颜色</span></span><br><span class="line">      borderColor: <span class="string">&#x27;#32A3FC&#x27;</span>, <span class="comment">// 蓝色描边</span></span><br><span class="line">      borderWidth: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  label:&#123;</span><br><span class="line">    normal: &#123;</span><br><span class="line">      textStyle: &#123;</span><br><span class="line">        color: <span class="string">&#x27;transparent&#x27;</span> <span class="comment">// 隐藏markPoint文字</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  data: [&#123;</span><br><span class="line">    name: xaxis_data[<span class="number">3</span>],</span><br><span class="line">    coord: [<span class="number">3</span>, chart_data[<span class="number">3</span>]] <span class="comment">// 标记点坐标</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>标记线不超出数据线：</strong><br>　　没有实现。</p>
 </li>
 <li><p><strong>tooltip显示位置固定x坐标、y坐标</strong></p>
 </li>
 <li><strong>tooltip内容格式化、自定义样式</strong></li>
-<li><strong>首尾部分的点，点击不显示tooltip：</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">tooltip: &#123;</span><br><span class="line">  show: <span class="literal">true</span>,</span><br><span class="line">  trigger: <span class="string">'axis'</span>,</span><br><span class="line">  backgroundColor: <span class="string">'transparent'</span>,</span><br><span class="line">  extraCssText: <span class="string">'box-sizing: border-box;width: 100%;text-align:center;color: #008BFD'</span>,</span><br><span class="line">  position: [<span class="string">'0'</span>, <span class="string">'109px'</span>], <span class="comment">// 固定x坐标、y坐标</span></span><br><span class="line">  transitionDuration: <span class="number">0</span>, <span class="comment">// 设置为 0 的时候会紧跟着鼠标移动</span></span><br><span class="line">  axisPointer: &#123;</span><br><span class="line">    type: <span class="string">'line'</span>,</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">'#008BFD'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 首尾部分的点，点击不显示tooltip</span></span><br><span class="line">    <span class="keyword">if</span>(params[<span class="number">0</span>] &amp;&amp; params[<span class="number">0</span>].name.index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      self.dispatchAction(&#123;</span><br><span class="line">        type: <span class="string">'hideTip'</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 内容格式化、自定义样式</span></span><br><span class="line">    <span class="keyword">var</span> time = (<span class="keyword">new</span> <span class="built_in">Date</span>(params[<span class="number">0</span>].name.date * <span class="number">1000</span>)).Format(<span class="string">"M月d日访客"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"&lt;div style='font-size: 44px;line-height: 44px;font-weight: bold;text-shadow: 3px 3px 0 #fff'&gt;"</span>+ params[<span class="number">0</span>].data +<span class="string">"&lt;/div&gt;"</span> +</span><br><span class="line">        <span class="string">"&lt;div style='font-size: 14px;line-height: 20px;text-shadow: 3px 3px 0 #fff'&gt;"</span>+ time +<span class="string">"&lt;/div&gt;"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><strong>首尾部分的点，点击不显示tooltip：</strong><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">tooltip: &#123;</span><br><span class="line">  show: <span class="literal">true</span>,</span><br><span class="line">  trigger: <span class="string">&#x27;axis&#x27;</span>,</span><br><span class="line">  backgroundColor: <span class="string">&#x27;transparent&#x27;</span>,</span><br><span class="line">  extraCssText: <span class="string">&#x27;box-sizing: border-box;width: 100%;text-align:center;color: #008BFD&#x27;</span>,</span><br><span class="line">  position: [<span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;109px&#x27;</span>], <span class="comment">// 固定x坐标、y坐标</span></span><br><span class="line">  transitionDuration: <span class="number">0</span>, <span class="comment">// 设置为 0 的时候会紧跟着鼠标移动</span></span><br><span class="line">  axisPointer: &#123;</span><br><span class="line">    type: <span class="string">&#x27;line&#x27;</span>,</span><br><span class="line">    lineStyle: &#123;</span><br><span class="line">      color: <span class="string">&#x27;#008BFD&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  formatter: <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 首尾部分的点，点击不显示tooltip</span></span><br><span class="line">    <span class="keyword">if</span>(params[<span class="number">0</span>] &amp;&amp; params[<span class="number">0</span>].name.index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      self.dispatchAction(&#123;</span><br><span class="line">        type: <span class="string">&#x27;hideTip&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 内容格式化、自定义样式</span></span><br><span class="line">    <span class="keyword">var</span> time = (<span class="keyword">new</span> <span class="built_in">Date</span>(params[<span class="number">0</span>].name.date * <span class="number">1000</span>)).Format(<span class="string">&quot;M月d日访客&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&lt;div style=&#x27;font-size: 44px;line-height: 44px;font-weight: bold;text-shadow: 3px 3px 0 #fff&#x27;&gt;&quot;</span>+ params[<span class="number">0</span>].data +<span class="string">&quot;&lt;/div&gt;&quot;</span> +</span><br><span class="line">        <span class="string">&quot;&lt;div style=&#x27;font-size: 14px;line-height: 20px;text-shadow: 3px 3px 0 #fff&#x27;&gt;&quot;</span>+ time +<span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3><span id="第三版">第三版</span></h3><p><img src="/2017/03/experience/echarts/3.png" alt=""></p>
@@ -258,121 +264,96 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">series[i]-line.markPoint.data: [&#123;</span><br><span class="line">  name: xaxis_data[<span class="number">3</span>],</span><br><span class="line">  coord: [<span class="number">3</span>, chart_data[<span class="number">3</span>]]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: xaxis_data[xaxis_data.length<span class="number">-1</span>],</span><br><span class="line">  coord: [<span class="number">32</span>, chart_data[<span class="number">32</span>]]</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
-
                 
 
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2017/03/technology/set-rotate-center/" data-toggle="tooltip" data-placement="top" title="旋转">&larr; Previous Post</a>
+                            <a
+                                    href="/2017/03/technology/set-rotate-center/" data-toggle="tooltip"
+                                    data-placement="top" title="旋转"
+                            >&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/10/technology/notification/" data-toggle="tooltip" data-placement="top" title="Web桌面消息推送">Next Post &rarr;</a>
+                            <a
+                                    href="/2016/10/technology/notification/" data-toggle="tooltip"
+                                    data-placement="top" title="Web桌面消息推送"
+                            >Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 
-                
+                <!-- Comment Content -->
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2017/03/experience/echarts/";
+        var disqus_url = "https://lusssn.github.io/2017/03/experience/echarts/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#JS插件" title="JS插件">JS插件</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
+            <!-- Side Catalog Container -->
+            
         </div>
     </div>
 </article>
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "lusssn";
-    var disqus_identifier = "https://lusssn.github.io/2017/03/experience/echarts/";
-    var disqus_url = "https://lusssn.github.io/2017/03/experience/echarts/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
         anchors.options = {
           visible: 'always',
-          placement: 'right',
-          icon: '#'
+          placement: 'right'
         };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
         }
-    }
-</style>
+    </style>
 
 
 
@@ -382,58 +363,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -441,13 +415,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -462,14 +442,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -479,23 +459,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

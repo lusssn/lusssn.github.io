@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/2016/09/technology/marquee/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,62 +112,57 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/images/comm-header/technology.jpg')
-    }
-</style>
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#实用Demo" title="实用Demo">实用Demo</a>
-                        
-                    </div>
-                    <h1>无缝轮播的实现</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Chris Lu on
-                        2016-09-27
-                    </span>
-                </div>
-            </div>
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>无缝轮播的实现</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#实用Demo"
+                        title="实用Demo"
+                >
+                    实用Demo
+                </a>
+            
         </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2016-09-27
+        </span>
     </div>
 </header>
 
@@ -171,10 +170,8 @@
 <article>
     <div class="container">
         <div class="row">
-
             <!-- Post Container -->
-            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
-
+            <div class="post-container">
                 <p>通常看到的轮播（例如从右到左）的最后一页到第一页会看到页面朝右回滚的过程。<br>现在我希望能实现圆环式无限轮播的效果。<br><a id="more"></a></p>
 <h3><span id="两种轮播效果对比">两种轮播效果对比</span></h3><p>通常，轮播效果实现逻辑是在视框内，隔一段时间将需要展示的内容向左移动一页的宽度，移到最后一页时再将内容左边移动距离重置为0。<br>这样会看到最后一张跳到第一张的过程，效果像酱紫👇</p>
 <div class="normalCarousel"><div class="carousel"><div class="content"><div class="contentItem" style="background-color: #A18E58">1</div><div class="contentItem" style="background-color: #FFCEA6">2</div><div class="contentItem" style="background-color: #DCDCDC">3</div></div></div></div>
@@ -230,128 +227,115 @@
     }, 500);
 </script>
 
-<h3><span id="代码剖析">代码剖析</span></h3><p>HTML和CSS很简单</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">'text/css'</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    .carousel &#123;</span></span><br><span class="line"><span class="undefined">        font-size: 0;</span></span><br><span class="line"><span class="undefined">        overflow: hidden;</span></span><br><span class="line"><span class="undefined">        width: 100px;</span></span><br><span class="line"><span class="undefined">        height: 50px;</span></span><br><span class="line"><span class="undefined">        margin: 0 auto;</span></span><br><span class="line"><span class="undefined">        white-space: nowrap;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .carousel .content &#123;</span></span><br><span class="line"><span class="undefined">        display: inline-block;</span></span><br><span class="line"><span class="undefined">        white-space: nowrap;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    .carousel .contentItem &#123;</span></span><br><span class="line"><span class="undefined">        display: inline-block;</span></span><br><span class="line"><span class="undefined">        width: 100px;</span></span><br><span class="line"><span class="undefined">        height: 50px;</span></span><br><span class="line"><span class="undefined">        line-height: 50px;</span></span><br><span class="line"><span class="undefined">        text-align: center;</span></span><br><span class="line"><span class="undefined">        font-size: 14px;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'circleCarousel'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'carousel'</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'content'</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'contentItem'</span> <span class="attr">style</span>=<span class="string">'background-color: #A18E58'</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'contentItem'</span> <span class="attr">style</span>=<span class="string">'background-color: #FFCEA6'</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'contentItem'</span> <span class="attr">style</span>=<span class="string">'background-color: #DCDCDC'</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>主要是js的逻辑</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> itemLength = $(<span class="string">'.circleCarousel .contentItem'</span>).length;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 末尾追加第一张卡片</span></span><br><span class="line"><span class="keyword">const</span> $content = $(<span class="string">'.circleCarousel .content'</span>);</span><br><span class="line">$content.append($content.find(<span class="string">'.contentItem:first'</span>).clone());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> currentItem = <span class="number">0</span>;</span><br><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    currentItem++;</span><br><span class="line">    $(<span class="string">'.circleCarousel .content'</span>).css(&#123;</span><br><span class="line">        <span class="string">'transform'</span>: <span class="string">`translateX(-<span class="subst">$&#123;<span class="number">100</span> * currentItem&#125;</span>px)`</span>,</span><br><span class="line">        <span class="string">'transition'</span>: <span class="string">'transform 0.5s ease'</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (currentItem === itemLength) &#123;</span><br><span class="line">        currentItem = <span class="number">0</span>;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 2. 去掉transition效果，换到第一张卡片位置</span></span><br><span class="line">            $(<span class="string">'.circleCarousel .content'</span>).css(&#123;</span><br><span class="line">                <span class="string">'transform'</span>: <span class="string">'translateX(0)'</span>,</span><br><span class="line">                <span class="string">'transition'</span>: <span class="string">'unset'</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+<h3><span id="代码剖析">代码剖析</span></h3><div class="spoiler collapsed">
+    <div class="spoiler-title">
+        html 和 css
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&#x27;text/css&#x27;</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.carousel</span> &#123;</span></span><br><span class="line">        font-size: 0;</span><br><span class="line">        overflow: hidden;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 50px;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        white-space: nowrap;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.carousel</span> <span class="selector-class">.content</span> &#123;</span></span><br><span class="line">        display: inline-block;</span><br><span class="line">        white-space: nowrap;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="css">    <span class="selector-class">.carousel</span> <span class="selector-class">.contentItem</span> &#123;</span></span><br><span class="line">        display: inline-block;</span><br><span class="line">        width: 100px;</span><br><span class="line">        height: 50px;</span><br><span class="line">        line-height: 50px;</span><br><span class="line">        text-align: center;</span><br><span class="line">        font-size: 14px;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;circleCarousel&#x27;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;carousel&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;content&#x27;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;contentItem&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;background-color: #A18E58&#x27;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;contentItem&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;background-color: #FFCEA6&#x27;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&#x27;contentItem&#x27;</span> <span class="attr">style</span>=<span class="string">&#x27;background-color: #DCDCDC&#x27;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        javascript 逻辑
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> itemLength = $(<span class="string">&#x27;.circleCarousel .contentItem&#x27;</span>).length;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 末尾追加第一张卡片</span></span><br><span class="line"><span class="keyword">const</span> $content = $(<span class="string">&#x27;.circleCarousel .content&#x27;</span>);</span><br><span class="line">$content.append($content.find(<span class="string">&#x27;.contentItem:first&#x27;</span>).clone());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> currentItem = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    currentItem++;</span><br><span class="line">    $(<span class="string">&#x27;.circleCarousel .content&#x27;</span>).css(&#123;</span><br><span class="line">        <span class="string">&#x27;transform&#x27;</span>: <span class="string">`translateX(-<span class="subst">$&#123;<span class="number">100</span> * currentItem&#125;</span>px)`</span>,</span><br><span class="line">        <span class="string">&#x27;transition&#x27;</span>: <span class="string">&#x27;transform 0.5s ease&#x27;</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (currentItem === itemLength) &#123;</span><br><span class="line">        currentItem = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 2. 去掉transition效果，换到第一张卡片位置</span></span><br><span class="line">            $(<span class="string">&#x27;.circleCarousel .content&#x27;</span>).css(&#123;</span><br><span class="line">                <span class="string">&#x27;transform&#x27;</span>: <span class="string">&#x27;translateX(0)&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;transition&#x27;</span>: <span class="string">&#x27;unset&#x27;</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
 <p>如果去掉 3-4行 和 20行 的代码，就是普通的轮播效果了。是不是十分简单！💅</p>
 <!-- 样式 -->
 <style type="text/css">.carousel {width: 100px; height: 50px; overflow: hidden; white-space: nowrap; margin: 0 auto;} .carousel .content {display: inline-block; white-space: nowrap; } .carousel .contentItem {display: inline-block; width: 100px; height: 50px; text-align: center; line-height: 50px;}</style>
-
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
-
                 
 
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/10/technology/notification/" data-toggle="tooltip" data-placement="top" title="Web桌面消息推送">&larr; Previous Post</a>
+                            <a
+                                    href="/2016/10/technology/notification/" data-toggle="tooltip"
+                                    data-placement="top" title="Web桌面消息推送"
+                            >&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/09/technology/ng2-decorator-vs-annotation/" data-toggle="tooltip" data-placement="top" title="Decorators 和 Annotations 的不同">Next Post &rarr;</a>
+                            <a
+                                    href="/2016/09/technology/ng2-decorator-vs-annotation/" data-toggle="tooltip"
+                                    data-placement="top" title="Decorators 和 Annotations 的不同"
+                            >Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 
-                
+                <!-- Comment Content -->
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2016/09/technology/marquee/";
+        var disqus_url = "https://lusssn.github.io/2016/09/technology/marquee/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#实用Demo" title="实用Demo">实用Demo</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
+            <!-- Side Catalog Container -->
+            
         </div>
     </div>
 </article>
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "lusssn";
-    var disqus_identifier = "https://lusssn.github.io/2016/09/technology/marquee/";
-    var disqus_url = "https://lusssn.github.io/2016/09/technology/marquee/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
         anchors.options = {
           visible: 'always',
-          placement: 'right',
-          icon: '#'
+          placement: 'right'
         };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
         }
-    }
-</style>
+    </style>
 
 
 
@@ -361,58 +345,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -420,13 +397,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -441,14 +424,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -458,23 +441,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

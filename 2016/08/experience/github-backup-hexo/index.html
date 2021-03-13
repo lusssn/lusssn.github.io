@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/2016/08/experience/github-backup-hexo/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,62 +112,57 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/images/comm-header/experience.jpg')
-    }
-</style>
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#Tools" title="Tools">Tools</a>
-                        
-                    </div>
-                    <h1>用 Github 管理 Hexo 的博客项目</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Chris Lu on
-                        2016-08-16
-                    </span>
-                </div>
-            </div>
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>用 Github 管理 Hexo 的博客项目</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#Tools"
+                        title="Tools"
+                >
+                    Tools
+                </a>
+            
         </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2016-08-16
+        </span>
     </div>
 </header>
 
@@ -171,11 +170,9 @@
 <article>
     <div class="container">
         <div class="row">
-
             <!-- Post Container -->
-            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
-
-                <p>用hexo搭了这个静态博客，但是换台电脑就不可以写文章了。<br>尝试了<a href="http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog" target="_blank" rel="noopener">用两个分支管理博客代码</a>之后，记录一下这个艰辛的过程。<br><a id="more"></a><br><strong>使用Hexo搭建静态博客流程</strong></p>
+            <div class="post-container">
+                <p>用hexo搭了这个静态博客，但是换台电脑就不可以写文章了。<br>尝试了<a target="_blank" rel="noopener" href="http://cnfeat.com/blog/2014/05/10/how-to-build-a-blog">用两个分支管理博客代码</a>之后，记录一下这个艰辛的过程。<br><a id="more"></a><br><strong>使用Hexo搭建静态博客流程</strong></p>
 <ol>
 <li>创建仓库，lusssn.github.io</li>
 <li>创建两个分支：master 与 hexo；</li>
@@ -204,121 +201,96 @@
 </ul>
 <p><img src="/2016/08/experience/github-backup-hexo/mengb.jpg" alt="">     </p>
 <p>失败的原因具体的没有找出来。可能是.deploy_git文件夹的问题。</p>
-
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
-
                 
 
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2016/09/technology/ng2-decorator-vs-annotation/" data-toggle="tooltip" data-placement="top" title="Decorators 和 Annotations 的不同">&larr; Previous Post</a>
+                            <a
+                                    href="/2016/09/technology/ng2-decorator-vs-annotation/" data-toggle="tooltip"
+                                    data-placement="top" title="Decorators 和 Annotations 的不同"
+                            >&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2016/08/technology/es6/" data-toggle="tooltip" data-placement="top" title="ES6 新特性">Next Post &rarr;</a>
+                            <a
+                                    href="/2016/08/technology/es6/" data-toggle="tooltip"
+                                    data-placement="top" title="ES6 新特性"
+                            >Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 
-                
+                <!-- Comment Content -->
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2016/08/experience/github-backup-hexo/";
+        var disqus_url = "https://lusssn.github.io/2016/08/experience/github-backup-hexo/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#Tools" title="Tools">Tools</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
+            <!-- Side Catalog Container -->
+            
         </div>
     </div>
 </article>
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "lusssn";
-    var disqus_identifier = "https://lusssn.github.io/2016/08/experience/github-backup-hexo/";
-    var disqus_url = "https://lusssn.github.io/2016/08/experience/github-backup-hexo/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
         anchors.options = {
           visible: 'always',
-          placement: 'right',
-          icon: '#'
+          placement: 'right'
         };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
         }
-    }
-</style>
+    </style>
 
 
 
@@ -328,58 +300,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -387,13 +352,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -408,14 +379,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -425,23 +396,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

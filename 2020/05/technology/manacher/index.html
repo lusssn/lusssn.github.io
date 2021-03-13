@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>
+        
+          理解Manacher算法 - Lusssn
+        
+    </title>
+
+    <link rel="canonical" href="https://lusssn.github.io/2020/05/technology/manacher/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">lusssn</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
+                        
+                    
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
+
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
+        }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Post Header -->
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>理解Manacher算法</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#JavaScript"
+                        title="JavaScript"
+                >
+                    JavaScript
+                </a>
+            
+                <a
+                        class="tag"
+                        href="/tags/#算法"
+                        title="算法"
+                >
+                    算法
+                </a>
+            
+        </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2020-05-12
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="post-container">
+                <p>给定一个字符串 <em>S</em>，找到 <em>S</em> 中最长的回文子串。<br><a id="more"></a><style>.post-container p img {width: 393px;}</style><br>针对这个问题的解决方案很多。</p>
+<p>在1975年的时候，一位叫做Manacher的人观察到查找回文子串的规律，创造出一种线性时间复杂度的算法，大幅优化回文子串查找效率。</p>
+<p>这到底是怎么做到的呢？</p>
+<p>首先，确定理解了在程序设计中 <strong>回文</strong> 和 <strong>子串</strong> 的含义。</p>
+<blockquote>
+<p><strong>回文 palindromic</strong><br>正读反读都是一样的字符序列，例如：noon、level。<br>A word, line, verse, number, sentence, etc., reading the same backward as forward.</p>
+</blockquote>
+<blockquote>
+<p><strong>子串 substring</strong><br>一个字符串 <em>s</em> 被称作另一个字符串 <em>S</em> 的子串，表示 <em>s</em> 在 <em>S</em> 中出现了。<br>A substring is a contiguous sequence of characters within a string.</p>
+</blockquote>
+<hr>
+<p><strong>最直接的解题思路</strong>我认为是：</p>
+<ol>
+<li>遍历字符串 <em>S</em> 中每个字符；</li>
+<li>以每个字符 S[ i ] 为中心，向两侧扩展，找到 <em>S</em> 所有回文子串；</li>
+<li>选出最长的子串即为结果。</li>
+</ol>
+<p>这个过程中，以每个字符为中心的回文子串查找，都花费了时间。</p>
+<p>假设 <em>S</em> 为 <em>xabcocbabc</em>，它的最长回文子串应该是子串 <em>abcocba</em>。</p>
+<p>在从左到右的遍历过程中，遍历到 xabco <strong>c</strong> babc 中第2个 <strong>c</strong> 时，<strong>xabco</strong>cbabc 前半段 <strong>xabco</strong> 每个字符的匹配结果都是已知状态。以字符 <em>o</em> 为中心的最长回文子串为 abcocba，它是回文串，那么它正反读就都一样，以 <em>o</em> 为中心左右对称，形象点说 <em>o</em> 就是面镜子，<em>cba</em> 是镜子里面的<em>abc</em>。 </p>
+<p><img src="/2020/05/technology/manacher/mirror-image.jpeg" alt=""></p>
+<p><em>cba</em> 就是 <em>abc</em>，<em>cba</em> 又不完全是 <em>abc</em>！你品，仔细品！有内味没有？</p>
+<p>回到遍历中来，我们现在正遍历到 xabco <strong>c</strong> babc 中第2个 <strong>c</strong>，此时 x<strong>abc</strong>ocbabc 中 <strong>abc</strong> 匹配结果已知，<em>cba</em> 作为“另一个” <em>abc</em>，是不是可以抄一抄 <em>abc</em> 的作业？</p>
+<hr>
+<p>我们把这种情况进行抽象，并详细分析一波。如下图：</p>
+<p><img src="/2020/05/technology/manacher/manacher-1.png" alt=""></p>
+<p><em>rightIndex</em> 是当前访问到的字符中，位置最右的字符下标。<strong>特别注意，<em>rightIndex</em> 不是当前最长回文子串的最右字符下标！</strong> <em>centerIndex</em> 是一个回文子串的中心下标，这个子串最右字符下标必须是 <em>rightIndex - 1</em> 或 <em>rightIndex</em>。理解这两个变量至关重要！<br><em>i</em> 是当前遍历到的字符下标，以 S[ i ] 为中心的匹配结束时，需要检查 <em>rightIndex</em> 和 <em>centerIndex</em> 是否需要更新。</p>
+<p>遍历继续进行，<em>i</em> 来到了 centerIndex 的右侧。</p>
+<p><img src="/2020/05/technology/manacher/manacher-2.png" alt=""></p>
+<p>以 <em>S[centerIndex]</em> 为中心的回文子串是左右对称的，如果 <em>i</em> 相对于 centerIndex 的对称点为 <em>j</em> ：</p>
+<p><img src="/2020/05/technology/manacher/manacher-3.png" alt=""></p>
+<p>那么以 <em>S[ j ]</em> 为中心的回文子串必然与以 S[ i ] 为中心的回文子串对称相等。</p>
+<p><img src="/2020/05/technology/manacher/manacher-4.png" alt=""></p>
+<p>我们的遍历是从左往右的顺序，到 <em>i</em> 位置的时候，<em>j</em> 位置的匹配结果是已知的，所以进行 <em>i</em> 位置的匹配时，就可以直接复用前面的匹配结果：</p>
+<p><img src="/2020/05/technology/manacher/manacher-5.png" alt=""></p>
+<p>妙啊～～～</p>
+<hr>
+<p>上面这个优化思路就是Manacher算法的核心思想，一句话总结：<strong>尽可能多复用已知的查找结果</strong>。<br>在Manacher算法中，引入了一个数组类型的辅助量 <em>r</em>，r[ i ] 表示以字符 S[ i ] 为中心的最长回文子串的半径。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S:  x a b c o c b a b c</span><br><span class="line">r:  1 1 1 1 4 1 1 3 1 1</span><br></pre></td></tr></table></figure>
+<p>只要求得 <em>S</em> 对应的 <em>r</em> 数组，不就能知道最长回文子串了么！</p>
+<p><em>PS：为什么辅助量是半径？</em><br>并不非得是半径，存直径也可，甚至存子串也可。但事情还是能简单就简单一点，通过半径 r 可以算得直径 d（d = 2 * r - 1）；用中心字符下标和子串半径找到子串也是轻轻松松，重点是数字比字符串节省空间呀！</p>
+<p>Manacher在算法中给出了 <em>r</em> 数组的求取公式：</p>
+<p><strong>r[ i ] = rightIndex &gt; i ? min( r[ j ], rightIndex - i ) : 1</strong><br>其中 <em>j = centerIndex - ( i - centerIndex ) = 2centerIndex - i</em></p>
+<hr>
+<p>我们来好好琢磨琢磨这个公式。</p>
+<p><code>rightIndex &lt;= i</code> 时，在已知结果中，并没有 <em>i</em> 位置的对称点，所以只能重置 r[ i ] 初始值为 1，再以 S[ i ] 为中心匹配子串，最后算得 r[ i ] 结果，这个很好理解。<br><code>rightIndex &gt; i</code> 时，为什么不能直接取 r[ j ] 的值作为 r[ i ] 的初始值呢？之前不是说 r[ i ] 可以复用 r[ j ] 的吗？</p>
+<p><img src="/2020/05/technology/manacher/manacher-5.png" alt=""></p>
+<p>这是因为还会遇到一种情况：</p>
+<p><img src="/2020/05/technology/manacher/manacher-6.png" alt=""></p>
+<p>此时，以 <em>j</em> 位置为中心的回文子串比较长，子串最左侧超出了以 <em>centerIndex</em> 位置为中心的回文子串的范围，超出的部分映射到 <em>centerIndex</em> 右侧就跑到了 <em>rightIndex</em> 的右侧未匹配区域，也就是图中灰色部分。所以不可以直接取 r[ j ] 的值作为 r[ i ] 的结果！</p>
+<p>但也不是 r[ j ] 的全部不可复用，只要做一下适当裁剪就好啦！<br>看图可知，可复用范围最多到 <em>rightIndex</em> 位置，范围半径为 <strong>rightIndex - i</strong>。</p>
+<p>取得可复用结果后，对未匹配区域就老老实实判断计算 r[ i ] 最终结果。</p>
+<hr>
+<p>如果到这里，你都看得很明白，恭喜你，你已经理解了Manacher算法！🎉🎉🎉</p>
+<p>下面我们就挽起袖子开始撸代码吧～</p>
+<p>等等等。。。等一下！还有2个算法之外的点要稍微提一提。</p>
+<ol>
+<li><strong><em>S</em> 的长度是未知的，可能是奇数，可能是偶数。</strong><br>两种情况在判断字符串是否为回文时，取对称中心的方式不太一样。<br>为了消除差异，一个做法是添加辅助字符，将字符串的长度统一成奇数，比如：abc –&gt; #a#b#c#，noon –&gt; #n#o#o#n#<br>如果不嫌麻烦，也可以不加辅助字符。</li>
+<li><strong>以 <em>S[ i ]</em> 为中轴判断轴左右两边字符是否相等的做法，可能会出现死循环。</strong><br>比如：#n#o#o#n#，整个字符串满足回文，以 S[ 4 ] 为中轴时，左右两边超出边界时仍然相等，程序出现死循环。<br>一个做法是在字符串首再添加一个辅助字符，如：$#n#o#o#n#。<br>当然，也可以选择在取中轴左右两边字符时做有效判断。</li>
+</ol>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        JavaScript 代码实现
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">longestPalindrome</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> maxRadius = <span class="number">0</span></span><br><span class="line">  <span class="keyword">let</span> maxCenterIndex = <span class="number">0</span></span><br><span class="line">  <span class="keyword">const</span> s = <span class="string">`$#<span class="subst">$&#123;str.split(<span class="string">&#x27;&#x27;</span>).join(<span class="string">&#x27;#&#x27;</span>)&#125;</span>#`</span></span><br><span class="line">  <span class="keyword">const</span> sLen = s.length</span><br><span class="line">  <span class="comment">// 回文子串的半径</span></span><br><span class="line">  <span class="keyword">const</span> r = <span class="keyword">new</span> <span class="built_in">Array</span>(sLen)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 当前已匹配子串的中心游标</span></span><br><span class="line">  <span class="keyword">let</span> centerIndex = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 当前已匹配子串的最右侧游标</span></span><br><span class="line">  <span class="keyword">let</span> rightIndex = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; sLen; i++) &#123;</span><br><span class="line">      <span class="comment">// 当前已匹配子串的最右侧游标在</span></span><br><span class="line">      <span class="keyword">if</span> (rightIndex &gt; i) &#123;</span><br><span class="line">        r[i] = <span class="built_in">Math</span>.min(r[<span class="number">2</span> * centerIndex - i], rightIndex - i)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        r[i] = <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 以 i 为中心的回文子串可能超过rightIndex，检查是否需要扩展子串半径</span></span><br><span class="line">      <span class="keyword">while</span>(s[i-r[i]] === s[i+r[i]]) &#123;</span><br><span class="line">        r[i]++</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 如果以 i 为中心的回文子串半径进行了扩展，更新辅助标记</span></span><br><span class="line">      <span class="keyword">if</span> (rightIndex &lt; i + r[i]) &#123;</span><br><span class="line">        <span class="comment">// 更新当前已匹配子串的最右侧游标</span></span><br><span class="line">        rightIndex = i + r[i]</span><br><span class="line">        <span class="comment">// 当前已匹配子串的中心游标</span></span><br><span class="line">        centerIndex = i</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 更新回文子串的最大半径</span></span><br><span class="line">      <span class="keyword">if</span> (maxRadius &lt; r[i]) &#123;</span><br><span class="line">        maxRadius = r[i]</span><br><span class="line">        maxCenterIndex = i</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> str.substr((maxCenterIndex - maxRadius) / <span class="number">2</span>, maxRadius - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a
+                                    href="/2019/07/experience/compass-summary-2/" data-toggle="tooltip"
+                                    data-placement="top" title="高德地图和D3js的结合（下）"
+                            >Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- Comment Content -->
+
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2020/05/technology/manacher/";
+        var disqus_url = "https://lusssn.github.io/2020/05/technology/manacher/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
+
+            </div>
+            <!-- Side Catalog Container -->
+            
+        </div>
+    </div>
+</article>
+
+
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
+        anchors.options = {
+          visible: 'always',
+          placement: 'right'
+        };
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
+        }
+    </style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; lusssn 2021
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.js"></script>
+
+
+
+<!-- async load function -->
+<script type="text/javascript">
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+-->
+<!--
+    <script>
+        async("https://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+<!-- jquery.tagcloud.js -->
+<script type="text/javascript">
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length){
+        async("https://lusssn.github.io/js/jquery.tagcloud.js", function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#b18db1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!-- fastClick.js -->
+<script type="text/javascript">
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _gaId = 'UA-141100372-1';
+    var _gaDomain = 'auto';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

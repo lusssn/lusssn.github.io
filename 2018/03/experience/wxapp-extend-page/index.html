@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/2018/03/experience/wxapp-extend-page/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,62 +112,57 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/images/comm-header/experience.jpg')
-    }
-</style>
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#微信小程序" title="微信小程序">微信小程序</a>
-                        
-                    </div>
-                    <h1>微信小程序Page扩展</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Chris Lu on
-                        2018-03-12
-                    </span>
-                </div>
-            </div>
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>微信小程序Page扩展</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#微信小程序"
+                        title="微信小程序"
+                >
+                    微信小程序
+                </a>
+            
         </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2018-03-12
+        </span>
     </div>
 </header>
 
@@ -171,10 +170,8 @@
 <article>
     <div class="container">
         <div class="row">
-
             <!-- Post Container -->
-            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
-
+            <div class="post-container">
                 <p>实际的项目开发中，页面的初始化几乎是统一的，在某些场景下还需要扩展小程序页面的生命周期钩子。<br><a id="more"></a></p>
 <h3><span id="1-场景和需求描述">1. 场景和需求描述</span></h3><ul>
 <li>页面加载时，首先调用<code>onLoad</code>，此时需要解码页面路由中的参数。</li>
@@ -183,125 +180,100 @@
 <li>第一次进入页面时，onLoad和onShow均会被调用，要避免重复检查access token。</li>
 <li>一些操作（例如埋点统计PV）需要在检查access token有效后，每次进入页面都被执行。经过上述改造后第一次进入页面时，onShow将不会被执行，因此新增<code>onAfterAuth</code>钩子。</li>
 </ul>
-<h3><span id="2-源码">2. 源码</span></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wxUtil <span class="keyword">from</span> <span class="string">'../utils/wxUtil'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> page = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config.global = config.global || &#123;&#125;</span><br><span class="line">  Page(&#123;</span><br><span class="line">    ...config,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 预处理onLoad</span></span><br><span class="line"><span class="comment">     * config中needReadyInOnLoad为'close'时，则关闭onLoad中的ready校验</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    onLoad (options) &#123;</span><br><span class="line">      <span class="comment">// options 解码</span></span><br><span class="line">      <span class="keyword">const</span> urlParams = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(options))</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> prop <span class="keyword">in</span> urlParams) &#123;</span><br><span class="line">        <span class="keyword">if</span> (urlParams.hasOwnProperty(prop)) &#123;</span><br><span class="line">          urlParams[prop] = <span class="built_in">decodeURIComponent</span>(urlParams[prop])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (config.needReadyInOnLoad === <span class="string">'close'</span>) &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onLoad === <span class="string">'function'</span> &amp;&amp; config.onLoad.call(<span class="keyword">this</span>, urlParams)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 在onLoad中调用ready的原因：</span></span><br><span class="line">      <span class="comment">// 1. ready方法会检验token是否有效，若失效则会发起请求获取新的token。页面若要发起请求加载数据，建议在页面加载时就校验token的有效性</span></span><br><span class="line">      <span class="comment">// 2. 因为ready的token校验是一个异步过程，所以要避免在onShow中出现二次调用ready的情况。否则会导致第一次的调用被服务器取消，出现错误。</span></span><br><span class="line">      <span class="comment">// 3. ready除了校验token外，还会从后台获取全局变量存在getApp().config中</span></span><br><span class="line">      wxUtil.ready().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.global._firstReadyCompleted = <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 使用后台返回的、存在getApp().config中全局变量</span></span><br><span class="line">        <span class="comment">// 发起网络请求</span></span><br><span class="line">        <span class="keyword">typeof</span> config.onAfterAuth === <span class="string">'function'</span> &amp;&amp; config.onAfterAuth.call(<span class="keyword">this</span>)</span><br><span class="line">        <span class="keyword">typeof</span> config.onLoad === <span class="string">'function'</span> &amp;&amp; config.onLoad.call(<span class="keyword">this</span>, urlParams)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 预处理onShow</span></span><br><span class="line"><span class="comment">     * config中needReadyInOnShow为'close'时，则关闭onShow中的ready校验</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    onShow () &#123;</span><br><span class="line">      <span class="keyword">if</span> (config.needReadyInOnShow === <span class="string">'close'</span>) &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onShow === <span class="string">'function'</span> &amp;&amp; config.onShow.call(<span class="keyword">this</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 若有onShow中校验token的情况，要判断第一次ready是否完成</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="keyword">this</span>.global._firstReadyCompleted &amp;&amp; config.needReadyInOnLoad !== <span class="string">'close'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.global._firstReadyCompleted = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      wxUtil.ready().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onAfterAuth === <span class="string">'function'</span> &amp;&amp; config.onAfterAuth.call(<span class="keyword">this</span>)</span><br><span class="line">        <span class="keyword">typeof</span> config.onShow === <span class="string">'function'</span> &amp;&amp; config.onShow.call(<span class="keyword">this</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> page</span><br></pre></td></tr></table></figure>
+<h3><span id="2-源码">2. 源码</span></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wxUtil <span class="keyword">from</span> <span class="string">&#x27;../utils/wxUtil&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> page = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">  config.global = config.global || &#123;&#125;</span><br><span class="line">  Page(&#123;</span><br><span class="line">    ...config,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 预处理onLoad</span></span><br><span class="line"><span class="comment">     * config中needReadyInOnLoad为&#x27;close&#x27;时，则关闭onLoad中的ready校验</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    onLoad (options) &#123;</span><br><span class="line">      <span class="comment">// options 解码</span></span><br><span class="line">      <span class="keyword">const</span> urlParams = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(options))</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">const</span> prop <span class="keyword">in</span> urlParams) &#123;</span><br><span class="line">        <span class="keyword">if</span> (urlParams.hasOwnProperty(prop)) &#123;</span><br><span class="line">          urlParams[prop] = <span class="built_in">decodeURIComponent</span>(urlParams[prop])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (config.needReadyInOnLoad === <span class="string">&#x27;close&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onLoad === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onLoad.call(<span class="built_in">this</span>, urlParams)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 在onLoad中调用ready的原因：</span></span><br><span class="line">      <span class="comment">// 1. ready方法会检验token是否有效，若失效则会发起请求获取新的token。页面若要发起请求加载数据，建议在页面加载时就校验token的有效性</span></span><br><span class="line">      <span class="comment">// 2. 因为ready的token校验是一个异步过程，所以要避免在onShow中出现二次调用ready的情况。否则会导致第一次的调用被服务器取消，出现错误。</span></span><br><span class="line">      <span class="comment">// 3. ready除了校验token外，还会从后台获取全局变量存在getApp().config中</span></span><br><span class="line">      wxUtil.ready().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.global._firstReadyCompleted = <span class="literal">true</span></span><br><span class="line">        <span class="comment">// 使用后台返回的、存在getApp().config中全局变量</span></span><br><span class="line">        <span class="comment">// 发起网络请求</span></span><br><span class="line">        <span class="keyword">typeof</span> config.onAfterAuth === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onAfterAuth.call(<span class="built_in">this</span>)</span><br><span class="line">        <span class="keyword">typeof</span> config.onLoad === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onLoad.call(<span class="built_in">this</span>, urlParams)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 预处理onShow</span></span><br><span class="line"><span class="comment">     * config中needReadyInOnShow为&#x27;close&#x27;时，则关闭onShow中的ready校验</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    onShow () &#123;</span><br><span class="line">      <span class="keyword">if</span> (config.needReadyInOnShow === <span class="string">&#x27;close&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onShow === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onShow.call(<span class="built_in">this</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 若有onShow中校验token的情况，要判断第一次ready是否完成</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">this</span>.global._firstReadyCompleted &amp;&amp; config.needReadyInOnLoad !== <span class="string">&#x27;close&#x27;</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.global._firstReadyCompleted = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      wxUtil.ready().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">typeof</span> config.onAfterAuth === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onAfterAuth.call(<span class="built_in">this</span>)</span><br><span class="line">        <span class="keyword">typeof</span> config.onShow === <span class="string">&#x27;function&#x27;</span> &amp;&amp; config.onShow.call(<span class="built_in">this</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> page</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3><span id="3-其他说明">3. 其他说明</span></h3><ul>
 <li>wxUtil内容请看 <a href="/experience/ea8cef36.html">封装微信小程序API</a></li>
 </ul>
-
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
-
                 
 
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2018/07/experience/route-navigator/" data-toggle="tooltip" data-placement="top" title="路由导航组件的实现">&larr; Previous Post</a>
+                            <a
+                                    href="/2018/07/experience/route-navigator/" data-toggle="tooltip"
+                                    data-placement="top" title="路由导航组件的实现"
+                            >&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/01/experience/wxapp-api-encapsulate/" data-toggle="tooltip" data-placement="top" title="封装微信小程序API">Next Post &rarr;</a>
+                            <a
+                                    href="/2018/01/experience/wxapp-api-encapsulate/" data-toggle="tooltip"
+                                    data-placement="top" title="封装微信小程序API"
+                            >Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 
-                
+                <!-- Comment Content -->
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2018/03/experience/wxapp-extend-page/";
+        var disqus_url = "https://lusssn.github.io/2018/03/experience/wxapp-extend-page/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#微信小程序" title="微信小程序">微信小程序</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
+            <!-- Side Catalog Container -->
+            
         </div>
     </div>
 </article>
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "lusssn";
-    var disqus_identifier = "https://lusssn.github.io/2018/03/experience/wxapp-extend-page/";
-    var disqus_url = "https://lusssn.github.io/2018/03/experience/wxapp-extend-page/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
         anchors.options = {
           visible: 'always',
-          placement: 'right',
-          icon: '#'
+          placement: 'right'
         };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
         }
-    }
-</style>
+    </style>
 
 
 
@@ -311,58 +283,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -370,13 +335,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -391,14 +362,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -408,23 +379,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

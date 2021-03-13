@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/2018/11/technology/is-formula/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,62 +112,57 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Post Header -->
-<style type="text/css">
-    header.intro-header{
-        background-image: url('/images/comm-header/technology.jpg')
-    }
-</style>
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <div class="tags">
-                        
-                          <a class="tag" href="/tags/#实用Demo" title="实用Demo">实用Demo</a>
-                        
-                    </div>
-                    <h1>语法解析的思路验证数学公式</h1>
-                    <h2 class="subheading"></h2>
-                    <span class="meta">
-                        Posted by Chris Lu on
-                        2018-11-05
-                    </span>
-                </div>
-            </div>
+<header class="container">
+    <div class="post-heading text-center">
+        <h1>语法解析的思路验证数学公式</h1>
+        <div class="tags">
+            
+                <a
+                        class="tag"
+                        href="/tags/#实用Demo"
+                        title="实用Demo"
+                >
+                    实用Demo
+                </a>
+            
         </div>
+        <span class="meta">
+            Posted by Chris Lu on
+            2018-11-05
+        </span>
     </div>
 </header>
 
@@ -171,152 +170,150 @@
 <article>
     <div class="container">
         <div class="row">
-
             <!-- Post Container -->
-            <div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 post-container">
-
-                <p>一个包含加减乘除和圆括号的基本数学公式，如何用JS去实现其语法正确性的判断呢？<br><a id="more"></a><br>首先，我们先规定几个语法规则：<br>用 <code>A</code> 表示因子，<code>&amp;</code> 表示符号，左右括号仍然分别用 <code>(</code>、<code>)</code> 表示。</p>
+            <div class="post-container">
+                <p>一个包含加减乘除和圆括号的基本数学公式，如何用JS去实现其语法正确性的判断呢？<br><a id="more"></a><br>一般情况，如果是个只有数字和符号的字符串，要验证它是不是一个正确的数学公式，可以有三种解法。</p>
+<p><strong>1⃣️</strong> 借助 <code>eval()</code> 函数，直接执行公式。<br><strong>2⃣️</strong> 结合正则表达式，层层匹配来验证语法的合法性。<br><strong>3⃣️</strong> 根据编译原理，进行语法解析。</p>
+<p>解法 1⃣️ 中，如果字符串中语法符合 Javascript 的语法，却不符合数学公式的语法，不能被检测出来。<br>另外，<strong>如果字符串不是一个真实的计算表达式，而是一个抽象的公式</strong>，比如 <code>ax + b</code>，上面的解法 1⃣️ 和解法 2⃣️ 就不好做了，此时运用编译原理的思路就显得很自然。</p>
+<p>根据编译原理，进行语法解析步骤也不复杂。<br>首先，我们要规定几个语法规则：<br>用 <code>A</code> 表示因子，<code>&amp;</code> 表示数学运算符（加减乘除等），左右括号仍然分别用 <code>(</code>、<code>)</code> 表示。</p>
 <ol>
 <li>A&amp;A =&gt; A</li>
 <li>(A) =&gt; A</li>
 </ol>
-<p>若给定的式子，通过上述规则进行规约，最后得到一个因子A，就认为这个式子是一个正确的数学计算公式。</p>
-<p>有了上面的规定，就可以开始写代码啦！<br>代码只根据思考逻辑实现，并不是最为简洁高效的。</p>
-<h3><span id="入口函数">入口函数</span></h3><p>实现如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeFormula</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="comment">// 循环结束的条件：数组长度不大于1</span></span><br><span class="line">  <span class="keyword">while</span> (data.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 从末尾往前进行规约</span></span><br><span class="line">    <span class="keyword">const</span> item = data[data.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> (getItemType(item) === <span class="string">'factor'</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果是因子，A&amp;A =&gt; A</span></span><br><span class="line">      data = mergeNormal(data)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getItemType(item) === <span class="string">'right'</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果是右括号，(A) =&gt; A</span></span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (data.length === <span class="number">1</span> &amp;&amp; getItemType(data[<span class="number">0</span>]) === <span class="string">'factor'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="语法-aampa-gt-a-的规约">语法 <code>A&amp;A =&gt; A</code> 的规约</span></h3><p>实现如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeNormal</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="comment">// 第一个项必须是因子</span></span><br><span class="line">  <span class="keyword">const</span> firstItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(firstItem) !== <span class="string">'factor'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 第二个项必须是运算符</span></span><br><span class="line">  <span class="keyword">const</span> secondItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(secondItem) !== <span class="string">'operator'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 循环结束的条件：数组长度为0</span></span><br><span class="line">  <span class="keyword">while</span> (data.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = data[data.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">const</span> type = getItemType(item)</span><br><span class="line">    <span class="comment">// 遇到有括号，进入语法2规约</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'right'</span>) &#123;</span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遇到因子，返回结果，结束循环</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'factor'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 否则，规约失败，结束循环</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="语法-a-gt-a-的规约">语法 <code>(A) =&gt; A</code> 的规约</span></h3><p>实现如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeParenthesis</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="keyword">let</span> isParenthesis = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">const</span> temp = []</span><br><span class="line">  <span class="comment">// 第一个项必须是右括号</span></span><br><span class="line">  <span class="keyword">const</span> firstItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(firstItem) !== <span class="string">'right'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 循环</span></span><br><span class="line">  <span class="keyword">while</span> (!isParenthesis &amp;&amp; data.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = data.pop()</span><br><span class="line">    <span class="keyword">const</span> type = getItemType(item)</span><br><span class="line">    <span class="comment">// 遇到左括号，结束循环</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'left'</span>) &#123;</span><br><span class="line">      isParenthesis = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遇到右括号，进入语法2规约</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">'right'</span>) &#123;</span><br><span class="line">      data.push(item)</span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将项存入临时区</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      temp.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isParenthesis) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 规约临时区</span></span><br><span class="line">  <span class="keyword">const</span> tempMerge = mergeFormula(temp)</span><br><span class="line">  <span class="keyword">if</span> (tempMerge.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> data.concat(tempMerge)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3><span id="特别说明">特别说明</span></h3><ol>
-<li><p>以上方法均默认传入参数为数组类型，应用前需要保证入参类型为数组。应用举例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isFormula = <span class="function">(<span class="params">originArray = []</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(originArray)) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = mergeFormula(originArray)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Boolean</span>(result.length)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断子项类型的工具方法：<code>getItemType</code> 根据具体情况具体实现，约定为：</p>
-<ul>
-<li>因子 -&gt; ‘factor’</li>
-<li>运算符 -&gt; ‘operator’</li>
-<li>左括号 -&gt; ‘left’</li>
-<li>右括号 -&gt; ‘right’</li>
+<p>若给定的式子，通过上述规则进行规约，最后得到一个因子 <code>A</code>，就认为这个式子是一个正确的数学计算公式。</p>
+<p>有了上面的规定，就可以开始写代码啦！<br>悄悄说一句，代码只根据思考逻辑实现，并不是最为简洁高效的。</p>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        入口函数实现
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeFormula</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="comment">// 循环结束的条件：数组长度不大于1</span></span><br><span class="line">  <span class="keyword">while</span> (data.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 从末尾往前进行规约</span></span><br><span class="line">    <span class="keyword">const</span> item = data[data.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> (getItemType(item) === <span class="string">&#x27;factor&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果是因子，A&amp;A =&gt; A</span></span><br><span class="line">      data = mergeNormal(data)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (getItemType(item) === <span class="string">&#x27;right&#x27;</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果是右括号，(A) =&gt; A</span></span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (data.length === <span class="number">1</span> &amp;&amp; getItemType(data[<span class="number">0</span>]) === <span class="string">&#x27;factor&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        语法 A&A => A 的规约
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeNormal</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="comment">// 第一个项必须是因子</span></span><br><span class="line">  <span class="keyword">const</span> firstItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(firstItem) !== <span class="string">&#x27;factor&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 第二个项必须是运算符</span></span><br><span class="line">  <span class="keyword">const</span> secondItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(secondItem) !== <span class="string">&#x27;operator&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 循环结束的条件：数组长度为0</span></span><br><span class="line">  <span class="keyword">while</span> (data.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = data[data.length - <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">const</span> type = getItemType(item)</span><br><span class="line">    <span class="comment">// 遇到有括号，进入语法2规约</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;right&#x27;</span>) &#123;</span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遇到因子，返回结果，结束循环</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">&#x27;factor&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> data</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 否则，规约失败，结束循环</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        语法 (A) => A 的规约
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeParenthesis</span>(<span class="params">originArray = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> data = [...originArray]</span><br><span class="line">  <span class="keyword">let</span> isParenthesis = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">const</span> temp = []</span><br><span class="line">  <span class="comment">// 第一个项必须是右括号</span></span><br><span class="line">  <span class="keyword">const</span> firstItem = data.pop()</span><br><span class="line">  <span class="keyword">if</span> (getItemType(firstItem) !== <span class="string">&#x27;right&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 循环</span></span><br><span class="line">  <span class="keyword">while</span> (!isParenthesis &amp;&amp; data.length) &#123;</span><br><span class="line">    <span class="keyword">const</span> item = data.pop()</span><br><span class="line">    <span class="keyword">const</span> type = getItemType(item)</span><br><span class="line">    <span class="comment">// 遇到左括号，结束循环</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;left&#x27;</span>) &#123;</span><br><span class="line">      isParenthesis = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 遇到右括号，进入语法2规约</span></span><br><span class="line">    <span class="keyword">if</span> (type === <span class="string">&#x27;right&#x27;</span>) &#123;</span><br><span class="line">      data.push(item)</span><br><span class="line">      data = mergeParenthesis(data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将项存入临时区</span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      temp.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!isParenthesis) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 规约临时区</span></span><br><span class="line">  <span class="keyword">const</span> tempMerge = mergeFormula(temp)</span><br><span class="line">  <span class="keyword">if</span> (tempMerge.length) &#123;</span><br><span class="line">    <span class="keyword">return</span> data.concat(tempMerge)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div>
+<p>⚠️ <strong>代码说明</strong></p>
+<ol>
+<li>以上方法均<strong>默认传入参数为数组类型</strong>，应用前需要保证入参类型为数组。<div class="spoiler collapsed">
+    <div class="spoiler-title">
+        应用举例
+    </div>
+    <div class="spoiler-content">
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isFormula = <span class="function">(<span class="params">originArray = []</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(originArray)) &#123;</span><br><span class="line">    <span class="keyword">const</span> result = mergeFormula(originArray)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Boolean</span>(result.length)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+</div></li>
+<li>判断子项类型的工具方法：<code>getItemType</code> 根据具体情况具体实现，约定为：<ul>
+<li>因子 -&gt; factor</li>
+<li>运算符 -&gt; operator</li>
+<li>左括号 -&gt; left</li>
+<li>右括号 -&gt; right</li>
 </ul>
 </li>
 </ol>
-<p>好啦，语法解析的思路验证数学公式已经说完啦，有啥要吐槽的写在评论里吧！</p>
-
-
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 <hr>
-
                 
 
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2019/01/experience/apache-reverse-proxy/" data-toggle="tooltip" data-placement="top" title="Mac设置代理的方式">&larr; Previous Post</a>
+                            <a
+                                    href="/2019/01/experience/apache-reverse-proxy/" data-toggle="tooltip"
+                                    data-placement="top" title="Mac设置代理的方式"
+                            >&larr; Previous Post</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2018/07/experience/route-navigator/" data-toggle="tooltip" data-placement="top" title="路由导航组件的实现">Next Post &rarr;</a>
+                            <a
+                                    href="/2018/07/experience/route-navigator/" data-toggle="tooltip"
+                                    data-placement="top" title="路由导航组件的实现"
+                            >Next Post &rarr;</a>
                         </li>
                     
                 </ul>
 
-                
+                <!-- Comment Content -->
 
-                
-                <!-- disqus 评论框 start -->
-                <div class="comment">
-                    <div id="disqus_thread" class="disqus-thread"></div>
-                </div>
-                <!-- disqus 评论框 end -->
-                
+
+
+    <div class="container comment">
+        <div id="disqus_thread" class="disqus-thread">
+            <!-- disqus 组件 -->
+        </div>
+    </div>
+    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = "lusssn";
+        var disqus_identifier = "https://lusssn.github.io/2018/11/technology/is-formula/";
+        var disqus_url = "https://lusssn.github.io/2018/11/technology/is-formula/";
+
+        (function() {
+          var dsq = document.createElement('script');
+          dsq.type = 'text/javascript';
+          dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <!-- disqus 公共JS代码 end -->
+
 
             </div>
-    <!-- Side Catalog Container -->
-        
-
-    <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       
-                          <a class="tag" href="/tags/#实用Demo" title="实用Demo">实用Demo</a>
-                        
-                    </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
+            <!-- Side Catalog Container -->
+            
         </div>
     </div>
 </article>
 
 
-
-
-<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "lusssn";
-    var disqus_identifier = "https://lusssn.github.io/2018/11/technology/is-formula/";
-    var disqus_url = "https://lusssn.github.io/2018/11/technology/is-formula/";
-
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<!-- disqus 公共JS代码 end -->
-
-
-
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
+    <!-- async load function -->
+    <script>
+      function async(u, c) {
+        var d = document, t = 'script',
           o = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+      }
+    </script>
+    <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+    <script>
+      async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function () {
         anchors.options = {
           visible: 'always',
-          placement: 'right',
-          icon: '#'
+          placement: 'right'
         };
-        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-    })
-</script>
-<style>
-    /* place left on bigger screen */
-    @media all and (min-width: 800px) {
-        .anchorjs-link{
-            position: absolute;
-            left: -0.75em;
-            font-size: 1.1em;
-            margin-top : -0.1em;
+        anchors.add().remove('.post-heading h1').remove('.sidebar-container h5');
+      })
+    </script>
+    <style>
+        /* place left on bigger screen */
+        @media all and (min-width: 800px) {
+            .anchorjs-link {
+                position: absolute;
+                left: -1.3em;
+                font-size: 1.1em;
+                margin-top: -0.1em;
+            }
         }
-    }
-</style>
+    </style>
 
 
 
@@ -326,58 +323,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -385,13 +375,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -406,14 +402,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -423,23 +419,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keyword" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <title>
@@ -20,10 +20,14 @@
     <link rel="canonical" href="https://lusssn.github.io/archives/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/scss/bootstrap.min.css">
+    
+<link rel="stylesheet" href="/scss/bootstrap.min.css">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/scss/hux-blog.css">
+    
+<link rel="stylesheet" href="/scss/hux-blog.css">
+
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -38,13 +42,13 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <!-- ga & ba script hoook -->
     <script></script>
-</head>
+<meta name="generator" content="Hexo 5.1.1"></head>
 
 
 <!-- hack iOS CSS :active style -->
@@ -52,7 +56,7 @@
 	
     <!-- Navigation -->
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
             <button type="button" class="navbar-toggle">
@@ -78,28 +82,28 @@
                     </li>
 
                     
-                    
+
                         
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-                    
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
+                            <li>
+                                <a href="/about/">About</a>
+                            </li>
                         
                     
-                    
+
                         
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+                            <li>
+                                <a href="/archives/">Archives</a>
+                            </li>
                         
                     
+
+                        
+                            <li>
+                                <a href="/tags/">Tags</a>
+                            </li>
+                        
                     
+
                 </ul>
             </div>
         </div>
@@ -108,61 +112,73 @@
     <!-- /.container -->
 </nav>
 <script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body
+  var $toggle = document.querySelector('.navbar-toggle')
+  var $navbar = document.querySelector('#huxblog_navbar')
+  var $collapse = document.querySelector('.navbar-collapse')
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
+  $toggle.addEventListener('click', handleMagic)
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' '
+      // wait until animation end.
+      setTimeout(function () {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px'
         }
+      }, 400)
+    } else {
+      // OPEN
+      $collapse.style.height = 'auto'
+      $navbar.className += ' in'
     }
+  }
 </script>
 
 
     <!-- Main Content -->
     
 <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/images/spring/archive-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Archives</h1>
-                    <span class="subheading">Never forget where you come from</span>
-                </div>
-            </div>
-        </div>
+<header class="container">
+    <div class="site-heading text-center">
+        <h1>Archives</h1>
+        <span class="subheading">Never forget where you come from</span>
     </div>
 </header>
 
+
 <!-- Main Content -->
-<div class="container">
+<div class="container site-content">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <!-- 归档列表 -->
-
             
-
              <!-- 归档列表 -->
+            
+            <div class="one-tag-list">
+                <span class="fa fa-calendar-times-o listing-seperator" id="2020">
+                    <span class="tag-text">2020</span>
+                </span>
+                <ul>
+                
+                 <li >
+                    05-12&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/2020/05/technology/manacher/" style="color: #b18db1">
+                        <span>
+                            理解Manacher算法
+                        </span>
+                    </a>
+                </li>
+                
 
+                </ul>
+            </div>
             
             <div class="one-tag-list">
                 <span class="fa fa-calendar-times-o listing-seperator" id="2019">
@@ -170,7 +186,7 @@
                 </span>
                 <ul>
                 
-                 <li>
+                 <li >
                     07-11&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2019/07/experience/compass-summary-2/" style="color: #b18db1">
                         <span>
@@ -179,7 +195,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     05-24&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2019/05/experience/compass-summary-1/" style="color: #b18db1">
                         <span>
@@ -188,7 +204,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     01-11&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2019/01/experience/apache-reverse-proxy/" style="color: #b18db1">
                         <span>
@@ -207,7 +223,7 @@
                 </span>
                 <ul>
                 
-                 <li>
+                 <li >
                     11-05&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2018/11/technology/is-formula/" style="color: #b18db1">
                         <span>
@@ -216,7 +232,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     07-19&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2018/07/experience/route-navigator/" style="color: #b18db1">
                         <span>
@@ -225,7 +241,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     03-12&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2018/03/experience/wxapp-extend-page/" style="color: #b18db1">
                         <span>
@@ -234,7 +250,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     01-10&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2018/01/experience/wxapp-api-encapsulate/" style="color: #b18db1">
                         <span>
@@ -253,7 +269,7 @@
                 </span>
                 <ul>
                 
-                 <li>
+                 <li >
                     12-06&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/12/experience/wxapp-traps/" style="color: #b18db1">
                         <span>
@@ -262,7 +278,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     04-22&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/04/technology/normal-mapping/" style="color: #b18db1">
                         <span>
@@ -271,7 +287,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     04-08&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/04/technology/material/" style="color: #b18db1">
                         <span>
@@ -280,7 +296,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     03-16&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/03/planting/leaf-cutting/" style="color: #b18db1">
                         <span>
@@ -289,7 +305,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     03-14&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/03/technology/set-rotate-center/" style="color: #b18db1">
                         <span>
@@ -298,7 +314,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     03-08&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2017/03/experience/echarts/" style="color: #b18db1">
                         <span>
@@ -317,7 +333,7 @@
                 </span>
                 <ul>
                 
-                 <li>
+                 <li >
                     10-08&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/10/technology/notification/" style="color: #b18db1">
                         <span>
@@ -326,7 +342,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     09-27&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/09/technology/marquee/" style="color: #b18db1">
                         <span>
@@ -335,7 +351,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     09-12&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/09/technology/ng2-decorator-vs-annotation/" style="color: #b18db1">
                         <span>
@@ -344,7 +360,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     08-16&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/08/experience/github-backup-hexo/" style="color: #b18db1">
                         <span>
@@ -353,7 +369,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     08-15&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/08/technology/es6/" style="color: #b18db1">
                         <span>
@@ -362,7 +378,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     05-19&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/05/planting/succulent-water/" style="color: #b18db1">
                         <span>
@@ -371,7 +387,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     05-18&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/05/planting/succulent-planting/" style="color: #b18db1">
                         <span>
@@ -380,7 +396,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     04-11&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/04/technology/prototype-chain/" style="color: #b18db1">
                         <span>
@@ -389,7 +405,7 @@
                     </a>
                 </li>
                 
-                 <li>
+                 <li >
                     01-24&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="/2016/01/technology/about-new-Date/" style="color: #b18db1">
                         <span>
@@ -402,8 +418,6 @@
                 </ul>
             </div>
             
-
-
         </div>
     </div>
 </div>
@@ -415,58 +429,51 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
+                <!-- SNS Link -->
+<ul class="list-inline">
+    <!-- 推特 -->
+    
+    <!-- 微博 -->
+    
+        <li>
+            <a target="_blank" href="https://weibo.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 脸书 -->
+    
+    <!-- github -->
+    
+        <li>
+            <a target="_blank" href="https://github.com/lusssn">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+    <!-- 领英 -->
+    
+    <!-- 邮箱 -->
+    
+        <li>
+            <a href="mailto:lusssn@126.com">
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+            </a>
+        </li>
+    
+</ul>
 
-                
-                    <li>
-                        <a target="_blank" href="https://weibo.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/lusssn">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                <li>
-                    <a href="mailto:lusssn@126.com">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                
-                </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; lusssn 2019
+                    Copyright &copy; lusssn 2021
                 </p>
             </div>
         </div>
@@ -474,13 +481,19 @@
 </footer>
 
 <!-- jQuery -->
+
 <script src="/js/jquery.min.js"></script>
 
+
 <!-- Bootstrap Core JavaScript -->
+
 <script src="/js/bootstrap.min.js"></script>
 
+
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js"></script>
+
+<script src="/js/hux-blog.js"></script>
+
 
 
 <!-- async load function -->
@@ -495,14 +508,14 @@
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
 -->
 <!--
     <script>
@@ -512,23 +525,6 @@
     </script>
     <link href="https://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
 -->
-
-<!-- canvas-fog.js -->
-<script type="text/javascript">
-  // only load tagcloud.js in tag.html
-  if($('#fogCanvas').length){
-    async("https://lusssn.github.io/js/canvas-fog.js", function(){
-      // IE9+烟雾效果走起
-      if ([].map) {
-        FogCanvas(document.querySelector('#fogCanvas'), {
-          count: 30,
-          velocity: 1,
-          url: 'https://lusssn.github.io/images/lusssn-fog.png'
-        });
-      }
-    })
-  }
-</script>
 
 <!-- jquery.tagcloud.js -->
 <script type="text/javascript">
