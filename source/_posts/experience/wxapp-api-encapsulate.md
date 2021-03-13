@@ -15,6 +15,7 @@ date: 2018-01-10 18:30:13
 
 > 小程序中的异步api，风格都是统一为成功接受success参数作为回调，失败接受fail作为参数回调。比起Promise风格来说，感觉后者对开发者来说更加友好。
 
+{% spoiler 异步api转为Promise风格 %}
 ```javascript
 /**
  * 将大多数微信接口转换成promise形式
@@ -35,6 +36,7 @@ export const promisifyWxApi = fn => {
   }
 }
 ```
+{% endspoiler %}
 
 #### 1.1 使用举例
 
@@ -53,11 +55,12 @@ promisifyWxApi(wx.chooseImage)({
 > 官方提供了四种页面跳转的方式，接受参数类型是一个Json，使用起来复杂又麻烦。
 > 建议合并四种方式，简化参数形式。
 
+{% spoiler 路由跳转 %}
 ```javascript
 // 需要手动配置tabbar页面列表
 const TABBAR_PAGES = ['productList', 'me']
 /**
- * Toast提示重载
+ * 路由跳转重载
  * @param pageName String 必填，页面文件名称
  * @param urlParams Json 页面参数
  * @param close Boolean/String 跳转方式，true：关闭当前页再跳转；'all'：关闭所有页面再跳转
@@ -89,6 +92,7 @@ const navigateTo = (pageName, urlParams, close) => {
   }
 }
 ```
+{% endspoiler %}
 
 #### 2.1 使用举例
 
@@ -135,6 +139,7 @@ function refresh () {
 
 > 官方提供了 **showToast** 和 **showLoading** 两个消息提示的API，使用频率很高，Json的参数类型就显得很麻烦了。
 
+{% spoiler Toast提示重载 %}
 ```javascript
 /**
  * Toast提示重载
@@ -156,6 +161,7 @@ const showToast = (title = '', icon = 'warning', others) => {
   return promisifyWxApi(wx.showToast)(params)
 }
 ```
+{% endspoiler %}
 
 #### 4.1 使用举例
 ```javascript
@@ -171,6 +177,7 @@ wxUtil.showToast('手机号必填')
 ### 5. 发起网络请求
 > 实际业务中需要对全部或绝大部分网络请求做统一的错误处理和数据预处理。
 
+{% spoiler request重载 %}
 ```javascript
 // 自定义请求头内容
 const headers = {
@@ -217,6 +224,7 @@ function ajax (params, success, error) {
   })
 }
 ```
+{% endspoiler %}
 
 #### 5.1 使用举例
 
@@ -251,6 +259,7 @@ wxUtil.ajax({
 
 > 官方提供的图片预览API，接受的参数同样是Json类型，回调方法一般使用不到。可以二次封装做一些简化。
 
+{% spoiler 预览图片重载 %}
 ```javascript
 /**
  * 预览图片重载
@@ -267,6 +276,7 @@ function previewImage (index, urls) {
   })
 }
 ```
+{% endspoiler %}
 
 #### 6.1 使用举例
 
@@ -287,6 +297,7 @@ Page({
 
 > 很多业务场景都需要在页面间传递状态，传递方式要满足使用简单，状态值易于管理的要求。
 
+{% spoiler 页面信息传递 %}
 ```javascript
 const NOTICE = {
   edit: Symbol('edit')
@@ -334,6 +345,7 @@ APP({
   },
 })
 ```
+{% endspoiler %}
 
 #### 7.1 使用举例
 

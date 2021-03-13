@@ -9,47 +9,7 @@
 @import "./_partial/_side-catalog";
 @import "./_partial/_tags";
 @import "./_partial/_toc";
-// Utils Style Class can be used in Markdown.
-small.img-hint {
-  display: block;
-  margin-top: -20px;
-  text-align: center;
-}
-
-br + small.img-hint {
-  margin-top: -40px;
-}
-
-img.shadow {
-  box-shadow: rgba(0, 0, 0, .258824) 0 2px 5px 0;
-}
-
-// Utils Style End
-
-// override table style in bootstrap
-.table th, .table td {
-  border: 1px solid #EEEEEE !important;
-}
-
-hr.small {
-  max-width: 100px;
-  margin: 15px auto;
-  border-width: 4px;
-  border-color: white;
-}
-
-// add by Hux
-pre, .table-responsive {
-  // sometimes you should use vendor-feature.
-  -webkit-overflow-scrolling: touch;
-}
-
-pre code {
-  display: block;
-  width: auto;
-  white-space: pre; // save it but no-wrap;
-  word-wrap: normal; // no-wrap
-}
+@import "./_partial/_override";
 
 .image-container {
   display: flex;
@@ -128,17 +88,15 @@ pre code {
     &.next {
       float: right;
     }
-    ;
 
     &.previous {
       float: left;
     }
-    ;
 
-     > a {
+    > a {
       width: 100%;
 
-       > span {
+      > span {
         font-weight: normal;
         letter-spacing: .5px;
         color: $gray;
@@ -210,6 +168,7 @@ pre code {
 
     // Post Preview Pages (Home Page)
     .post-preview {
+      position: relative;
       display: block;
       margin-bottom: 16px;
       padding: 0 20px 10px;
@@ -236,19 +195,16 @@ pre code {
         color: $muted-text;
       }
 
-       > a {
-        display: inline-block;
-        padding: 4px 8px;
-        font-size: 12px;
-        font-weight: bold;
-        text-decoration: none;
-        color: $gray-dark;
-        border: 2px solid $gray-dark;
+      > a {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
 
-        &:hover {
-          color: white;
-          background-color: $gray-dark;
-        }
+      &:hover {
+        border-color: $theme-primary;
       }
     }
   }
@@ -496,19 +452,19 @@ form .row:first-child .floating-label-form-group {
   left: 0;
   display: -webkit-box;
   display: -webkit-flex;
-  display:         flex;
+  display: flex;
   width: 100%;
   height: 100%;
   padding-bottom: 150px;
   -webkit-box-align: center;
   -webkit-align-items: center;
-          align-items: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .page-fullscreen footer {

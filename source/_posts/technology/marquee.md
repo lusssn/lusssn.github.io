@@ -68,8 +68,7 @@ date: 2016-09-27 17:48:19
 
 ### 代码剖析
 
-HTML和CSS很简单
-
+{% spoiler html 和 css %}
 ```html
 <style type='text/css'>
     .carousel {
@@ -103,9 +102,9 @@ HTML和CSS很简单
     </div>
 </div>
 ```
+{% endspoiler %}
 
-主要是js的逻辑
-
+{% spoiler javascript 逻辑 %}
 ```js
 const itemLength = $('.circleCarousel .contentItem').length;
 
@@ -132,6 +131,7 @@ setInterval(function () {
     }
 }, 2000);
 ```
+{% endspoiler %}
 
 如果去掉 3-4行 和 20行 的代码，就是普通的轮播效果了。是不是十分简单！💅
 

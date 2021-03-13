@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "4.2.0"
+    "version": "5.1.1"
   },
   "dependencies": {
-    "hexo": "^4.2.0",
+    "hexo": "^5.1.1",
     "hexo-asset-image": "^0.0.3",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
@@ -17,6 +17,7 @@
     "hexo-renderer-marked": "^0.3.0",
     "hexo-renderer-scss": "^1.2.0",
     "hexo-server": "^0.2.0",
+    "hexo-sliding-spoiler": "^1.2.1",
     "hexo-toc": "^1.1.0"
   }
 }
